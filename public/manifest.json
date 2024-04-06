@@ -1,0 +1,12 @@
+{
+  "name": "zombie-killer",
+  "description": "Twitterのインプレゾンビをワンクリックで非表示にし、自動でブロック・通報します。Inspired by zombie-buster.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "js": ["main.js"],
+      "matches": ["*://twitter.com/**"]
+    }
+  ]
+}

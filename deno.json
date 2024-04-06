@@ -1,0 +1,9 @@
+{
+  "tasks": {
+    "build": "rm -rf ./dist/ && cp -r ./public ./dist && deno run --allow-env --allow-read --allow-write bundle.ts"
+  },
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "dom.asynciterable", "deno.ns"],
+    "types": ["https://unpkg.com/chrome-types@0.1.276/index.d.ts"]
+  }
+}
