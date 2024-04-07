@@ -8,5 +8,11 @@
       "js": ["main.js"],
       "matches": ["*://twitter.com/**"]
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["/icons/*.png"],
+      "matches": ["<all_urls>"]
+    }
   ]
 }
