@@ -2,7 +2,9 @@ import {
   caretSelector,
   hideButtonClassName,
   tweetSelector,
+  userIdClassName,
 } from "./domSelectors.ts";
+import { hideUserIds, hideUserIdsKey } from "./hideUsers/hideUsers.ts";
 
 const IconPath = "icons/hideButton.png";
 
@@ -20,18 +22,18 @@ export function addHideButtons() {
       continue;
     }
 
-    const hideButton = createHideButton();
+    const hideButton = createHideButton(tweet);
 
     hideButtonDom.prepend(hideButton);
   }
 }
 
-function createHideButton(): HTMLDivElement {
+function createHideButton(tweet: Element): HTMLDivElement {
   const hideButton = document.createElement("img");
 
   setAttribute(hideButton);
   setStyle(hideButton);
-  setEventListener(hideButton);
+  setEventListener(hideButton, tweet);
 
   const container = document.createElement("div");
   container.style.display = "flex";
@@ -57,7 +59,7 @@ function setStyle(button: HTMLImageElement) {
   button.style.opacity = "0.70";
 }
 
-function setEventListener(button: HTMLImageElement) {
+function setEventListener(button: HTMLImageElement, tweet: Element) {
   button.addEventListener("mouseover", () => {
     button.style.backgroundColor = "#fcdcde";
     button.style.transition = "background-color 0.3s";
@@ -65,5 +67,18 @@ function setEventListener(button: HTMLImageElement) {
 
   button.addEventListener("mouseleave", () => {
     button.style.background = "none";
+  });
+
+  button.addEventListener("click", async (event) => {
+    event.preventDefault();
+    const userId = tweet.getElementsByClassName(userIdClassName)[0].textContent;
+    if (userId != null) {
+      hideUserIds.add(userId);
+    }
+
+    await chrome.storage.local.clear();
+    await chrome.storage.local.set({
+      [hideUserIdsKey]: hideUserIds.toStorage(),
+    });
   });
 }
