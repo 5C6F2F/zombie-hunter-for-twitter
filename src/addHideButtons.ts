@@ -4,7 +4,7 @@ import {
   tweetSelector,
   userIdClassName,
 } from "./domSelectors.ts";
-import { hideUserIds, hideUserIdsKey } from "./hideUsers/hideUsers.ts";
+import { hideUserIds, hideUserIdsKey, hideUsers } from "./hideUsers/hideUsers.ts";
 
 const IconPath = "icons/hideButton.png";
 
@@ -75,6 +75,8 @@ function setEventListener(button: HTMLImageElement, tweet: Element) {
     if (userId != null) {
       hideUserIds.add(userId);
     }
+
+    hideUsers();
 
     await chrome.storage.local.clear();
     await chrome.storage.local.set({
