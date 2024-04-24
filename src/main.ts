@@ -1,7 +1,7 @@
 import { addHideButtons } from "./addHideButtons.ts";
-import { hideUsers, initHideUserIds } from "./hideUsers/hideUsers.ts";
+import { hideZombies, initZombieIds } from "./hideZombies/hideZombies.ts";
 
-initHideUserIds();
+initZombieIds();
 
 setInterval(addHideButtons, 500);
-setInterval(hideUsers, 500);
+setInterval(hideZombies, 500);

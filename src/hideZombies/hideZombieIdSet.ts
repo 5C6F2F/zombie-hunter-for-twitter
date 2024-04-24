@@ -1,9 +1,9 @@
-export interface HideUserIdSet<T extends string> extends Set<T> {
+export interface HideZombieIdsSet<T extends string> extends Set<T> {
   toStorage(): string;
   fromStorage(value: string): this;
 }
 
-export class HideUserIdSet<T extends string> implements HideUserIdSet<T> {
+export class HideZombieIdsSet<T extends string> implements HideZombieIdsSet<T> {
   private set: Set<T>;
 
   constructor() {

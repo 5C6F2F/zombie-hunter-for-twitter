@@ -2,7 +2,7 @@
 export const tweetSelector = "article[data-testid='tweet']";
 
 // ツイートのwrapper 非表示対象
-export const hideTweetElement = "div[data-testid='cellInnerDiv']";
+export const zombieTweetSelector = "div[data-testid='cellInnerDiv']";
 
 // ツイート右上の三点リーダー
 export const caretSelector = "div[data-testid='caret']";

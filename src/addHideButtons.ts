@@ -4,7 +4,11 @@ import {
   tweetSelector,
   userIdClassName,
 } from "./domSelectors.ts";
-import { hideUserIds, hideUserIdsKey, hideUsers } from "./hideUsers/hideUsers.ts";
+import {
+  zombieIds,
+  zombieIdsKeyForStorage,
+  hideZombies,
+} from "./hideZombies/hideZombies.ts";
 
 const IconPath = "icons/hideButton.png";
 
@@ -72,15 +76,16 @@ function setEventListener(button: HTMLImageElement, tweet: Element) {
   button.addEventListener("click", async (event) => {
     event.preventDefault();
     const userId = tweet.getElementsByClassName(userIdClassName)[0].textContent;
+
     if (userId != null) {
-      hideUserIds.add(userId);
+      zombieIds.add(userId);
     }
 
-    hideUsers();
+    hideZombies();
 
     await chrome.storage.local.clear();
     await chrome.storage.local.set({
-      [hideUserIdsKey]: hideUserIds.toStorage(),
+      [zombieIdsKeyForStorage]: zombieIds.toStorage(),
     });
   });
 }
