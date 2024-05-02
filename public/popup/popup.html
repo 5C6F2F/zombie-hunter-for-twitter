@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>ZombieKiller</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div id="purge">
+    <div id="purge-button">
+      <h2 id="purge-button-title">対象一覧 - <span id="zombies-num">0</span>人</h2>
+      <div id="purge-button-icon">
+        <svg id="open-button" title="開く" viewBox="0 0 24 24">
+          <g>
+            <path
+              d="M12 11.59L3.96 3.54 2.54 4.96 12 14.41l9.46-9.45-1.42-1.42L12 11.59zm0 7l-8.04-8.05-1.42 1.42L12 21.41l9.46-9.45-1.42-1.42L12 18.59z">
+            </path>
+          </g>
+        </svg>
+        <svg id="close-button" title="閉じる" viewBox="0 0 24 24">
+          <g>
+            <path
+              d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z">
+            </path>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div id="zombies">
+      <p id="no-zombies">なし</p>
+    </div>
+  </div>
+  <button id="clear">clear</button>
+  <script src="main.js" defer></script>
+</body>
+
+</html>
