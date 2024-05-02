@@ -1,18 +1,15 @@
+import { hideZombies } from "./hideZombies.ts";
+import { userFromTweet } from "../lib/user.ts";
+import { ZombiesSet } from "../lib/zombie.ts";
 import {
   caretSelector,
   hideButtonClassName,
+  iconPath,
   tweetSelector,
-  userIdClassName,
-} from "./domSelectors.ts";
-import {
-  zombieIds,
-  zombieIdsKeyForStorage,
-  hideZombies,
-} from "./hideZombies/hideZombies.ts";
+  zombiesKeyForStorage,
+} from "./consts.ts";
 
-const IconPath = "icons/hideButton.png";
-
-export function addHideButtons() {
+export function addHideZombieButtons(zombies: ZombiesSet) {
   const tweets = document.querySelectorAll(tweetSelector);
 
   for (const tweet of tweets) {
@@ -22,22 +19,22 @@ export function addHideButtons() {
 
     const hideButtonDom = tweet.querySelector(caretSelector)?.parentElement;
 
-    if (hideButtonDom == null) {
+    if (!hideButtonDom) {
       continue;
     }
 
-    const hideButton = createHideButton(tweet);
+    const hideButton = createButton(zombies, tweet);
 
     hideButtonDom.prepend(hideButton);
   }
 }
 
-function createHideButton(tweet: Element): HTMLDivElement {
+function createButton(zombies: ZombiesSet, tweet: Element): HTMLDivElement {
   const hideButton = document.createElement("img");
 
   setAttribute(hideButton);
   setStyle(hideButton);
-  setEventListener(hideButton, tweet);
+  setEventListener(hideButton, zombies, tweet);
 
   const container = document.createElement("div");
   container.style.display = "flex";
@@ -48,7 +45,7 @@ function createHideButton(tweet: Element): HTMLDivElement {
 }
 
 function setAttribute(button: HTMLImageElement) {
-  button.src = chrome.runtime.getURL(IconPath);
+  button.src = iconPath;
   button.className = hideButtonClassName;
   button.title = "非表示";
 }
@@ -63,7 +60,11 @@ function setStyle(button: HTMLImageElement) {
   button.style.opacity = "0.70";
 }
 
-function setEventListener(button: HTMLImageElement, tweet: Element) {
+function setEventListener(
+  button: HTMLImageElement,
+  zombies: ZombiesSet,
+  tweet: Element
+) {
   button.addEventListener("mouseover", () => {
     button.style.backgroundColor = "#fcdcde";
     button.style.transition = "background-color 0.3s";
@@ -75,17 +76,16 @@ function setEventListener(button: HTMLImageElement, tweet: Element) {
 
   button.addEventListener("click", async (event) => {
     event.preventDefault();
-    const userId = tweet.getElementsByClassName(userIdClassName)[0].textContent;
+    const zombie = userFromTweet(tweet);
 
-    if (userId != null) {
-      zombieIds.add(userId);
+    if (zombie) {
+      zombies.add(zombie);
     }
 
-    hideZombies();
+    hideZombies(zombies);
 
-    await chrome.storage.local.clear();
     await chrome.storage.local.set({
-      [zombieIdsKeyForStorage]: zombieIds.toStorage(),
+      [zombiesKeyForStorage]: zombies.toStorage(),
     });
   });
 }
