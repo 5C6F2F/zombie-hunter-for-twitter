@@ -3,17 +3,21 @@
   "description": "Twitterのインプレゾンビをワンクリックで非表示にし、自動でブロック・通報します。Inspired by zombie-buster.",
   "version": "1.0",
   "manifest_version": 3,
+  "permissions": ["storage"],
   "content_scripts": [
     {
-      "js": ["main.js"],
+      "js": ["content/main.js"],
       "matches": ["*://twitter.com/**"]
     }
   ],
+  "action": {
+    "default_title": "ZombieKiller",
+    "default_popup": "popup/popup.html"
+  },
   "web_accessible_resources": [
     {
       "resources": ["/icons/*.png"],
       "matches": ["<all_urls>"]
     }
-  ],
-  "permissions": ["storage"]
+  ]
 }
