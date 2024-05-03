@@ -18,7 +18,7 @@ html #purge #purge-button #purge-button-icon #close-button {
   padding: 6px;
   margin: 7px;
   color: rgb(15, 20, 25);
-  border-radius: 25px;
+  border-radius: 50%;
 }
 html #purge #purge-button #purge-button-icon #close-button {
   display: none;
@@ -34,30 +34,49 @@ html #purge #zombies #no-zombies {
 html #purge #zombies .zombie {
   border-top: solid 1px rgb(200, 200, 200);
   border-bottom: solid 1px rgb(200, 200, 200);
+  display: flex;
+  justify-content: space-between;
 }
-html #purge #zombies .zombie:hover {
-  background-color: #f7f7f7;
-  transition: background-color 0.3s;
-}
-html #purge #zombies .zombie .tweet-url {
-  color: inherit;
-  text-decoration: none;
-}
-html #purge #zombies .zombie .tweet-url .tweet-content {
+html #purge #zombies .zombie .tweet-content {
+  flex-grow: 1;
   padding: 6px;
 }
-html #purge #zombies .zombie .tweet-url .tweet-content p {
+html #purge #zombies .zombie .tweet-content p {
   margin: 0;
 }
-html #purge #zombies .zombie .tweet-url .tweet-content .zombie-profile {
+html #purge #zombies .zombie .tweet-content .zombie-profile {
   display: flex;
   justify-self: flex-start;
   gap: 10px;
   padding-left: 3px;
   padding-bottom: 3px;
 }
-html #purge #zombies .zombie .tweet-url .tweet-content .tweet-text {
+html #purge #zombies .zombie .tweet-content .tweet-text {
   border-top: dashed 1px rgb(200, 200, 200);
-  padding: 6px 2px 2px 8px;
+  padding: 6px 0 2px 8px;
   overflow-wrap: break-word;
+}
+html #purge #zombies .zombie .options {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+html #purge #zombies .zombie .options .tweet-url-wrapper {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+html #purge #zombies .zombie .options .tweet-url-wrapper .tweet-url-button {
+  transform: translate(1px, -1px);
+}
+
+.buttons {
+  transition: background-color 0.3s;
+}
+.buttons:hover {
+  background-color: #e7e7e7;
+  transition: background-color 0.3s;
 }

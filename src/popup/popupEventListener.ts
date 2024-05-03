@@ -7,29 +7,11 @@ export function popupEventListener() {
     return;
   }
 
-  open_button.addEventListener("mouseover", () => {
-    open_button.style.backgroundColor = "#e7e7e7";
-    open_button.style.transition = "background-color 0.3s";
-  });
-
-  open_button.addEventListener("mouseleave", () => {
-    open_button.style.background = "none";
-  });
-
   open_button.addEventListener("click", (event) => {
     event.preventDefault();
     open_button.style.display = "none";
     close_button.style.display = "flex";
     zombies.style.display = "block";
-  });
-
-  close_button.addEventListener("mouseover", () => {
-    close_button.style.backgroundColor = "#e7e7e7";
-    close_button.style.transition = "background-color 0.3s";
-  });
-
-  close_button.addEventListener("mouseleave", () => {
-    close_button.style.background = "none";
   });
 
   close_button.addEventListener("click", (event) => {
