@@ -7,3 +7,10 @@ export const noName =
 // ツイート本文中に含まれている場合、空文字にreplaceする
 export const separator =
   "sepalatorsepalatorsepalatorsepalatorsepalatorsepalatorsepalatorsepalatorsepalatorsepalator";
+
+
+// ポップアップから対象のツイートにアクセスした際のパラメーター
+// このパラメーターがある場合、非表示処理を停止させる
+export const zombieViewParam = "zombie-view";
+
+export const zombieViewParamValue = "true;"

@@ -1,3 +1,5 @@
+import { zombieViewParam, zombieViewParamValue } from "../lib/consts.ts"
+
 export function popupEventListener() {
   const open_button = document.getElementById("open-button");
   const close_button = document.getElementById("close-button");
@@ -43,7 +45,16 @@ export function popupEventListener() {
   Array.from(zombieElements).forEach((element) => {
     element.addEventListener("click", (event) => {
       event.preventDefault();
-      chrome.tabs.create({ url: element.getAttribute("href")! });
+
+      const tweetURLStr = element.getAttribute("href");
+      if (!tweetURLStr) {
+        return;
+      }
+
+      const tweetURL = new URL(tweetURLStr);
+      tweetURL.searchParams.append(zombieViewParam, zombieViewParamValue);
+
+      chrome.tabs.create({ url: tweetURLStr.toString() });
     });
   });
 }
