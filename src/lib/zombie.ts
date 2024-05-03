@@ -98,35 +98,58 @@ export class Zombie extends User {
   toHTML(): HTMLElement {
     const element = document.createElement("div");
 
-    // tweetが200文字以上の場合は...で省略する
-    let text = this.text;
-    if (text.length > 200) {
-      text = text.substring(0, 200);
-      text += "...";
-    }
-
     element.innerHTML = `
       <div class="zombie">
-        <a href="${this.noHideURL}" class="tweet-url">
-          <div class="tweet-content">
-            <div class="zombie-profile">
-              <div class=" zombie-name">
-                <p>${this.name}</p>
-              </div>
-              <div class="zombie-id">
-                <p>${this.id}</p>
-              </div>
+        <div class="tweet-content">
+          <div class="zombie-profile">
+            <div class="zombie-name">
+              <p>${this.name}</p>
             </div>
-            <div class="tweet-text">
-              <p>
-                ${text}
-              </p>
+            <div class="zombie-id">
+              <p>${this.id}</p>
             </div>
           </div>
-        </a>
+          <div class="tweet-text">
+            <p>${this.trimmedText}</p>
+          </div>
+        </div>
+        <div class="options">
+          <div class="tweet-url-wrapper buttons">
+            <a href="${this.noHideURL}" class="tweet-url">
+              <svg class="tweet-url-button" width="100%" height="100%" viewBox="0 0 800 800" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+                xmlns:serif="http://www.serif.com/"
+                style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1;">
+                <g transform="matrix(1,0,0,1,-235,-1950)">
+                  <g transform="matrix(2.02015,0,0,2.02017,-51.8034,1393.69)">
+                    <rect x="142.327" y="275.741" width="396.011" height="396.011" style="fill:none;" />
+                    <g transform="matrix(0.495014,0,0,0.495007,3.15989,-102.548)">
+                      <path d="M687.28,980.293L406.378,980.293L406.378,1438.97L865.059,1438.97L865.059,1159.34"
+                        style="fill:none;stroke:black;stroke-width:22.22px;" />
+                    </g>
+                    <g transform="matrix(0.145129,0.145127,-0.145129,0.145127,656.851,-26.082)">
+                      <path
+                        d="M519.133,2352.46L519.133,2855.01L744,2855.01L744,2352.46L1108.68,2352.46L631.567,1875.35L154.455,2352.46L519.133,2352.46Z"
+                        style="fill:none;stroke:black;stroke-width:53.6px;" />
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>`;
 
     return element;
+  }
+
+  private get trimmedText(): string {
+    // tweetが200文字以上の場合は...で省略する
+    if (this.text.length > 200) {
+      return this.text.substring(0, 200).concat("...");
+    } else {
+      return this.text;
+    }
   }
 
   private get noHideURL(): string {

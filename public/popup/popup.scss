@@ -21,7 +21,7 @@ html {
           padding: 6px;
           margin: 7px;
           color: rgb(15, 20, 25);
-          border-radius: 25px;
+          border-radius: 50%;
         }
 
         #close-button {
@@ -42,39 +42,60 @@ html {
       .zombie {
         border-top: solid 1px rgb(200, 200, 200);
         border-bottom: solid 1px rgb(200, 200, 200);
+        display: flex;
+        justify-content: space-between;
 
-        &:hover {
-          background-color: #f7f7f7;
-          transition: background-color 0.3s;
+        .tweet-content {
+          flex-grow: 1;
+          padding: 6px;
+
+          p {
+            margin: 0;
+          }
+
+          .zombie-profile {
+            display: flex;
+            justify-self: flex-start;
+            gap: 10px;
+            padding-left: 3px;
+            padding-bottom: 3px;
+          }
+
+          .tweet-text {
+            border-top: dashed 1px rgb(200, 200, 200);
+            padding: 6px 0 2px 8px;
+            overflow-wrap: break-word;
+          }
         }
 
-        .tweet-url {
-          color: inherit;
-          text-decoration: none;
+        .options {
+          display: flex;
+          flex-direction: column;
+          margin-top: auto;
+          margin-bottom: auto;
 
-          .tweet-content {
-            padding: 6px;
+          .tweet-url-wrapper {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            padding: 5px;
+            cursor: pointer;
 
-            p {
-              margin: 0;
-            }
-
-            .zombie-profile {
-              display: flex;
-              justify-self: flex-start;
-              gap: 10px;
-              padding-left: 3px;
-              padding-bottom: 3px;
-            }
-
-            .tweet-text {
-              border-top: dashed 1px rgb(200, 200, 200);
-              padding: 6px 2px 2px 8px;
-              overflow-wrap: break-word;
+            .tweet-url-button {
+              transform: translate(1px, -1px);
             }
           }
         }
       }
     }
+  }
+}
+
+.buttons {
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #e7e7e7;
+    transition: background-color 0.3s;
   }
 }
