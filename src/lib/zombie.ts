@@ -1,6 +1,6 @@
 import { User } from "./user.ts";
 import { zombiesKeyForStorage } from "../content/consts.ts";
-import { separator } from "./consts.ts";
+import { separator, zombieViewParam } from "./consts.ts";
 
 export class ZombiesSet {
   private _ids: Set<string>;
@@ -59,9 +59,11 @@ export class ZombiesSet {
       text = text.replace(separator, "");
     }
 
-    this._zombies.push(
-      new Zombie(zombie.id, zombie.name, text, zombie.url)
-    );
+    this._zombies.push(new Zombie(zombie.id, zombie.name, text, zombie.url));
+  }
+
+  remove(id: string) {
+    this._ids.delete(id);
   }
 
   has(id: string): boolean {
@@ -105,7 +107,7 @@ export class Zombie extends User {
 
     element.innerHTML = `
       <div class="zombie">
-        <a href="${this.url}" class="tweet-url">
+        <a href="${this.noHideURL}" class="tweet-url">
           <div class="tweet-content">
             <div class="zombie-profile">
               <div class=" zombie-name">
@@ -125,5 +127,11 @@ export class Zombie extends User {
       </div>`;
 
     return element;
+  }
+
+  private get noHideURL(): string {
+    const url = new URL(this.url);
+    url.searchParams.append(zombieViewParam, this.id);
+    return url.toString();
   }
 }

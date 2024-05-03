@@ -9,13 +9,16 @@ const params = url.searchParams;
 (async () => {
   const zombies = await new ZombiesSet().loadZombiesFromStorage();
 
+  const remove = params.get(zombieViewParam);
+  if (remove) {
+    zombies.remove(remove);
+  }
+
   setInterval(() => {
     addHideZombieButtons(zombies);
   }, 500);
 
-  if (!params.has(zombieViewParam)) {
-    setInterval(() => {
-      hideZombies(zombies);
-    }, 500);
-  }
+  setInterval(() => {
+    hideZombies(zombies);
+  }, 500);
 })();

@@ -12,5 +12,3 @@ export const separator =
 // ポップアップから対象のツイートにアクセスした際のパラメーター
 // このパラメーターがある場合、非表示処理を停止させる
 export const zombieViewParam = "zombie-view";
-
-export const zombieViewParamValue = "true;"
