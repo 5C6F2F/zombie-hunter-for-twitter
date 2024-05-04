@@ -2,6 +2,7 @@ html {
   width: 400px;
   max-height: 500px;
   margin: 0 13px;
+  scrollbar-gutter: stable;
 
   #purge {
     #purge-button {
@@ -64,13 +65,11 @@ html {
           .tweet-text {
             border-top: dashed 1px rgb(200, 200, 200);
             padding: 6px 0 2px 8px;
-            overflow-wrap: break-word;
+            overflow-wrap: anywhere;
           }
         }
 
         .options {
-          display: flex;
-          flex-direction: column;
           margin-top: auto;
           margin-bottom: auto;
 

@@ -2,6 +2,7 @@ html {
   width: 400px;
   max-height: 500px;
   margin: 0 13px;
+  scrollbar-gutter: stable;
 }
 html #purge #purge-button {
   height: 50px;
@@ -54,11 +55,9 @@ html #purge #zombies .zombie .tweet-content .zombie-profile {
 html #purge #zombies .zombie .tweet-content .tweet-text {
   border-top: dashed 1px rgb(200, 200, 200);
   padding: 6px 0 2px 8px;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 html #purge #zombies .zombie .options {
-  display: flex;
-  flex-direction: column;
   margin-top: auto;
   margin-bottom: auto;
 }
