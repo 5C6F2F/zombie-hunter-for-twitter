@@ -78,6 +78,18 @@ html #purge #zombies .zombie .options .remove-user:hover {
   transition: background-color 0.3s;
   opacity: 0.85;
 }
+html #purge #zombies .zombie .options .block-user {
+  transition: background-color 0.3s;
+}
+html #purge #zombies .zombie .options .block-user:hover {
+  background-color: #fcdcde;
+  transition: background-color 0.3s;
+}
+html #purge #zombies .zombie .options .block-user .block-user-button {
+  width: 85%;
+  height: 85%;
+  transform: translate(2px, 2px);
+}
 
 .buttons {
   transition: background-color 0.3s;

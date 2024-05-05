@@ -94,6 +94,21 @@ html {
               opacity: 0.85;
             }
           }
+
+          .block-user {
+            transition: background-color 0.3s;
+
+            &:hover {
+              background-color: #fcdcde;
+              transition: background-color 0.3s;
+            }
+
+            .block-user-button {
+              width: 85%;
+              height: 85%;
+              transform: translate(2px, 2px);
+            }
+          }
         }
       }
     }

@@ -83,6 +83,10 @@ export class Zombie extends User {
             </g>
           </svg>
         </div>
+        <div class="block-user">
+          <!-- アイコンは https://icon-pit.com/pictogram/1661 「禁止マークのアイコン」を使用させていただきました。 -->
+          <img src="../icons/blockButton.png" alt="" class="block-user-button">
+        </div>
       </div>`;
 
     return element;
