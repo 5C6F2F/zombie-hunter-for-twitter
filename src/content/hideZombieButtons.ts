@@ -1,15 +1,14 @@
 import { hideZombies } from "./hideZombies.ts";
 import { userFromTweet } from "../lib/user.ts";
-import { ZombiesSet } from "../lib/zombie.ts";
+import { ZombiesMap } from "../lib/zombiesMap.ts";
 import {
   caretSelector,
   hideButtonClassName,
   iconPath,
   tweetSelector,
-  zombiesKeyForStorage,
 } from "./consts.ts";
 
-export function addHideZombieButtons(zombies: ZombiesSet) {
+export function addHideZombieButtons(zombies: ZombiesMap) {
   const tweets = document.querySelectorAll(tweetSelector);
 
   for (const tweet of tweets) {
@@ -29,7 +28,7 @@ export function addHideZombieButtons(zombies: ZombiesSet) {
   }
 }
 
-function createButton(zombies: ZombiesSet, tweet: Element): HTMLDivElement {
+function createButton(zombies: ZombiesMap, tweet: Element): HTMLDivElement {
   const hideButton = document.createElement("img");
 
   setAttribute(hideButton);
@@ -62,7 +61,7 @@ function setStyle(button: HTMLImageElement) {
 
 function setEventListener(
   button: HTMLImageElement,
-  zombies: ZombiesSet,
+  zombies: ZombiesMap,
   tweet: Element
 ) {
   button.addEventListener("mouseover", () => {
@@ -74,7 +73,7 @@ function setEventListener(
     button.style.background = "none";
   });
 
-  button.addEventListener("click", async (event) => {
+  button.addEventListener("click", (event) => {
     event.preventDefault();
     const zombie = userFromTweet(tweet);
 
@@ -84,8 +83,6 @@ function setEventListener(
 
     hideZombies(zombies);
 
-    await chrome.storage.local.set({
-      [zombiesKeyForStorage]: zombies.toStorage(),
-    });
+    zombies.saveStorage();
   });
 }

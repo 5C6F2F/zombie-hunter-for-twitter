@@ -1,9 +1,20 @@
-export function popupEventListener() {
-  const open_button = document.getElementById("open-button");
-  const close_button = document.getElementById("close-button");
-  const zombies = document.getElementById("zombies");
+import { ZombiesMap } from "../lib/zombiesMap.ts";
+import {
+  closeButtonId,
+  openButtonId,
+  removeUserClassName,
+  tweetURLClassName,
+  zombieClassNameSelector,
+  zombieIdClassName,
+  zombiesElementId,
+} from "./consts.ts";
 
-  if (!(open_button && close_button && zombies)) {
+export function popupEventListener(zombies: ZombiesMap | null) {
+  const open_button = document.getElementById(openButtonId);
+  const close_button = document.getElementById(closeButtonId);
+  const zombiesElement = document.getElementById(zombiesElementId);
+
+  if (!(open_button && close_button && zombiesElement)) {
     return;
   }
 
@@ -11,21 +22,52 @@ export function popupEventListener() {
     event.preventDefault();
     open_button.style.display = "none";
     close_button.style.display = "flex";
-    zombies.style.display = "block";
+    zombiesElement.style.display = "block";
   });
 
   close_button.addEventListener("click", (event) => {
     event.preventDefault();
     open_button.style.display = "flex";
     close_button.style.display = "none";
-    zombies.style.display = "none";
+    zombiesElement.style.display = "none";
   });
 
-  const zombieElements = document.getElementsByClassName("tweet-url");
-  Array.from(zombieElements).forEach((element) => {
-    element.addEventListener("click", (event) => {
-      event.preventDefault();
-      chrome.tabs.create({ url: element.getAttribute("href")! });
-    });
+  const zombieElements = document.getElementsByClassName(tweetURLClassName);
+  for (const element of zombieElements) {
+    openInNewTabListener(element);
+  }
+
+  if (zombies) {
+    const removeUserElements =
+      document.getElementsByClassName(removeUserClassName);
+    for (const element of removeUserElements) {
+      removeUserListener(element, zombies);
+    }
+  }
+}
+
+function openInNewTabListener(element: Element) {
+  element.addEventListener("click", (event) => {
+    event.preventDefault();
+    const href = element.getAttribute("href");
+    if (href) {
+      chrome.tabs.create({ url: href });
+    }
+  });
+}
+
+function removeUserListener(element: Element, zombies: ZombiesMap) {
+  element.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const zombieElement = element.closest(zombieClassNameSelector);
+    const zombieId =
+      zombieElement?.getElementsByClassName(zombieIdClassName)[0].textContent;
+
+    if (zombieId && zombies.has(zombieId)) {
+      zombies.remove(zombieId);
+      zombieElement.remove();
+      zombies.saveStorage();
+    }
   });
 }

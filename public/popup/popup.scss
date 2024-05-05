@@ -45,14 +45,11 @@ html {
         border-bottom: solid 1px rgb(200, 200, 200);
         display: flex;
         justify-content: space-between;
+        min-height: 42px;
 
         .tweet-content {
           flex-grow: 1;
           padding: 6px;
-
-          p {
-            margin: 0;
-          }
 
           .zombie-profile {
             display: flex;
@@ -70,18 +67,31 @@ html {
         }
 
         .options {
-          margin-top: auto;
-          margin-bottom: auto;
+          margin-top: 5px;
+          display: flex;
 
-          .tweet-url-wrapper {
-            width: 26px;
-            height: 26px;
+          > * {
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             padding: 5px;
             cursor: pointer;
+          }
 
+          .tweet-url-wrapper {
             .tweet-url-button {
               transform: translate(1px, -1px);
+            }
+          }
+
+          .remove-user {
+            transition: background-color 0.3s;
+            opacity: 0.85;
+
+            &:hover {
+              background-color: #ccffcc;
+              transition: background-color 0.3s;
+              opacity: 0.85;
             }
           }
         }
