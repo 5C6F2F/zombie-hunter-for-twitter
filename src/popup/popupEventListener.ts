@@ -1,4 +1,4 @@
-import { ZombiesSet } from "../lib/zombiesSet.ts";
+import { ZombiesMap } from "../lib/zombiesMap.ts";
 import {
   closeButtonId,
   openButtonId,
@@ -9,7 +9,7 @@ import {
   zombiesElementId,
 } from "./consts.ts";
 
-export function popupEventListener(zombies: ZombiesSet) {
+export function popupEventListener(zombies: ZombiesMap | null) {
   const open_button = document.getElementById(openButtonId);
   const close_button = document.getElementById(closeButtonId);
   const zombiesElement = document.getElementById(zombiesElementId);
@@ -37,10 +37,12 @@ export function popupEventListener(zombies: ZombiesSet) {
     openInNewTabListener(element);
   }
 
-  const removeUserElements =
-    document.getElementsByClassName(removeUserClassName);
-  for (const element of removeUserElements) {
-    removeUserListener(element, zombies);
+  if (zombies) {
+    const removeUserElements =
+      document.getElementsByClassName(removeUserClassName);
+    for (const element of removeUserElements) {
+      removeUserListener(element, zombies);
+    }
   }
 }
 
@@ -54,7 +56,7 @@ function openInNewTabListener(element: Element) {
   });
 }
 
-function removeUserListener(element: Element, zombies: ZombiesSet) {
+function removeUserListener(element: Element, zombies: ZombiesMap) {
   element.addEventListener("click", (event) => {
     event.preventDefault();
 

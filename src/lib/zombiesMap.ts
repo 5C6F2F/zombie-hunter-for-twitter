@@ -3,13 +3,11 @@ import { zombiesKeyForStorage } from "../content/consts.ts";
 import { separator } from "./consts.ts";
 import { Zombie } from "./zombie.ts";
 
-export class ZombiesSet {
-  private _ids: Set<string>;
-  private _zombies: Zombie[];
+export class ZombiesMap {
+  private _zombies: Map<string, Zombie>;
 
   constructor() {
-    this._ids = new Set<string>();
-    this._zombies = [];
+    this._zombies = new Map();
   }
 
   async loadZombiesFromStorage(): Promise<this> {
@@ -46,13 +44,15 @@ export class ZombiesSet {
     return this;
   }
 
-  get zombies(): Zombie[] {
-    return this._zombies;
+  get length(): number {
+    return this._zombies.size;
+  }
+
+  ids(): IterableIterator<string> {
+    return this._zombies.keys();
   }
 
   add(zombie: User) {
-    this._ids.add(zombie.id);
-
     let text = zombie.text;
 
     // ツイート本文の中に区切り文字と同じ文字列が含まれている場合、それを空文字列に変換
@@ -60,15 +60,18 @@ export class ZombiesSet {
       text = text.replace(separator, "");
     }
 
-    this._zombies.push(new Zombie(zombie.id, zombie.name, text, zombie.url));
+    this._zombies.set(
+      zombie.id,
+      new Zombie(zombie.id, zombie.name, text, zombie.url)
+    );
   }
 
   remove(id: string) {
-    this._ids.delete(id);
+    this._zombies.delete(id);
   }
 
   has(id: string): boolean {
-    return this._ids.has(id);
+    return this._zombies.has(id);
   }
 
   // 多分awaitいらない
@@ -80,25 +83,22 @@ export class ZombiesSet {
 
   private toStorage(): string {
     let result = "";
-    for (const zombie of this._zombies) {
-      // ポップアップから削除されている場合は保存しない
-      if (this.has(zombie.id)) {
-        result += `${zombie.id}${separator}${zombie.name}${separator}${zombie.text}${separator}${zombie.url}${separator}`;
-      }
+    for (const [_, zombie] of this._zombies) {
+      result += `${zombie.id}${separator}${zombie.name}${separator}${zombie.text}${separator}${zombie.url}${separator}`;
     }
     return result;
   }
 
   parseToHTML(): HTMLElement | null {
-    if (this.zombies.length === 0) {
+    if (this.length === 0) {
       return null;
     }
 
     const html = document.createElement("div");
 
     // add()では末尾に追加されるので追加順に表示するため逆順にする
-    for (let i = this.zombies.length - 1; i >= 0; i--) {
-      html.appendChild(this.zombies[i].toHTML());
+    for (const [_, zombie] of [...this._zombies].reverse()) {
+      html.appendChild(zombie.toHTML());
     }
 
     return html;

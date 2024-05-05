@@ -1,13 +1,11 @@
-import { ZombiesSet } from "../lib/zombiesSet.ts";
+import { ZombiesMap } from "../lib/zombiesMap.ts";
 import { noZombiesId, zombiesElementId, zombiesNumId } from "./consts.ts";
 import { popupEventListener } from "./popupEventListener.ts";
 
-document.getElementById("clear")?.addEventListener("click", () => {
-  chrome.storage.local.clear();
-});
+popupEventListener(null);
 
 (async () => {
-  const zombies = await new ZombiesSet().loadZombiesFromStorage();
+  const zombies = await new ZombiesMap().loadZombiesFromStorage();
 
   const zombieHTML = zombies.parseToHTML();
   const zombiesElement = document.getElementById(zombiesElementId);
@@ -16,7 +14,7 @@ document.getElementById("clear")?.addEventListener("click", () => {
 
   if (zombieHTML && zombiesElement && zombieQuantity && noZombies) {
     noZombies.style.display = "none";
-    zombieQuantity.innerText = zombies.zombies.length.toString();
+    zombieQuantity.innerText = zombies.length.toString();
     zombiesElement.appendChild(zombieHTML);
     popupEventListener(zombies);
   }

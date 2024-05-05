@@ -1,6 +1,6 @@
 import { hideZombies } from "./hideZombies.ts";
 import { userFromTweet } from "../lib/user.ts";
-import { ZombiesSet } from "../lib/zombiesSet.ts";
+import { ZombiesMap } from "../lib/zombiesMap.ts";
 import {
   caretSelector,
   hideButtonClassName,
@@ -8,7 +8,7 @@ import {
   tweetSelector,
 } from "./consts.ts";
 
-export function addHideZombieButtons(zombies: ZombiesSet) {
+export function addHideZombieButtons(zombies: ZombiesMap) {
   const tweets = document.querySelectorAll(tweetSelector);
 
   for (const tweet of tweets) {
@@ -28,7 +28,7 @@ export function addHideZombieButtons(zombies: ZombiesSet) {
   }
 }
 
-function createButton(zombies: ZombiesSet, tweet: Element): HTMLDivElement {
+function createButton(zombies: ZombiesMap, tweet: Element): HTMLDivElement {
   const hideButton = document.createElement("img");
 
   setAttribute(hideButton);
@@ -61,7 +61,7 @@ function setStyle(button: HTMLImageElement) {
 
 function setEventListener(
   button: HTMLImageElement,
-  zombies: ZombiesSet,
+  zombies: ZombiesMap,
   tweet: Element
 ) {
   button.addEventListener("mouseover", () => {
