@@ -1,8 +1,6 @@
-import { ZombiesSet } from "../lib/zombie.ts";
+import { ZombiesSet } from "../lib/zombiesSet.ts";
 import { noZombiesId, zombiesElementId, zombiesNumId } from "./consts.ts";
 import { popupEventListener } from "./popupEventListener.ts";
-
-popupEventListener();
 
 document.getElementById("clear")?.addEventListener("click", () => {
   chrome.storage.local.clear();
@@ -20,6 +18,6 @@ document.getElementById("clear")?.addEventListener("click", () => {
     noZombies.style.display = "none";
     zombieQuantity.innerText = zombies.zombies.length.toString();
     zombiesElement.appendChild(zombieHTML);
-    popupEventListener();
+    popupEventListener(zombies);
   }
 })();

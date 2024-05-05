@@ -40,11 +40,7 @@ export class User {
 }
 
 export function userFromTweet(tweet: Element): User | null {
-  const elements = tweet.getElementsByTagName("a");
-
-  const name = elements[1].textContent;
-  const id = elements[2].textContent;
-  const url = elements[3].href;
+  const [name, id, url] = getUserInfo(tweet);
 
   let text = tweet.querySelector(tweetTextSelector)?.textContent;
   if (!text) {
@@ -56,4 +52,16 @@ export function userFromTweet(tweet: Element): User | null {
   } else {
     return null;
   }
+}
+
+export function getUserInfo(
+  tweet: Element
+): [string | null, string | null, string | null] {
+  const elements = tweet.getElementsByTagName("a");
+
+  const name = elements[1].textContent;
+  const id = elements[2].textContent;
+  const url = elements[3].href;
+
+  return [name, id, url];
 }

@@ -1,4 +1,4 @@
-import { ZombiesSet } from "../lib/zombie.ts";
+import { ZombiesSet } from "../lib/zombiesSet.ts";
 import { zombieViewParam } from "../lib/consts.ts";
 import { addHideZombieButtons } from "./hideZombieButtons.ts";
 import { hideZombies } from "./hideZombies.ts";

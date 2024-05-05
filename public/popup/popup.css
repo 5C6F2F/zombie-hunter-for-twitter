@@ -42,9 +42,6 @@ html #purge #zombies .zombie .tweet-content {
   flex-grow: 1;
   padding: 6px;
 }
-html #purge #zombies .zombie .tweet-content p {
-  margin: 0;
-}
 html #purge #zombies .zombie .tweet-content .zombie-profile {
   display: flex;
   justify-self: flex-start;
@@ -60,16 +57,26 @@ html #purge #zombies .zombie .tweet-content .tweet-text {
 html #purge #zombies .zombie .options {
   margin-top: auto;
   margin-bottom: auto;
+  display: flex;
 }
-html #purge #zombies .zombie .options .tweet-url-wrapper {
-  width: 26px;
-  height: 26px;
+html #purge #zombies .zombie .options > * {
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   padding: 5px;
   cursor: pointer;
 }
 html #purge #zombies .zombie .options .tweet-url-wrapper .tweet-url-button {
   transform: translate(1px, -1px);
+}
+html #purge #zombies .zombie .options .remove-user {
+  transition: background-color 0.3s;
+  opacity: 0.85;
+}
+html #purge #zombies .zombie .options .remove-user:hover {
+  background-color: #ccffcc;
+  transition: background-color 0.3s;
+  opacity: 0.85;
 }
 
 .buttons {

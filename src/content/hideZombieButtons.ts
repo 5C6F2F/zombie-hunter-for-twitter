@@ -1,12 +1,11 @@
 import { hideZombies } from "./hideZombies.ts";
 import { userFromTweet } from "../lib/user.ts";
-import { ZombiesSet } from "../lib/zombie.ts";
+import { ZombiesSet } from "../lib/zombiesSet.ts";
 import {
   caretSelector,
   hideButtonClassName,
   iconPath,
   tweetSelector,
-  zombiesKeyForStorage,
 } from "./consts.ts";
 
 export function addHideZombieButtons(zombies: ZombiesSet) {
@@ -74,7 +73,7 @@ function setEventListener(
     button.style.background = "none";
   });
 
-  button.addEventListener("click", async (event) => {
+  button.addEventListener("click", (event) => {
     event.preventDefault();
     const zombie = userFromTweet(tweet);
 
@@ -84,8 +83,6 @@ function setEventListener(
 
     hideZombies(zombies);
 
-    await chrome.storage.local.set({
-      [zombiesKeyForStorage]: zombies.toStorage(),
-    });
+    zombies.saveStorage();
   });
 }
