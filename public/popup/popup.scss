@@ -95,7 +95,7 @@ html {
             }
           }
 
-          .block-user {
+          .purge-zombie {
             transition: background-color 0.3s;
 
             &:hover {
@@ -103,7 +103,7 @@ html {
               transition: background-color 0.3s;
             }
 
-            .block-user-button {
+            .purge-zombie-button {
               width: 85%;
               height: 85%;
               transform: translate(2px, 2px);

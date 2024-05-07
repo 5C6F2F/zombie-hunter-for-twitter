@@ -78,14 +78,14 @@ html #purge #zombies .zombie .options .remove-user:hover {
   transition: background-color 0.3s;
   opacity: 0.85;
 }
-html #purge #zombies .zombie .options .block-user {
+html #purge #zombies .zombie .options .purge-zombie {
   transition: background-color 0.3s;
 }
-html #purge #zombies .zombie .options .block-user:hover {
+html #purge #zombies .zombie .options .purge-zombie:hover {
   background-color: #fcdcde;
   transition: background-color 0.3s;
 }
-html #purge #zombies .zombie .options .block-user .block-user-button {
+html #purge #zombies .zombie .options .purge-zombie .purge-zombie-button {
   width: 85%;
   height: 85%;
   transform: translate(2px, 2px);
