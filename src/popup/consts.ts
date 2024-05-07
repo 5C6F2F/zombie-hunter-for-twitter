@@ -20,3 +20,6 @@ export const zombieIdClassName = "zombie-id";
 
 // 対象から外すボタン
 export const removeUserClassName = "remove-user";
+
+// 対象を処理するボタン
+export const purgeZombieClassName = "purge-zombie";
