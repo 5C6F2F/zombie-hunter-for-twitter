@@ -1,4 +1,8 @@
-import { blockButtonSelector, confirmBlockButtonSelector } from "../consts.ts";
+import {
+  blockButtonSelector,
+  blockKeyWord,
+  confirmBlockButtonSelector,
+} from "../consts.ts";
 import { click, sleep } from "./lib.ts";
 
 export async function block(menuButton: Element) {
@@ -6,7 +10,7 @@ export async function block(menuButton: Element) {
 
   const blockButton = document.querySelector(blockButtonSelector);
 
-  if (blockButton?.textContent?.includes("さんをブロック")) {
+  if (blockButton?.textContent?.includes(blockKeyWord)) {
     click(blockButton);
   } else {
     return;

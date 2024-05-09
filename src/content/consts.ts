@@ -25,6 +25,9 @@ export const tweetTextSelector = "div[data-testid='tweetText']";
 // "{ID}さんをブロック"のボタン
 export const blockButtonSelector = "div[data-testid='block']";
 
+// blockButtonSelectorのボタンにこの文字列がない場合、既にブロックしていると判定
+export const blockKeyWord = "さんをブロック";
+
 // ブロック確認のボタン
 export const confirmBlockButtonSelector = "div[data-testid='confirmationSheetConfirm']";
 

@@ -17,3 +17,5 @@ export const zombieViewParam = "zombie-view";
 // このパラメーターがある場合、ブロック・通報の処理をする
 // 非表示処理の停止はすでに追加済
 export const purgeZombieParam = "purge-zombie";
+
+export const ellipsisMark = "...";

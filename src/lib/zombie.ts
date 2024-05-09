@@ -1,4 +1,4 @@
-import { zombieViewParam } from "./consts.ts";
+import { ellipsisMark, zombieViewParam } from "./consts.ts";
 import { User } from "./user.ts";
 
 export class Zombie extends User {
@@ -95,7 +95,7 @@ export class Zombie extends User {
   private get trimmedText(): string {
     // tweetが200文字以上の場合は...で省略する
     if (this.text.length > 200) {
-      return this.text.substring(0, 200).concat("...");
+      return this.text.substring(0, 200).concat(ellipsisMark);
     } else {
       return this.text;
     }

@@ -1,7 +1,11 @@
 import { sleep } from "../content/purge/lib.ts";
 import { purgeZombieParam } from "../lib/consts.ts";
 import { ZombiesMap } from "../lib/zombiesMap.ts";
-import { zombieClassNameSelector, zombieIdClassName, tweetURLClassName } from "./consts.ts";
+import {
+  zombieClassNameSelector,
+  zombieIdClassName,
+  tweetURLClassName,
+} from "./consts.ts";
 
 export async function purgePre(element: Element, zombies: ZombiesMap) {
   const zombieElement = element.closest(zombieClassNameSelector);
