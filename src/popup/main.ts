@@ -9,12 +9,12 @@ popupEventListener(null);
 
   const zombieHTML = zombies.parseToHTML();
   const zombiesElement = document.getElementById(zombiesElementId);
-  const zombieQuantity = document.getElementById(zombiesNumId);
+  const zombiesNum = document.getElementById(zombiesNumId);
   const noZombies = document.getElementById(noZombiesId);
 
-  if (zombieHTML && zombiesElement && zombieQuantity && noZombies) {
+  if (zombieHTML && zombiesElement && zombiesNum && noZombies) {
     noZombies.style.display = "none";
-    zombieQuantity.innerText = zombies.length.toString();
+    zombiesNum.innerText = zombies.length.toString();
     zombiesElement.appendChild(zombieHTML);
     popupEventListener(zombies);
   }
