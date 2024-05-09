@@ -10,6 +10,7 @@ import {
   zombiesElementId,
   allPurgeButtonId,
   allPurgeStopButtonId,
+  zombiesNumId,
 } from "./consts.ts";
 import { purgePre } from "./purgePre.ts";
 
@@ -20,8 +21,9 @@ export function popupEventListener(zombies: ZombiesMap | null) {
   const open_button = document.getElementById(openButtonId);
   const close_button = document.getElementById(closeButtonId);
   const zombiesElement = document.getElementById(zombiesElementId);
+  const zombiesNum = document.getElementById(zombiesNumId);
 
-  if (!(open_button && close_button && zombiesElement)) {
+  if (!(open_button && close_button && zombiesElement && zombiesNum)) {
     return;
   }
 
@@ -72,6 +74,7 @@ export function popupEventListener(zombies: ZombiesMap | null) {
       for (const element of purgeZombieElements) {
         if (purgeFlag) {
           await purgePre(element, zombies);
+          decreaseZombiesNum(zombiesNum);
         }
       }
     });
@@ -116,4 +119,14 @@ function purgeZombieListener(element: Element, zombies: ZombiesMap) {
     event.preventDefault();
     purgePre(element, zombies);
   });
+}
+
+function decreaseZombiesNum(zombiesNum: Element) {
+  if (zombiesNum.textContent) {
+    const num = parseInt(zombiesNum.textContent);
+
+    if (num) {
+      zombiesNum.textContent = (num - 1).toString();
+    }
+  }
 }
