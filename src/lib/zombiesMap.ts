@@ -74,6 +74,10 @@ export class ZombiesMap {
     return this._zombies.has(id);
   }
 
+  get(id: string): Zombie | undefined {
+    return this._zombies.get(id);
+  }
+
   // 多分awaitいらない
   saveStorage() {
     chrome.storage.local.set({

@@ -1,8 +1,9 @@
 import { ZombiesMap } from "../lib/zombiesMap.ts";
-import { zombieViewParam } from "../lib/consts.ts";
+import { purgeZombieParam, zombieViewParam } from "../lib/consts.ts";
 import { addHideZombieButtons } from "./hideZombieButtons.ts";
 import { hideZombies } from "./hideZombies.ts";
 import { revivalUsers } from "./revivalUser.ts";
+import { purge } from "./purge/purge.ts";
 
 const url = new URL(window.location.href);
 const params = url.searchParams;
@@ -13,6 +14,12 @@ const params = url.searchParams;
   const remove = params.get(zombieViewParam);
   if (remove) {
     zombies.remove(remove);
+  }
+
+  const zombieId = params.get(purgeZombieParam);
+  if (zombieId) {
+    await purge(zombieId);
+    zombies.saveStorage();
   }
 
   setInterval(() => {

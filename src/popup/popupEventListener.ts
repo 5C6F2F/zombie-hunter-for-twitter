@@ -1,5 +1,6 @@
 import { ZombiesMap } from "../lib/zombiesMap.ts";
 import {
+  purgeZombieClassName,
   closeButtonId,
   openButtonId,
   removeUserClassName,
@@ -7,8 +8,14 @@ import {
   zombieClassNameSelector,
   zombieIdClassName,
   zombiesElementId,
+  allPurgeButtonId,
+  allPurgeStopButtonId,
 } from "./consts.ts";
+import { purgePre } from "./purgePre.ts";
 
+let purgeFlag = true;
+
+// 引数のnullはzombie以外の要素を初期化するときに使う
 export function popupEventListener(zombies: ZombiesMap | null) {
   const open_button = document.getElementById(openButtonId);
   const close_button = document.getElementById(closeButtonId);
@@ -43,6 +50,38 @@ export function popupEventListener(zombies: ZombiesMap | null) {
     for (const element of removeUserElements) {
       removeUserListener(element, zombies);
     }
+
+    const purgeZombieElements =
+      document.getElementsByClassName(purgeZombieClassName);
+    for (const element of purgeZombieElements) {
+      purgeZombieListener(element, zombies);
+    }
+
+    const allPurgeButton = document.getElementById(allPurgeButtonId);
+    const allPurgeStopButton = document.getElementById(allPurgeStopButtonId);
+
+    if (!(allPurgeButton && allPurgeStopButton)) {
+      return;
+    }
+
+    allPurgeButton.addEventListener("click", async (event) => {
+      event.preventDefault();
+      allPurgeButton.style.display = "none";
+      allPurgeStopButton.style.display = "flex";
+
+      for (const element of purgeZombieElements) {
+        if (purgeFlag) {
+          await purgePre(element, zombies);
+        }
+      }
+    });
+
+    allPurgeStopButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      allPurgeButton.style.display = "flex";
+      allPurgeStopButton.style.display = "none";
+      purgeFlag = false;
+    });
   }
 }
 
@@ -69,5 +108,12 @@ function removeUserListener(element: Element, zombies: ZombiesMap) {
       zombieElement.remove();
       zombies.saveStorage();
     }
+  });
+}
+
+function purgeZombieListener(element: Element, zombies: ZombiesMap) {
+  element.addEventListener("click", (event) => {
+    event.preventDefault();
+    purgePre(element, zombies);
   });
 }
