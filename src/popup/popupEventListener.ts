@@ -1,5 +1,3 @@
-import { sleep } from "../content/purge/lib.ts";
-import { purgeZombieParam } from "../lib/consts.ts";
 import { ZombiesMap } from "../lib/zombiesMap.ts";
 import {
   purgeZombieClassName,
@@ -10,7 +8,12 @@ import {
   zombieClassNameSelector,
   zombieIdClassName,
   zombiesElementId,
+  allPurgeButtonId,
+  allPurgeStopButtonId,
 } from "./consts.ts";
+import { purgePre } from "./purgePre.ts";
+
+let purgeFlag = true;
 
 // 引数のnullはzombie以外の要素を初期化するときに使う
 export function popupEventListener(zombies: ZombiesMap | null) {
@@ -53,6 +56,32 @@ export function popupEventListener(zombies: ZombiesMap | null) {
     for (const element of purgeZombieElements) {
       purgeZombieListener(element, zombies);
     }
+
+    const allPurgeButton = document.getElementById(allPurgeButtonId);
+    const allPurgeStopButton = document.getElementById(allPurgeStopButtonId);
+
+    if (!(allPurgeButton && allPurgeStopButton)) {
+      return;
+    }
+
+    allPurgeButton.addEventListener("click", async (event) => {
+      event.preventDefault();
+      allPurgeButton.style.display = "none";
+      allPurgeStopButton.style.display = "flex";
+
+      for (const element of purgeZombieElements) {
+        if (purgeFlag) {
+          await purgePre(element, zombies);
+        }
+      }
+    });
+
+    allPurgeStopButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      allPurgeButton.style.display = "flex";
+      allPurgeStopButton.style.display = "none";
+      purgeFlag = false;
+    });
   }
 }
 
@@ -83,43 +112,8 @@ function removeUserListener(element: Element, zombies: ZombiesMap) {
 }
 
 function purgeZombieListener(element: Element, zombies: ZombiesMap) {
-  element.addEventListener("click", async (event) => {
+  element.addEventListener("click", (event) => {
     event.preventDefault();
-
-    const zombieElement = element.closest(zombieClassNameSelector);
-    const zombieId =
-      zombieElement?.getElementsByClassName(zombieIdClassName)[0].textContent;
-
-    const urlElement =
-      zombieElement?.getElementsByClassName(tweetURLClassName)[0];
-    const href = urlElement?.getAttribute("href");
-
-    if (!(href && zombieId)) {
-      return;
-    }
-
-    const url = new URL(href);
-    url.searchParams.append(purgeZombieParam, zombieId);
-    chrome.tabs.create({ url: url.toString() });
-
-    // content/main.tsでsaveStorage()されたタイミングで処理終了
-    let newZombies = await new ZombiesMap().loadZombiesFromStorage();
-
-    console.log(newZombies.length, zombies.length);
-    while (newZombies.length === zombies.length) {
-      await sleep(1000);
-      newZombies = await new ZombiesMap().loadZombiesFromStorage();
-      console.log(newZombies.length, zombies.length);
-    }
-
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      const tab = tabs[0];
-      if (tab.id) {
-        chrome.tabs.remove(tab.id);
-      }
-    });
-
-    zombies.remove(zombieId);
-    zombieElement.remove();
+    purgePre(element, zombies);
   });
 }

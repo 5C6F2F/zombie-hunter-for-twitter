@@ -1,3 +1,9 @@
+// 全員死刑(処理を始める)ボタン
+export const allPurgeButtonId = "all-purge-button";
+
+// 処理を止めるボタン
+export const allPurgeStopButtonId = "all-purge-stop-button";
+
 // ゾンビの数
 export const zombiesNumId = "zombies-num";
 
