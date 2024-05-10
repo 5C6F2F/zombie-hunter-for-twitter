@@ -77,6 +77,9 @@ export function popupEventListener(zombies: ZombiesMap | null) {
           decreaseZombiesNum(zombiesNum);
         }
       }
+
+      allPurgeButton.style.display = "flex";
+      allPurgeStopButton.style.display = "none";
     });
 
     allPurgeStopButton.addEventListener("click", (event) => {
