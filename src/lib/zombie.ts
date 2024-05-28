@@ -17,7 +17,7 @@ export class Zombie extends User {
       </div>
       <div class="options">
         <div class="tweet-url-wrapper buttons">
-          <a href="${this.noHideURL}" class="tweet-url">
+          <a href="${this.url}" class="tweet-url">
             <!-- アイコンは https://kotonohaworks.com/free-icons/gaibu-link/ 「線画の外部リンク」を使用させていただきました。 -->
             <?xml version="1.0" encoding="UTF-8" standalone="no"?>
             <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
@@ -101,7 +101,7 @@ export class Zombie extends User {
     }
   }
 
-  private get noHideURL(): string {
+  get noHideURL(): string {
     const url = new URL(this.url);
     url.searchParams.append(zombieViewParam, this.id);
     return url.toString();

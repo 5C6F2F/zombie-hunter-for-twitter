@@ -19,3 +19,6 @@ export const zombieViewParam = "zombie-view";
 export const purgeZombieParam = "purge-zombie";
 
 export const ellipsisMark = "...";
+
+// 全員死刑
+export const allPurgeParam = "all-purge";

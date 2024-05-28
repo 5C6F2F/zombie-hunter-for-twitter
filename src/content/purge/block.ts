@@ -8,7 +8,12 @@ import { click, sleep } from "./lib.ts";
 export async function block(menuButton: Element) {
   click(menuButton);
 
-  const blockButton = document.querySelector(blockButtonSelector);
+  let blockButton = document.querySelector(blockButtonSelector);
+
+  while (!blockButton) {
+    blockButton = document.querySelector(blockButtonSelector);
+    await sleep(200);
+  }
 
   if (blockButton?.textContent?.includes(blockKeyWord)) {
     click(blockButton);
