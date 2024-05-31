@@ -15,7 +15,7 @@ export const tweetSelector = "article[data-testid='tweet']";
 export const zombieTweetSelector = "div[data-testid='cellInnerDiv']";
 
 // ツイート右上の三点リーダー
-export const caretSelector = "div[data-testid='caret']";
+export const caretSelector = "button[data-testid='caret']";
 
 // 非表示ボタン
 export const hideButtonClassName = "hide-button";
@@ -31,7 +31,7 @@ export const blockButtonSelector = "div[data-testid='block']";
 export const blockKeyWord = "さんをブロック";
 
 // ブロック確認のボタン
-export const confirmBlockButtonSelector = "div[data-testid='confirmationSheetConfirm']";
+export const confirmBlockButtonSelector = "button[data-testid='confirmationSheetConfirm']";
 
 
 // "ポストさんを報告"のボタン
@@ -41,7 +41,7 @@ export const reportButtonSelector = "div[data-testid='report']";
 export const selectSpamReportTypeSelector = "div[role='radiogroup'] > div > label:nth-child(6)"
 
 // 報告画面「次へ」ボタン
-export const nextButtonSelector = "div[data-testid='ChoiceSelectionNextButton']";
+export const nextButtonSelector = "button[data-testid='ChoiceSelectionNextButton']";
 
 // 報告画面「完了」ボタン
-export const completeButtonSelector = "div[data-testid='ocfSettingsListNextButton']"
+export const completeButtonSelector = "button[data-testid='ocfSettingsListNextButton']"
