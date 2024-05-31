@@ -3,10 +3,11 @@ import { nextButtonSelector } from "../consts.ts";
 export const sleep = (time: number) =>
   new Promise((resolve) => setTimeout(resolve, time));
 
-export function goNextPage() {
-  const nextButton = document.querySelector(nextButtonSelector);
-  if (!nextButton) {
-    return;
+export async function goNextPage() {
+  let nextButton = document.querySelector(nextButtonSelector);
+  while (!nextButton) {
+    nextButton = document.querySelector(nextButtonSelector);
+    await sleep(200);
   }
   click(nextButton);
 }

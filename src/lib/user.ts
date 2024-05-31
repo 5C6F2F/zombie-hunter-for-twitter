@@ -47,7 +47,8 @@ export function userFromTweet(tweet: Element): User | null {
     text = "";
   }
 
-  if (id && name && url) {
+  // 名前が記号のみの場合name.lengthは0になる
+  if (id && name != null && url) {
     return new User(id, name, text, url);
   } else {
     return null;

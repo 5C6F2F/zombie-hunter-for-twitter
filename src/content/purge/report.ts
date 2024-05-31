@@ -8,10 +8,11 @@ import { click, goNextPage, sleep } from "./lib.ts";
 export async function reportSpam(menuButton: Element) {
   click(menuButton);
 
-  const reportButton = document.querySelector(reportButtonSelector);
+  let reportButton = document.querySelector(reportButtonSelector);
 
-  if (!reportButton) {
-    return;
+  while (!reportButton) {
+    reportButton = document.querySelector(reportButtonSelector);
+    await sleep(200);
   }
 
   click(reportButton);
@@ -24,15 +25,15 @@ export async function reportSpam(menuButton: Element) {
   }
 
   click(reportType);
-  goNextPage();
+  await goNextPage();
 
   let completeButton;
 
   while (!completeButton) {
     // 繰り返しの通報でストップがかかって次の画面に遷移していないので待機
     if (document.querySelector(selectSpamReportTypeSelector)) {
-      await sleep(1000);
-      goNextPage();
+      await sleep(5000);
+      await goNextPage();
     }
 
     completeButton = document.querySelector(completeButtonSelector);
@@ -40,6 +41,4 @@ export async function reportSpam(menuButton: Element) {
   }
 
   click(completeButton);
-
-  return true;
 }

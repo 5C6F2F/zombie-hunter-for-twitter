@@ -1,6 +1,6 @@
 import { ZombiesMap } from "../lib/zombiesMap.ts";
 import { noZombiesId, zombiesElementId, zombiesNumId } from "./consts.ts";
-import { popupEventListener } from "./popupEventListener.ts";
+import { popupEventListener } from "./popupEventListeners.ts";
 
 popupEventListener(null);
 

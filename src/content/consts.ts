@@ -5,6 +5,8 @@ export const iconPath = chrome.runtime.getURL("./icons/hideButton.png");
 // インプレゾンビの情報をストレージに保存する際のキー
 export const zombiesKeyForStorage = "zombiesKey";
 
+// タイムライン
+export const timeLineSelector = "div[aria-label='ホームタイムライン']";
 
 // ツイート本体
 export const tweetSelector = "article[data-testid='tweet']";
