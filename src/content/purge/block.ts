@@ -11,21 +11,21 @@ export async function block(menuButton: Element) {
   let blockButton = document.querySelector(blockButtonSelector);
 
   while (!blockButton) {
+    await sleep(50);
     blockButton = document.querySelector(blockButtonSelector);
-    await sleep(200);
   }
 
   if (blockButton?.textContent?.includes(blockKeyWord)) {
     click(blockButton);
   } else {
+    // ブロック済み
     return;
   }
 
-  // 表示に時間がかかることがあるので繰り返して待機
-  let confirmBlockButton;
+  let confirmBlockButton = document.querySelector(confirmBlockButtonSelector);
   while (!confirmBlockButton) {
+    await sleep(50);
     confirmBlockButton = document.querySelector(confirmBlockButtonSelector);
-    await sleep(100);
   }
 
   click(confirmBlockButton);

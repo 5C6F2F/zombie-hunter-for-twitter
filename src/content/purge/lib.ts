@@ -6,8 +6,8 @@ export const sleep = (time: number) =>
 export async function goNextPage() {
   let nextButton = document.querySelector(nextButtonSelector);
   while (!nextButton) {
+    await sleep(50);
     nextButton = document.querySelector(nextButtonSelector);
-    await sleep(200);
   }
   click(nextButton);
 }

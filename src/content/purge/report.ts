@@ -11,23 +11,23 @@ export async function reportSpam(menuButton: Element) {
   let reportButton = document.querySelector(reportButtonSelector);
 
   while (!reportButton) {
+    await sleep(50);
     reportButton = document.querySelector(reportButtonSelector);
-    await sleep(200);
   }
 
   click(reportButton);
 
-  let reportType;
+  let reportType = document.querySelector(selectSpamReportTypeSelector);
 
   while (!reportType) {
+    await sleep(50);
     reportType = document.querySelector(selectSpamReportTypeSelector);
-    await sleep(200);
   }
 
   click(reportType);
   await goNextPage();
 
-  let completeButton;
+  let completeButton = document.querySelector(completeButtonSelector);
 
   while (!completeButton) {
     // 繰り返しの通報でストップがかかって次の画面に遷移していないので待機
@@ -36,8 +36,8 @@ export async function reportSpam(menuButton: Element) {
       await goNextPage();
     }
 
+    await sleep(50);
     completeButton = document.querySelector(completeButtonSelector);
-    await sleep(200);
   }
 
   click(completeButton);

@@ -53,7 +53,7 @@ const params = url.searchParams;
 
   setInterval(() => {
     hideZombies(zombies);
-  }, 500);
+  }, 50);
 
   setInterval(() => {
     revivalUsers(zombies);

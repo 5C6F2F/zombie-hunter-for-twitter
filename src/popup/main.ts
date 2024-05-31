@@ -1,5 +1,6 @@
 import { ZombiesMap } from "../lib/zombiesMap.ts";
 import { noZombiesId, zombiesElementId, zombiesNumId } from "./consts.ts";
+import { hide } from "./eventListeners/lib.ts";
 import { popupEventListener } from "./popupEventListeners.ts";
 
 popupEventListener(null);
@@ -13,7 +14,7 @@ popupEventListener(null);
   const noZombies = document.getElementById(noZombiesId);
 
   if (zombieHTML && zombiesElement && zombiesNum && noZombies) {
-    noZombies.style.display = "none";
+    hide(noZombies);
     zombiesNum.innerText = zombies.length.toString();
     zombiesElement.appendChild(zombieHTML);
     popupEventListener(zombies);

@@ -7,14 +7,16 @@ import { reportSpam } from "./report.ts";
 export async function purge(id: string) {
   const zombieTweet = await getZombieTweet(id);
 
+  // タイムラインが表示された後に取得しているので
+  // ツイートが削除されたりアカウントが凍結・削除・ID変更等されたりしている場合のみreturnされるはず
   if (!zombieTweet) {
     return;
   }
 
-  let menuButton;
+  let menuButton = zombieTweet.querySelector(caretSelector);
   while (!menuButton) {
+    await sleep(50);
     menuButton = zombieTweet.querySelector(caretSelector);
-    await sleep(200);
   }
 
   await reportSpam(menuButton);
