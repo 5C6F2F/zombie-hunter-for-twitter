@@ -23,7 +23,7 @@ export function allPurgeListener() {
 
     chrome.tabs.create({ url: "https://twitter.com?all-purge=true" });
 
-    await waitAllPurgeCompleteAndChangePopup();
+    await waitAllPurgeCompleteAndChangePopup(allPurgeStopButton);
 
     closeTab();
 
@@ -38,9 +38,17 @@ export function allPurgeListener() {
   });
 }
 
-async function waitAllPurgeCompleteAndChangePopup() {
+async function waitAllPurgeCompleteAndChangePopup(
+  allPurgeStopButton: HTMLElement
+) {
+  let flag = true;
+  allPurgeStopButton.addEventListener("click", () => {
+    flag = false;
+  });
+
   const zombies = await new ZombiesMap().loadZombiesFromStorage();
-  while (zombies.length > 0) {
+
+  while (flag && zombies.length > 0) {
     await sleep(1000);
     const newZombies = await new ZombiesMap().loadZombiesFromStorage();
 
