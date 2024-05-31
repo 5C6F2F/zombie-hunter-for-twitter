@@ -1,3 +1,4 @@
+import { sleep } from "../../content/purge/lib.ts";
 import { zombiesNumId } from "../consts.ts";
 
 export function hide(element: HTMLElement) {
@@ -17,4 +18,16 @@ export function setZombiesNum(num: number) {
   if (zombiesNum) {
     zombiesNum.textContent = num.toString();
   }
+}
+
+export function closeTab() {
+  chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+    const tab = tabs.at(0)?.id;
+    if (tab) {
+      chrome.tabs.remove(tab);
+    } else {
+      await sleep(500);
+      closeTab();
+    }
+  });
 }

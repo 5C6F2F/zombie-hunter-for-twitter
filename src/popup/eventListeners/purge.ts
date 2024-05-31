@@ -7,6 +7,7 @@ import {
   tweetURLClassName,
   purgeZombieClassName,
 } from "../consts.ts";
+import { setZombiesNum, closeTab } from "./lib.ts";
 
 export function purgeZombieListener(zombies: ZombiesMap) {
   const elements = document.getElementsByClassName(purgeZombieClassName);
@@ -37,7 +38,7 @@ export async function purgePre(element: Element, zombies: ZombiesMap) {
   // content/main.tsで処理後saveStorage()されたのを確認して処理終了
   let newZombies = await new ZombiesMap().loadZombiesFromStorage();
 
-  // 処理後はnewZombiesのlengthが1減る
+  // 処理後はnewZombiesのlengthが1減るのでそれまで待機
   while (newZombies.length === zombies.length) {
     await sleep(1000);
     newZombies = await new ZombiesMap().loadZombiesFromStorage();
@@ -47,22 +48,11 @@ export async function purgePre(element: Element, zombies: ZombiesMap) {
 
   zombies.remove(zombieId);
   zombieElement.remove();
+  setZombiesNum(newZombies.length);
 }
 
 function purgeZombieURL(href: string, zombieId: string): string {
   const url = new URL(href);
   url.searchParams.append(purgeZombieParam, zombieId);
   return url.toString();
-}
-
-function closeTab() {
-  chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
-    const tab = tabs.at(0)?.id;
-    if (tab) {
-      chrome.tabs.remove(tab);
-    } else {
-      await sleep(500);
-      closeTab();
-    }
-  });
 }

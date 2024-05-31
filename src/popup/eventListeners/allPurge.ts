@@ -1,7 +1,7 @@
 import { sleep } from "../../content/purge/lib.ts";
 import { ZombiesMap } from "../../lib/zombiesMap.ts";
 import { allPurgeButtonId, allPurgeStopButtonId } from "../consts.ts";
-import { hide, setZombiesNum, showFlex } from "./lib.ts";
+import { closeTab, hide, setZombiesNum, showFlex } from "./lib.ts";
 
 export function allPurgeListener() {
   const allPurgeButton = document.getElementById(allPurgeButtonId);
@@ -19,6 +19,8 @@ export function allPurgeListener() {
     chrome.tabs.create({ url: "https://twitter.com?all-purge=true" });
 
     await waitAllPurgeCompleteAndChangeCount();
+
+    closeTab();
 
     showFlex(allPurgeButton);
     hide(allPurgeStopButton);
