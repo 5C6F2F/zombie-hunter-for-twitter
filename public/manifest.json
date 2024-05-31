@@ -7,7 +7,7 @@
   "content_scripts": [
     {
       "js": ["content/main.js"],
-      "matches": ["*://twitter.com/**"]
+      "matches": ["*://x.com/**"]
     }
   ],
   "action": {
