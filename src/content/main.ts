@@ -16,7 +16,7 @@ const params = url.searchParams;
 
 (async () => {
   const zombies = await new ZombiesMap().loadZombiesFromStorage();
-  await waitWhilePurgeTargetShown();
+  await waitWhileTimeLineShown();
 
   const removeZombieId = params.get(zombieViewParam);
   if (removeZombieId) {
@@ -60,10 +60,17 @@ const params = url.searchParams;
   }, 500);
 })();
 
-// 繰り返しのアクセスによってロードが停止にされることがあるのでその場合は待機
+// 繰り返しのアクセスによってロードが停止されることがあるのでその場合は待機
 // 該当ツイートが消されている場合もあるのでタイムラインを対象とした
-async function waitWhilePurgeTargetShown() {
+async function waitWhileTimeLineShown() {
+  let count = 0;
   while (!document.querySelector(timeLineSelector)) {
     await sleep(200);
+    count += 1;
+
+    // 20秒以上止まっている場合、リロードして再アクセスを試みる
+    if (count > 100) {
+      globalThis.location.reload();
+    }
   }
 }
