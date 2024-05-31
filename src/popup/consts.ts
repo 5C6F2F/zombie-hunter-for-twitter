@@ -18,6 +18,8 @@ export const zombiesElementId = "zombies";
 export const noZombiesId = "no-zombies";
 
 // 個々のゾンビ
+export const zombieClassName = "zombie";
+
 export const zombieClassNameSelector = ".zombie";
 
 export const tweetURLClassName = "tweet-url";

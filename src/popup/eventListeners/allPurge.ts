@@ -1,6 +1,11 @@
 import { sleep } from "../../content/purge/lib.ts";
 import { ZombiesMap } from "../../lib/zombiesMap.ts";
-import { allPurgeButtonId, allPurgeStopButtonId } from "../consts.ts";
+import {
+  allPurgeButtonId,
+  allPurgeStopButtonId,
+  zombieClassName,
+  zombieIdClassName,
+} from "../consts.ts";
 import { closeTab, hide, setZombiesNum, showFlex } from "./lib.ts";
 
 export function allPurgeListener() {
@@ -18,7 +23,7 @@ export function allPurgeListener() {
 
     chrome.tabs.create({ url: "https://twitter.com?all-purge=true" });
 
-    await waitAllPurgeCompleteAndChangeCount();
+    await waitAllPurgeCompleteAndChangePopup();
 
     closeTab();
 
@@ -33,11 +38,35 @@ export function allPurgeListener() {
   });
 }
 
-async function waitAllPurgeCompleteAndChangeCount() {
-  let zombiesNum = (await new ZombiesMap().loadZombiesFromStorage()).length;
-  while (zombiesNum > 0) {
+async function waitAllPurgeCompleteAndChangePopup() {
+  const zombies = await new ZombiesMap().loadZombiesFromStorage();
+  while (zombies.length > 0) {
     await sleep(1000);
-    zombiesNum = (await new ZombiesMap().loadZombiesFromStorage()).length;
-    setZombiesNum(zombiesNum);
+    const newZombies = await new ZombiesMap().loadZombiesFromStorage();
+
+    if (newZombies.length === zombies.length) {
+      continue;
+    }
+
+    for (const id of zombies.ids()) {
+      if (!newZombies.has(id)) {
+        zombies.remove(id);
+        removePurgedZombieElement(id);
+      }
+    }
+
+    setZombiesNum(zombies.length);
+  }
+}
+
+function removePurgedZombieElement(id: string) {
+  const elements = document.getElementsByClassName(zombieClassName);
+  for (const element of elements) {
+    if (
+      element.getElementsByClassName(zombieIdClassName)[0].textContent == id
+    ) {
+      element.remove();
+      break;
+    }
   }
 }
