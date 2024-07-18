@@ -22,6 +22,9 @@ export function addHideZombieButtons(zombies: ZombiesMap) {
       continue;
     }
 
+    // hideButtonがabsoluteなので親のhideButtonDomはrelativeに。
+    hideButtonDom.style.position = "relative";
+
     const hideButton = createButton(zombies, tweet);
 
     hideButtonDom.prepend(hideButton);
@@ -38,7 +41,12 @@ function createButton(zombies: ZombiesMap, tweet: Element): HTMLDivElement {
   const container = document.createElement("div");
   container.style.display = "flex";
 
+  // ボタンはabsoluteなので左の要素と被らないように幅を確保
+  const allocateWidthElement = document.createElement("div");
+  allocateWidthElement.style.width = "35px";
+
   container.appendChild(hideButton);
+  container.appendChild(allocateWidthElement);
 
   return container;
 }
@@ -52,11 +60,14 @@ function setAttribute(button: HTMLImageElement) {
 function setStyle(button: HTMLImageElement) {
   button.style.transform = "translateY(-2px)";
   button.style.borderRadius = "16px";
-  button.style.height = "30px";
+  button.style.height = "29px";
   button.style.padding = "2px";
   button.style.marginRight = "6px";
   button.style.cursor = "pointer";
-  button.style.opacity = "0.70";
+  button.style.opacity = "0.60";
+  button.style.position = "absolute";
+  button.style.right = "16px";
+  button.style.top = "-6px";
 }
 
 function setEventListener(
