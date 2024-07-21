@@ -23,6 +23,7 @@ export const hideButtonClassName = "hide-button";
 // ツイートテキスト
 export const tweetTextSelector = "div[data-testid='tweetText']";
 
+// -----
 
 // "{ID}さんをブロック"のボタン
 export const blockButtonSelector = "div[data-testid='block']";
@@ -31,7 +32,8 @@ export const blockButtonSelector = "div[data-testid='block']";
 export const blockKeyWord = "さんをブロック";
 
 // ブロック確認のボタン
-export const confirmBlockButtonSelector = "button[data-testid='confirmationSheetConfirm']";
+export const confirmBlockButtonSelector =
+  "button[data-testid='confirmationSheetConfirm']";
 
 // ブロック確認時のマスクを消す
 export const removeMaskStyle =
@@ -43,10 +45,13 @@ export const removeMaskStyle =
 export const reportButtonSelector = "div[data-testid='report']";
 
 // 報告する種類 -> スパム
-export const selectSpamReportTypeSelector = "div[role='radiogroup'] > div > label:nth-child(6)"
+export const selectSpamReportTypeSelector =
+  "div[role='radiogroup'] > div > label:nth-child(6)";
 
 // 報告画面「次へ」ボタン
-export const nextButtonSelector = "button[data-testid='ChoiceSelectionNextButton']";
+export const nextButtonSelector =
+  "button[data-testid='ChoiceSelectionNextButton']";
 
 // 報告画面「完了」ボタン
-export const completeButtonSelector = "button[data-testid='ocfSettingsListNextButton']"
+export const completeButtonSelector =
+  "button[data-testid='ocfSettingsListNextButton']";
