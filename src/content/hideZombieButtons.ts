@@ -2,11 +2,12 @@ import { hideZombies } from "./hideZombies.ts";
 import { userFromTweet } from "../lib/user.ts";
 import { ZombiesMap } from "../lib/zombiesMap.ts";
 import {
-  caretSelector,
+  menuButtonSelector,
   hideButtonClassName,
   iconPath,
   tweetSelector,
 } from "./consts.ts";
+import { block } from "./purge/block.ts";
 
 export function addHideZombieButtons(zombies: ZombiesMap) {
   const tweets = document.querySelectorAll(tweetSelector);
@@ -16,7 +17,8 @@ export function addHideZombieButtons(zombies: ZombiesMap) {
       continue;
     }
 
-    const hideButtonDom = tweet.querySelector(caretSelector)?.parentElement;
+    const hideButtonDom =
+      tweet.querySelector(menuButtonSelector)?.parentElement;
 
     if (!hideButtonDom) {
       continue;
@@ -90,6 +92,12 @@ function setEventListener(
 
     if (zombie) {
       zombies.add(zombie);
+    }
+
+    const menuButton = tweet.querySelector(menuButtonSelector);
+
+    if (menuButton) {
+      block(menuButton);
     }
 
     hideZombies(zombies);
