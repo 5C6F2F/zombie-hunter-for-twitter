@@ -15,7 +15,7 @@ export const tweetSelector = "article[data-testid='tweet']";
 export const zombieTweetSelector = "div[data-testid='cellInnerDiv']";
 
 // ツイート右上の三点リーダー
-export const caretSelector = "button[data-testid='caret']";
+export const menuButtonSelector = "button[data-testid='caret']";
 
 // 非表示ボタン
 export const hideButtonClassName = "hide-button";

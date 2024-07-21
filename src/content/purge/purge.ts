@@ -1,5 +1,5 @@
 import { getUserInfo } from "../../lib/user.ts";
-import { caretSelector, tweetSelector } from "../consts.ts";
+import { menuButtonSelector, tweetSelector } from "../consts.ts";
 import { block } from "./block.ts";
 import { sleep } from "./lib.ts";
 import { reportSpam } from "./report.ts";
@@ -13,10 +13,10 @@ export async function purge(id: string) {
     return;
   }
 
-  let menuButton = zombieTweet.querySelector(caretSelector);
+  let menuButton = zombieTweet.querySelector(menuButtonSelector);
   while (!menuButton) {
     await sleep(50);
-    menuButton = zombieTweet.querySelector(caretSelector);
+    menuButton = zombieTweet.querySelector(menuButtonSelector);
   }
 
   await reportSpam(menuButton);
