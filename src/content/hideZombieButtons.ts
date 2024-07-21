@@ -7,6 +7,7 @@ import {
   iconPath,
   tweetSelector,
 } from "./consts.ts";
+import { block } from "./purge/block.ts";
 
 export function addHideZombieButtons(zombies: ZombiesMap) {
   const tweets = document.querySelectorAll(tweetSelector);
@@ -90,6 +91,12 @@ function setEventListener(
 
     if (zombie) {
       zombies.add(zombie);
+    }
+
+    const menuButton = tweet.querySelector(menuButtonSelector);
+
+    if (menuButton) {
+      block(menuButton);
     }
 
     hideZombies(zombies);

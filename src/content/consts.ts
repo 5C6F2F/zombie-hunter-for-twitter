@@ -33,6 +33,11 @@ export const blockKeyWord = "さんをブロック";
 // ブロック確認のボタン
 export const confirmBlockButtonSelector = "button[data-testid='confirmationSheetConfirm']";
 
+// ブロック確認時のマスクを消す
+export const removeMaskStyle =
+  ".r-1ffj0ar {background-color: rgba(0, 0, 0, 0.01) !important;}";
+
+// ------
 
 // "ポストさんを報告"のボタン
 export const reportButtonSelector = "div[data-testid='report']";
