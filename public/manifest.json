@@ -1,6 +1,6 @@
 {
-  "name": "zombie-killer",
-  "description": "Twitterのインプレゾンビをワンクリックで非表示にし、自動でブロック・通報します。Inspired by zombie-buster.",
+  "name": "Zombie Hunter for Twitter",
+  "description": "Twitterのインプレゾンビをワンクリックで非表示にし、自動でブロック・通報します。",
   "version": "1.0",
   "manifest_version": 3,
   "permissions": ["storage"],
@@ -11,7 +11,7 @@
     }
   ],
   "action": {
-    "default_title": "ZombieKiller",
+    "default_title": "Zombie Hunter for Twitter",
     "default_popup": "popup/popup.html"
   },
   "web_accessible_resources": [
