@@ -28,7 +28,7 @@ const params = url.searchParams;
   if (purgeZombieId) {
     await purge(purgeZombieId);
     zombies.remove(purgeZombieId);
-    zombies.saveStorage();
+    await zombies.saveStorage();
   }
 
   const allPurge = params.get(allPurgeParam);
