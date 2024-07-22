@@ -28,7 +28,7 @@ export async function purgePre(element: Element, zombies: ZombiesMap) {
     ?.getElementsByClassName(tweetURLClassName)[0]
     ?.getAttribute("href");
 
-  if (!(zombieId && href)) {
+  if (!zombieId || !href) {
     return;
   }
 

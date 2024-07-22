@@ -19,7 +19,7 @@ export async function block(menuButton: Element) {
     blockButton = document.querySelector(blockButtonSelector);
   }
 
-  if (blockButton?.textContent?.includes(blockKeyWord)) {
+  if (blockButton.textContent?.includes(blockKeyWord)) {
     click(blockButton);
   } else {
     // ブロック済み

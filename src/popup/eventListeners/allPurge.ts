@@ -12,7 +12,7 @@ export function allPurgeListener() {
   const allPurgeButton = document.getElementById(allPurgeButtonId);
   const allPurgeStopButton = document.getElementById(allPurgeStopButtonId);
 
-  if (!(allPurgeButton && allPurgeStopButton)) {
+  if (!allPurgeButton || !allPurgeStopButton) {
     return;
   }
 
@@ -56,6 +56,7 @@ async function waitAllPurgeCompleteAndChangePopup(
       continue;
     }
 
+    // 登録済みのidの中から処理済みのidを探す
     for (const id of zombies.ids()) {
       if (!newZombies.has(id)) {
         zombies.remove(id);
@@ -70,6 +71,7 @@ async function waitAllPurgeCompleteAndChangePopup(
 function removePurgedZombieElement(id: string) {
   const elements = document.getElementsByClassName(zombieClassName);
   for (const element of elements) {
+    // 登録済みのidが処理済みであればポップアップから削除
     if (
       element.getElementsByClassName(zombieIdClassName)[0].textContent == id
     ) {
