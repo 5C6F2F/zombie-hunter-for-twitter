@@ -20,5 +20,5 @@ export const purgeZombieParam = "purge-zombie";
 
 export const ellipsisMark = "...";
 
-// 全員死刑
+// 全員を処理
 export const allPurgeParam = "all-purge";
