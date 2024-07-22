@@ -6,7 +6,7 @@ export function openCloseButtonEvent() {
   const closeButton = document.getElementById(closeButtonId);
   const zombiesElement = document.getElementById(zombiesElementId);
 
-  if (!(openButton && closeButton && zombiesElement)) {
+  if (!openButton || !closeButton || !zombiesElement) {
     return;
   }
 

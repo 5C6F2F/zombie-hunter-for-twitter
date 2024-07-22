@@ -86,7 +86,7 @@ function setEventListener(
     button.style.background = "none";
   });
 
-  button.addEventListener("click", (event) => {
+  button.addEventListener("click", async (event) => {
     event.preventDefault();
     const zombie = userFromTweet(tweet);
 
@@ -102,6 +102,6 @@ function setEventListener(
 
     hideZombies(zombies);
 
-    zombies.saveStorage();
+    await zombies.saveStorage();
   });
 }

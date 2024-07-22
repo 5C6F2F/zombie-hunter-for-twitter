@@ -10,7 +10,7 @@ export function removeUserListener(zombies: ZombiesMap) {
     document.getElementsByClassName(removeUserClassName);
 
   for (const element of removeUserElements) {
-    element.addEventListener("click", (event) => {
+    element.addEventListener("click", async (event) => {
       event.preventDefault();
 
       const zombieElement = element.closest(zombieClassNameSelector);
@@ -20,7 +20,7 @@ export function removeUserListener(zombies: ZombiesMap) {
       if (zombieId && zombies.has(zombieId)) {
         zombies.remove(zombieId);
         zombieElement.remove();
-        zombies.saveStorage();
+        await zombies.saveStorage();
       }
     });
   }

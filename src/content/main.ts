@@ -28,23 +28,12 @@ const params = url.searchParams;
   if (purgeZombieId) {
     await purge(purgeZombieId);
     zombies.remove(purgeZombieId);
-    zombies.saveStorage();
+    await zombies.saveStorage();
   }
 
   const allPurge = params.get(allPurgeParam);
   if (allPurge) {
-    const nextTarget = zombies.ids().next();
-
-    if (nextTarget.done === false) {
-      const nextUrlStr = zombies.get(nextTarget.value)?.url;
-
-      if (nextUrlStr) {
-        const nextUrl = new URL(nextUrlStr);
-        nextUrl.searchParams.append(purgeZombieParam, nextTarget.value);
-        nextUrl.searchParams.append(allPurgeParam, "true"); // 値は空白以外なら何でも良い
-        globalThis.location.href = nextUrl.toString();
-      }
-    }
+    goToNextZombieTweet(zombies);
   }
 
   setInterval(() => {
@@ -71,6 +60,21 @@ async function waitWhileTimeLineShown() {
     // 20秒以上止まっている場合、リロードして再アクセスを試みる
     if (count > 100) {
       globalThis.location.reload();
+    }
+  }
+}
+
+function goToNextZombieTweet(zombies: ZombiesMap) {
+  const nextTarget = zombies.ids().next();
+
+  if (nextTarget.done === false) {
+    const nextUrlStr = zombies.get(nextTarget.value)?.url;
+
+    if (nextUrlStr) {
+      const nextUrl = new URL(nextUrlStr);
+      nextUrl.searchParams.append(purgeZombieParam, nextTarget.value);
+      nextUrl.searchParams.append(allPurgeParam, "true"); // 値は空白以外なら何でも良い
+      globalThis.location.href = nextUrl.toString();
     }
   }
 }

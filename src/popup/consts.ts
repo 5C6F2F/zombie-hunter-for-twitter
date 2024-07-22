@@ -1,4 +1,4 @@
-// 全員死刑(処理を始める)ボタン
+// 処理開始ボタン
 export const allPurgeButtonId = "all-purge-button";
 
 // 処理を止めるボタン

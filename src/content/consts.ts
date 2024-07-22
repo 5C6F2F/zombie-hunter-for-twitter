@@ -1,3 +1,5 @@
+// ----- コンテンツ -----
+
 // hideButton用のアイコンパス
 // https://pictogram2.com/?p=280 「旗を振る人」を使用させていただきました
 export const iconPath = chrome.runtime.getURL("./icons/hideButton.png");
@@ -23,7 +25,7 @@ export const hideButtonClassName = "hide-button";
 // ツイートテキスト
 export const tweetTextSelector = "div[data-testid='tweetText']";
 
-// -----
+// ----- ブロック -----
 
 // "{ID}さんをブロック"のボタン
 export const blockButtonSelector = "div[data-testid='block']";
@@ -39,7 +41,7 @@ export const confirmBlockButtonSelector =
 export const removeMaskStyle =
   ".r-1ffj0ar {background-color: rgba(0, 0, 0, 0.01) !important;}";
 
-// ------
+// ------ ポップアップ -----
 
 // "ポストさんを報告"のボタン
 export const reportButtonSelector = "div[data-testid='report']";

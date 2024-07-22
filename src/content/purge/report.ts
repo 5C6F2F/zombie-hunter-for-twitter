@@ -30,7 +30,7 @@ export async function reportSpam(menuButton: Element) {
   let completeButton = document.querySelector(completeButtonSelector);
 
   while (!completeButton) {
-    // 繰り返しの通報でストップがかかって次の画面に遷移していないので待機
+    // 繰り返しの通報でストップがかかり、次の画面に遷移していないので待機
     if (document.querySelector(selectSpamReportTypeSelector)) {
       await sleep(5000);
       await goNextPage();

@@ -78,9 +78,8 @@ export class ZombiesMap {
     return this._zombies.get(id);
   }
 
-  // 多分awaitいらない
-  saveStorage() {
-    chrome.storage.local.set({
+  async saveStorage() {
+    await chrome.storage.local.set({
       [zombiesKeyForStorage]: this.toStorage(),
     });
   }
