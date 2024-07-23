@@ -2,14 +2,13 @@ import {
   blockButtonSelector,
   blockKeyWord,
   confirmBlockButtonSelector,
-  removeMaskStyle,
 } from "../consts.ts";
 import { click, sleep } from "./lib.ts";
 
-export async function block(menuButton: Element) {
-  // ブロックする際の黒っぽいマスクを削除する。
-  const styleElement = removeMask();
-
+export async function block(
+  menuButton: Element,
+  styleElement?: HTMLStyleElement
+) {
   click(menuButton);
 
   let blockButton = document.querySelector(blockButtonSelector);
@@ -23,6 +22,8 @@ export async function block(menuButton: Element) {
     click(blockButton);
   } else {
     // ブロック済み
+    // menuButtonを押してダイアログを閉じる
+    click(menuButton);
     return;
   }
 
@@ -34,13 +35,8 @@ export async function block(menuButton: Element) {
 
   click(confirmBlockButton);
 
-  // マスクのスタイルは元に戻しておく。
-  styleElement.remove();
-}
-
-function removeMask(): HTMLStyleElement {
-  const styleElement = document.createElement("style");
-  styleElement.innerHTML = removeMaskStyle;
-  document.head.appendChild(styleElement);
-  return styleElement;
+  if (styleElement) {
+    // ブロック確認ダイアログとマスクのスタイルは元に戻しておく。
+    styleElement.remove();
+  }
 }

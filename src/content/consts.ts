@@ -37,11 +37,11 @@ export const blockKeyWord = "さんをブロック";
 export const confirmBlockButtonSelector =
   "button[data-testid='confirmationSheetConfirm']";
 
-// ブロック確認時のマスクを消す
+// ブロック確認画面とその周りのマスクを非表示
 export const removeMaskStyle =
-  ".r-1ffj0ar {background-color: rgba(0, 0, 0, 0.01) !important;}";
+  ".css-175oi2r.r-1ny4l3l.r-18u37iz.r-1pi2tsx.r-1777fci.r-1xcajam.r-ipm5af.r-1kihuf0.r-xr3zp9.r-1awozwy.r-1pjcn9w.r-9dcw1g { display: none; }";
 
-// ------ ポップアップ -----
+// ----- 通報 -----
 
 // "ポストさんを報告"のボタン
 export const reportButtonSelector = "div[data-testid='report']";

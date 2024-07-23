@@ -6,6 +6,7 @@ import {
   hideButtonClassName,
   iconPath,
   tweetSelector,
+  removeMaskStyle,
 } from "./consts.ts";
 import { block } from "./purge/block.ts";
 
@@ -88,6 +89,14 @@ function setEventListener(
 
   button.addEventListener("click", async (event) => {
     event.preventDefault();
+
+    // ブロック確認画面とその周りのマスクを非表示
+    // jsで削除すると間に合わず、画面が点滅するので追加のスタイルを適用する。
+    // block関数内で実行しても良いが、まれにスタイル適用が遅れるためここで実行している
+    const styleElement = hideConfirmBlockElements();
+    styleElement.innerHTML = removeMaskStyle;
+    document.head.appendChild(styleElement);
+
     const zombie = userFromTweet(tweet);
 
     if (zombie) {
@@ -97,11 +106,18 @@ function setEventListener(
     const menuButton = tweet.querySelector(menuButtonSelector);
 
     if (menuButton) {
-      block(menuButton);
+      block(menuButton, styleElement);
     }
 
     hideZombies(zombies);
 
     await zombies.saveStorage();
   });
+}
+
+function hideConfirmBlockElements(): HTMLStyleElement {
+  const styleElement = document.createElement("style");
+  styleElement.innerHTML = removeMaskStyle;
+  document.head.appendChild(styleElement);
+  return styleElement;
 }
