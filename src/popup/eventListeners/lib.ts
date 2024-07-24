@@ -1,5 +1,10 @@
-import { sleep } from "../../content/purge/lib.ts";
-import { zombiesNumId } from "../consts.ts";
+import { sleep } from "../../lib/lib.ts";
+import {
+  tweetURLClassName,
+  zombieClassNameSelector,
+  zombieIdClassName,
+  zombiesNumId,
+} from "../consts.ts";
 
 export function hide(element: HTMLElement) {
   element.style.display = "none";
@@ -11,6 +16,27 @@ export function showFlex(element: HTMLElement) {
 
 export function showBlock(element: HTMLElement) {
   element.style.display = "block";
+}
+
+export function getZombieElement(element: Element): Element | null {
+  return element.closest(zombieClassNameSelector);
+}
+
+export function getZombieId(
+  zombieElement: Element | null | undefined
+): string | null | undefined {
+  const zombieId =
+    zombieElement?.getElementsByClassName(zombieIdClassName)[0].textContent;
+  return zombieId;
+}
+
+export function getZombieTweetURL(
+  zombieElement: Element | null | undefined
+): string | null | undefined {
+  const href = zombieElement
+    ?.getElementsByClassName(tweetURLClassName)[0]
+    ?.getAttribute("href");
+  return href;
 }
 
 export function setZombiesNum(num: number) {
