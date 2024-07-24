@@ -21,9 +21,10 @@ html {
 
     #all-purge-button-icon,
     #all-purge-stop-button-icon {
-      img {
-        width: 40px;
-        height: 40px;
+      svg {
+        width: 30px;
+        height: 30px;
+        transform: translate(3px, 1px);
       }
     }
 
@@ -132,10 +133,8 @@ html {
           }
 
           .purge-zombie {
-            .purge-zombie-button {
-              width: 85%;
-              height: 85%;
-              transform: translate(2px, 2px);
+            svg {
+              opacity: 0.5;
             }
           }
         }

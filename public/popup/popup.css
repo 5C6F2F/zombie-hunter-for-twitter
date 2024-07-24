@@ -19,12 +19,13 @@ html #all-purge-button > *,
 html #all-purge-stop-button > * {
   margin: auto 10px;
 }
-html #all-purge-button #all-purge-button-icon img,
-html #all-purge-button #all-purge-stop-button-icon img,
-html #all-purge-stop-button #all-purge-button-icon img,
-html #all-purge-stop-button #all-purge-stop-button-icon img {
-  width: 40px;
-  height: 40px;
+html #all-purge-button #all-purge-button-icon svg,
+html #all-purge-button #all-purge-stop-button-icon svg,
+html #all-purge-stop-button #all-purge-button-icon svg,
+html #all-purge-stop-button #all-purge-stop-button-icon svg {
+  width: 30px;
+  height: 30px;
+  transform: translate(3px, 1px);
 }
 html #all-purge-button #all-purge-button-content,
 html #all-purge-button #all-purge-stop-button-content,
@@ -112,10 +113,8 @@ html #purge #zombies .zombie .options .remove-user:hover {
   transition: background-color 0.3s;
   opacity: 0.85;
 }
-html #purge #zombies .zombie .options .purge-zombie .purge-zombie-button {
-  width: 85%;
-  height: 85%;
-  transform: translate(2px, 2px);
+html #purge #zombies .zombie .options .purge-zombie svg {
+  opacity: 0.5;
 }
 
 .buttons {
