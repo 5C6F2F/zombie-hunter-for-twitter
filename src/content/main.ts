@@ -2,6 +2,7 @@ import { ZombiesMap } from "../lib/zombiesMap.ts";
 import {
   allPurgeParam,
   purgeZombieParam,
+  removeZombieParam,
   zombieViewParam,
 } from "../lib/consts.ts";
 import { addHideZombieButtons } from "./hideZombieButtons.ts";
@@ -9,7 +10,8 @@ import { hideZombies } from "./hideZombies.ts";
 import { revivalUsers } from "./revivalUser.ts";
 import { purge } from "./purge/purge.ts";
 import { timeLineSelector } from "./consts.ts";
-import { sleep } from "./purge/lib.ts";
+import { unblock } from "./unblock.ts";
+import { sleep } from "../lib/lib.ts";
 
 const url = new URL(window.location.href);
 const params = url.searchParams;
@@ -18,9 +20,16 @@ const params = url.searchParams;
   const zombies = await new ZombiesMap().loadZombiesFromStorage();
   await waitWhileTimeLineShown();
 
-  const removeZombieId = params.get(zombieViewParam);
+  const showZombieId = params.get(zombieViewParam);
+  if (showZombieId) {
+    zombies.remove(showZombieId);
+  }
+
+  const removeZombieId = params.get(removeZombieParam);
   if (removeZombieId) {
+    await unblock(removeZombieId);
     zombies.remove(removeZombieId);
+    await zombies.saveStorage();
   }
 
   // 必ずallPurgeより先に判定する
