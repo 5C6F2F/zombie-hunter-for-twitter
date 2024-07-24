@@ -84,8 +84,12 @@ export class Zombie extends User {
           </svg>
         </div>
         <div class="purge-zombie red-buttons">
-          <!-- アイコンは https://icon-pit.com/pictogram/1661 「禁止マークのアイコン」を使用させていただきました。 -->
-          <img src="../icons/purgeButton.png" alt="" class="purge-zombie-button">
+          <!-- アイコンは https://lucide.dev/icons/ban 「ban」を使用させていただきました。 -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ban">
+            <circle cx="12" cy="12" r="10" />
+            <path d="m4.9 4.9 14.2 14.2" />
+          </svg>
         </div>
       </div>`;
 
