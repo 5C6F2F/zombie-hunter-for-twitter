@@ -1,4 +1,4 @@
-import { sleep } from "../../content/purge/lib.ts";
+import { sleep } from "../../lib/lib.ts";
 import { ZombiesMap } from "../../lib/zombiesMap.ts";
 import {
   allPurgeButtonId,

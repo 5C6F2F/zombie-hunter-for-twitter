@@ -1,9 +1,10 @@
+import { sleep } from "../../lib/lib.ts";
 import {
   blockButtonSelector,
   blockKeyWord,
   confirmBlockButtonSelector,
 } from "../consts.ts";
-import { click, sleep } from "./lib.ts";
+import { click } from "../lib.ts";
 
 export async function block(
   menuButton: Element,

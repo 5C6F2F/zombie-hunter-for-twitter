@@ -1,9 +1,11 @@
+import { sleep } from "../../lib/lib.ts";
 import {
   reportButtonSelector,
   selectSpamReportTypeSelector,
   completeButtonSelector,
 } from "../consts.ts";
-import { click, goNextPage, sleep } from "./lib.ts";
+import { click } from "../lib.ts";
+import { goNextPage } from "./lib.ts";
 
 export async function reportSpam(menuButton: Element) {
   click(menuButton);

@@ -1,7 +1,6 @@
+import { sleep } from "../../lib/lib.ts";
 import { nextButtonSelector } from "../consts.ts";
-
-export const sleep = (time: number) =>
-  new Promise((resolve) => setTimeout(resolve, time));
+import { click } from "../lib.ts";
 
 export async function goNextPage() {
   let nextButton = document.querySelector(nextButtonSelector);
@@ -10,13 +9,4 @@ export async function goNextPage() {
     nextButton = document.querySelector(nextButtonSelector);
   }
   click(nextButton);
-}
-
-export function click(element: Element) {
-  const clickEvent = new MouseEvent("click", {
-    bubbles: true,
-    cancelable: true,
-    view: window,
-  });
-  element.dispatchEvent(clickEvent);
 }
