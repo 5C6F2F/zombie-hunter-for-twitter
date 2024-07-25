@@ -1,6 +1,6 @@
 {
   "name": "Zombie Hunter for Twitter",
-  "description": "Twitterのインプレゾンビをワンクリックで非表示にし、自動でブロック・通報します。",
+  "description": "Twitterのインプレゾンビをワンクリックでブロックし、自動で通報します。",
   "version": "1.0",
   "manifest_version": 3,
   "permissions": ["storage"],
