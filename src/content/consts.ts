@@ -25,6 +25,9 @@ export const hideButtonClassName = "hide-button";
 // ツイートテキスト
 export const tweetTextSelector = "div[data-testid='tweetText']";
 
+// ツイート主の名前とID
+export const userNameIdSelector = "div[data-testid='User-Name']";
+
 // ----- ブロック -----
 
 // "{ID}さんをブロック"のボタン
