@@ -32,15 +32,21 @@ const params = url.searchParams;
     await zombies.saveStorage();
   }
 
-  // 必ずallPurgeより先に判定する
   const purgeZombieId = params.get(purgeZombieParam);
+  const allPurge = params.get(allPurgeParam);
+
+  // 必ずallPurgeより先に処理する
   if (purgeZombieId) {
-    await purge(purgeZombieId);
+    if (allPurge) {
+      await purge(purgeZombieId, true);
+    } else {
+      await purge(purgeZombieId, false);
+    }
+
     zombies.remove(purgeZombieId);
     await zombies.saveStorage();
   }
 
-  const allPurge = params.get(allPurgeParam);
   if (allPurge) {
     goToNextZombieTweet(zombies);
   }
