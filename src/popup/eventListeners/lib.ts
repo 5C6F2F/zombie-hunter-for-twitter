@@ -1,3 +1,4 @@
+import { purgeZombieParam, removeZombieParam } from "../../lib/consts.ts";
 import { sleep } from "../../lib/lib.ts";
 import {
   tweetURLClassName,
@@ -47,13 +48,21 @@ export function setZombiesNum(num: number) {
 }
 
 export function closeTab() {
-  chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
-    const tab = tabs.at(0)?.id;
-    if (tab) {
-      chrome.tabs.remove(tab);
-    } else {
-      await sleep(500);
-      closeTab();
+  chrome.tabs.query({}, async (tabs) => {
+    for (const tab of tabs) {
+      if (tab.url === undefined || tab.id === undefined) {
+        continue;
+      }
+
+      const params = new URL(tab.url).searchParams;
+
+      if (params.get(removeZombieParam) || params.get(purgeZombieParam)) {
+        chrome.tabs.remove(tab.id);
+        return;
+      }
     }
+
+    await sleep(500);
+    closeTab();
   });
 }
