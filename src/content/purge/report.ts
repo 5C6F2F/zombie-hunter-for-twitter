@@ -1,8 +1,8 @@
 import { sleep } from "../../lib/lib.ts";
 import {
+  completeButtonSelector,
   reportButtonSelector,
   selectSpamReportTypeSelector,
-  completeButtonSelector,
 } from "../consts.ts";
 import { click, querySelectorLoop } from "../lib.ts";
 import { goNextPage } from "./lib.ts";
@@ -18,6 +18,11 @@ export async function reportSpam(menuButton: Element) {
 
   await goNextPage();
 
+  const completeButton = await waitWhileReportRateLimited();
+  click(completeButton);
+}
+
+async function waitWhileReportRateLimited(): Promise<Element> {
   let completeButton = document.querySelector(completeButtonSelector);
 
   while (!completeButton) {
@@ -31,5 +36,5 @@ export async function reportSpam(menuButton: Element) {
     completeButton = document.querySelector(completeButtonSelector);
   }
 
-  click(completeButton);
+  return completeButton;
 }

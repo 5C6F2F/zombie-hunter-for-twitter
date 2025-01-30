@@ -1,4 +1,3 @@
-import { ZombiesMap } from "../lib/zombiesMap.ts";
 import {
   allPurgeParam,
   purgeZombieParam,
@@ -52,21 +51,13 @@ const params = url.searchParams;
     goToNextZombieTweet(zombies);
   }
 
-  setInterval(() => {
-    addHideZombieButtons(zombies);
-  }, 500);
-
-  setInterval(() => {
-    hideZombies(zombies);
-  }, 50);
-
-  setInterval(() => {
-    revivalUsers(zombies);
-  }, 500);
+  setInterval(() => addHideZombieButtons(zombies), 500);
+  setInterval(() => hideZombies(zombies), 50);
+  setInterval(() => restoreUsers(zombies), 500);
 })();
 
 // 繰り返しのアクセスによってロードが停止されることがあるのでその場合は待機
-// 該当ツイートが消されている場合もあるのでタイムラインを対象とした
+// 該当ツイートが消されている場合と混同しないよう、タイムラインを対象とした
 async function waitWhileTimeLineShown() {
   let count = 0;
   while (!document.querySelector(timeLineSelector)) {
