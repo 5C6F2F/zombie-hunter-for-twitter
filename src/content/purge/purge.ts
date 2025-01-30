@@ -1,6 +1,6 @@
 import { sleep } from "../../lib/lib.ts";
 import { menuButtonSelector } from "../consts.ts";
-import { getUserTweet } from "../lib.ts";
+import { getUserTweet, querySelectorLoop } from "../lib.ts";
 import { block } from "./block.ts";
 import { reportSpam } from "./report.ts";
 
@@ -13,11 +13,7 @@ export async function purge(id: string, isAllPurge: boolean) {
     return;
   }
 
-  let menuButton = zombieTweet.querySelector(menuButtonSelector);
-  while (!menuButton) {
-    await sleep(50);
-    menuButton = zombieTweet.querySelector(menuButtonSelector);
-  }
+  const menuButton = await querySelectorLoop(zombieTweet, menuButtonSelector);
 
   // 連続で7人以上報告するとレート制限がかかる
   // 全員を通報する場合はレート制限回避のために7秒待機

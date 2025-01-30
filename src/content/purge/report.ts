@@ -4,29 +4,18 @@ import {
   selectSpamReportTypeSelector,
   completeButtonSelector,
 } from "../consts.ts";
-import { click } from "../lib.ts";
+import { click, querySelectorLoop } from "../lib.ts";
 import { goNextPage } from "./lib.ts";
 
 export async function reportSpam(menuButton: Element) {
   click(menuButton);
 
-  let reportButton = document.querySelector(reportButtonSelector);
-
-  while (!reportButton) {
-    await sleep(50);
-    reportButton = document.querySelector(reportButtonSelector);
-  }
-
+  const reportButton = await querySelectorLoop(document, reportButtonSelector);
   click(reportButton);
 
-  let reportType = document.querySelector(selectSpamReportTypeSelector);
-
-  while (!reportType) {
-    await sleep(50);
-    reportType = document.querySelector(selectSpamReportTypeSelector);
-  }
-
+  const reportType = await querySelectorLoop(document, selectSpamReportTypeSelector);
   click(reportType);
+
   await goNextPage();
 
   let completeButton = document.querySelector(completeButtonSelector);
