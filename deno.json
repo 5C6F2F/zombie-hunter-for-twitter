@@ -4,6 +4,6 @@
   },
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "dom.asynciterable", "deno.ns"],
-    "types": ["https://unpkg.com/chrome-types@0.1.276/index.d.ts"]
+    "types": ["https://unpkg.com/chrome-types@latest/index.d.ts"]
   }
 }

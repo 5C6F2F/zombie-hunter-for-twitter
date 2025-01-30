@@ -19,6 +19,12 @@ export const zombieTweetSelector = "div[data-testid='cellInnerDiv']";
 // ツイート右上の三点リーダー
 export const menuButtonSelector = "button[data-testid='caret']";
 
+// 三点リーダーを押した際のドロップダウン
+export const dropDownSelector = "div[data-testid='Dropdown']";
+
+// フォロー中の人の場合ドロップダウンに表示される文字列。
+export const followingKeyWord = "さんのフォローを解除";
+
 // 非表示ボタン
 export const hideButtonClassName = "hide-button";
 

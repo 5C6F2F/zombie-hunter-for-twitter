@@ -40,3 +40,15 @@ export async function getUserTweet(
 
   return zombieTweet;
 }
+
+export async function querySelectorLoop(
+  parentElement: ParentNode,
+  selector: string
+): Promise<Element> {
+  let element = parentElement.querySelector(selector);
+  while (!element) {
+    await sleep(50);
+    element = parentElement.querySelector(selector);
+  }
+  return element;
+}

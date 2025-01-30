@@ -1,27 +1,27 @@
-import { getUserInfo } from "../lib/user.ts";
-import { ZombiesMap } from "../lib/zombiesMap.ts";
-import { tweetSelector, zombieTweetSelector } from "./consts.ts";
+import { getUserInfo } from "../../lib/user.ts";
+import { ZombiesMap } from "../../lib/zombiesMap.ts";
+import { tweetSelector, zombieTweetSelector } from "../consts.ts";
 
-const revivalIds = new Set<string>();
+const restoreIds = new Set<string>();
 
-export async function revivalUsers(zombies: ZombiesMap) {
+export async function restoreUsers(zombies: ZombiesMap) {
   const newZombies = await new ZombiesMap().loadZombiesFromStorage();
   extractReAddedZombies(zombies, newZombies);
-  extractRevival(zombies, newZombies);
+  extractRestore(zombies, newZombies);
   enVisible();
 }
 
 function extractReAddedZombies(zombies: ZombiesMap, newZombies: ZombiesMap) {
-  // 復活した人が再び追加されたのでrevivalIdsとzombiesとnewZombies全てにあるが、revivalIdsからは消す
+  // 復活した人が再び追加されたのでrestoreIdsとzombiesとnewZombies全てにあるが、restoreIdsからは消す
 
-  for (const zombieId of revivalIds) {
+  for (const zombieId of restoreIds) {
     if (zombies.has(zombieId) && newZombies.has(zombieId)) {
-      revivalIds.delete(zombieId);
+      restoreIds.delete(zombieId);
     }
   }
 }
 
-function extractRevival(
+function extractRestore(
   zombies: ZombiesMap,
   newZombies: ZombiesMap
 ): ZombiesMap | null {
@@ -30,7 +30,7 @@ function extractRevival(
   // もともとzombiesにはあったが、ポップアップで削除されてnewZombiesにはないものは復活とされる
   for (const zombieId of zombies.ids()) {
     if (!newZombies.has(zombieId)) {
-      revivalIds.add(zombieId);
+      restoreIds.add(zombieId);
       zombies.remove(zombieId);
       result = true;
     }
@@ -48,7 +48,7 @@ function enVisible() {
 
   for (const tweet of tweets) {
     const [_, id] = getUserInfo(tweet);
-    if (id && revivalIds.has(id)) {
+    if (id && restoreIds.has(id)) {
       const zombieTweet = tweet.closest(zombieTweetSelector);
 
       if (zombieTweet) {

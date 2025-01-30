@@ -1,19 +1,19 @@
-import { ZombiesMap } from "../lib/zombiesMap.ts";
 import {
   allPurgeParam,
   purgeZombieParam,
   removeZombieParam,
   zombieViewParam,
 } from "../lib/consts.ts";
+import { sleep } from "../lib/lib.ts";
+import { ZombiesMap } from "../lib/zombiesMap.ts";
+import { timeLineSelector } from "./consts.ts";
 import { addHideZombieButtons } from "./hideZombieButtons.ts";
 import { hideZombies } from "./hideZombies.ts";
-import { revivalUsers } from "./revivalUser.ts";
 import { purge } from "./purge/purge.ts";
-import { timeLineSelector } from "./consts.ts";
-import { unblock } from "./unblock.ts";
-import { sleep } from "../lib/lib.ts";
+import { restoreUsers } from "./restore/restoreUser.ts";
+import { unblock } from "./restore/unblock.ts";
 
-const url = new URL(window.location.href);
+const url = new URL(globalThis.location.href);
 const params = url.searchParams;
 
 (async () => {
@@ -51,21 +51,13 @@ const params = url.searchParams;
     goToNextZombieTweet(zombies);
   }
 
-  setInterval(() => {
-    addHideZombieButtons(zombies);
-  }, 500);
-
-  setInterval(() => {
-    hideZombies(zombies);
-  }, 50);
-
-  setInterval(() => {
-    revivalUsers(zombies);
-  }, 500);
+  setInterval(() => addHideZombieButtons(zombies), 500);
+  setInterval(() => hideZombies(zombies), 50);
+  setInterval(() => restoreUsers(zombies), 500);
 })();
 
 // 繰り返しのアクセスによってロードが停止されることがあるのでその場合は待機
-// 該当ツイートが消されている場合もあるのでタイムラインを対象とした
+// 該当ツイートが消されている場合と混同しないよう、タイムラインを対象とした
 async function waitWhileTimeLineShown() {
   let count = 0;
   while (!document.querySelector(timeLineSelector)) {
