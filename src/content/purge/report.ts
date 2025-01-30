@@ -13,7 +13,10 @@ export async function reportSpam(menuButton: Element) {
   const reportButton = await querySelectorLoop(document, reportButtonSelector);
   click(reportButton);
 
-  const reportType = await querySelectorLoop(document, selectSpamReportTypeSelector);
+  const reportType = await querySelectorLoop(
+    document,
+    selectSpamReportTypeSelector
+  );
   click(reportType);
 
   await goNextPage();

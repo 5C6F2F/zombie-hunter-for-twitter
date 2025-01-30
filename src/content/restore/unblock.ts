@@ -1,7 +1,7 @@
 import {
-    blockButtonSelector,
-    confirmBlockButtonSelector,
-    menuButtonSelector,
+  blockButtonSelector,
+  confirmBlockButtonSelector,
+  menuButtonSelector,
 } from "../consts.ts";
 import { click, getUserTweet, querySelectorLoop } from "../lib.ts";
 
