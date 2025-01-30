@@ -5,15 +5,16 @@ import {
   removeZombieParam,
   zombieViewParam,
 } from "../lib/consts.ts";
+import { sleep } from "../lib/lib.ts";
+import { ZombiesMap } from "../lib/zombiesMap.ts";
+import { timeLineSelector } from "./consts.ts";
 import { addHideZombieButtons } from "./hideZombieButtons.ts";
 import { hideZombies } from "./hideZombies.ts";
-import { revivalUsers } from "./revivalUser.ts";
 import { purge } from "./purge/purge.ts";
-import { timeLineSelector } from "./consts.ts";
-import { unblock } from "./unblock.ts";
-import { sleep } from "../lib/lib.ts";
+import { restoreUsers } from "./restore/restoreUser.ts";
+import { unblock } from "./restore/unblock.ts";
 
-const url = new URL(window.location.href);
+const url = new URL(globalThis.location.href);
 const params = url.searchParams;
 
 (async () => {
