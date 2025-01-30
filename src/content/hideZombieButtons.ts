@@ -1,13 +1,19 @@
-import { hideZombies } from "./hideZombies.ts";
+import { sleep } from "../lib/lib.ts";
 import { userFromTweet } from "../lib/user.ts";
 import { ZombiesMap } from "../lib/zombiesMap.ts";
 import {
-  menuButtonSelector,
+  blockButtonSelector,
+  confirmBlockButtonSelector,
+  dropDownSelector,
+  followingKeyWord,
   hideButtonClassName,
   iconPath,
-  tweetSelector,
+  menuButtonSelector,
   removeMaskStyle,
+  tweetSelector,
 } from "./consts.ts";
+import { hideZombies } from "./hideZombies.ts";
+import { click, querySelectorLoop } from "./lib.ts";
 import { block } from "./purge/block.ts";
 
 export function addHideZombieButtons(zombies: ZombiesMap) {
@@ -90,6 +96,23 @@ function setEventListener(
   button.addEventListener("click", async (event) => {
     event.preventDefault();
 
+    const zombie = userFromTweet(tweet);
+
+    if (!zombie) {
+      return;
+    }
+
+    // フォロー中の人をブロックするとzombiesに追加する前にリロードされてしまうので、
+    // 事前に追加したうえでキャンセルした際に削除する。
+    zombies.add(zombie);
+    await zombies.saveStorage();
+
+    if ((await isFollowingUser()) && (await cancelToBlockFollowingUser())) {
+      zombies.remove(zombie.id);
+      await zombies.saveStorage();
+      return;
+    }
+
     // ブロック確認画面とその周りのマスクを非表示
     // jsで削除すると間に合わず、画面が点滅するので追加のスタイルを適用する。
     // block関数内で実行しても良いが、まれにスタイル適用が遅れるためここで実行している
@@ -97,21 +120,11 @@ function setEventListener(
     styleElement.innerHTML = removeMaskStyle;
     document.head.appendChild(styleElement);
 
-    const zombie = userFromTweet(tweet);
+    const menuButton = await querySelectorLoop(tweet, menuButtonSelector);
+    click(menuButton);
 
-    if (zombie) {
-      zombies.add(zombie);
-    }
-
-    const menuButton = tweet.querySelector(menuButtonSelector);
-
-    if (menuButton) {
-      block(menuButton, styleElement);
-    }
-
+    block(menuButton, styleElement);
     hideZombies(zombies);
-
-    await zombies.saveStorage();
   });
 }
 
@@ -120,4 +133,24 @@ function hideConfirmBlockElements(): HTMLStyleElement {
   styleElement.innerHTML = removeMaskStyle;
   document.head.appendChild(styleElement);
   return styleElement;
+}
+
+async function isFollowingUser() {
+  const dropDown = await querySelectorLoop(document, dropDownSelector);
+  return dropDown.textContent?.includes(followingKeyWord);
+}
+
+async function cancelToBlockFollowingUser(): Promise<boolean> {
+  const blockButton = await querySelectorLoop(document, blockButtonSelector);
+  click(blockButton);
+
+  // ブロックボタンを押したら返る前にリロードされてしまう。
+  // ブロックボタンが消えたらキャンセルしたとしてtrueを返す。
+  while (true) {
+    await sleep(50);
+
+    if (!document.querySelector(confirmBlockButtonSelector)) {
+      return true;
+    }
+  }
 }
