@@ -37,11 +37,7 @@ const params = url.searchParams;
 
   // 必ずallPurgeより先に処理する
   if (purgeZombieId) {
-    if (allPurge) {
-      await purge(purgeZombieId, true);
-    } else {
-      await purge(purgeZombieId, false);
-    }
+    await purge(purgeZombieId);
 
     zombies.remove(purgeZombieId);
     await zombies.saveStorage();
@@ -74,14 +70,16 @@ async function waitWhileTimeLineShown() {
 function goToNextZombieTweet(zombies: ZombiesMap) {
   const nextTarget = zombies.ids().next();
 
-  if (nextTarget.done === false) {
-    const nextUrlStr = zombies.get(nextTarget.value)?.url;
+  if (nextTarget.done) {
+    return;
+  }
 
-    if (nextUrlStr) {
-      const nextUrl = new URL(nextUrlStr);
-      nextUrl.searchParams.append(purgeZombieParam, nextTarget.value);
-      nextUrl.searchParams.append(allPurgeParam, "true"); // 値は空白以外なら何でも良い
-      globalThis.location.href = nextUrl.toString();
-    }
+  const nextUrlStr = zombies.get(nextTarget.value)?.url;
+
+  if (nextUrlStr) {
+    const nextUrl = new URL(nextUrlStr);
+    nextUrl.searchParams.append(purgeZombieParam, nextTarget.value);
+    nextUrl.searchParams.append(allPurgeParam, "true"); // 値は空白以外なら何でも良い
+    globalThis.location.href = nextUrl.toString();
   }
 }

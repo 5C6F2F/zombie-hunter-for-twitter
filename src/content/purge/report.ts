@@ -7,9 +7,7 @@ import {
 import { click, querySelectorLoop } from "../lib.ts";
 import { goNextPage } from "./lib.ts";
 
-export async function reportSpam(menuButton: Element) {
-  click(menuButton);
-
+export async function reportSpam() {
   const reportButton = await querySelectorLoop(document, reportButtonSelector);
   click(reportButton);
 
