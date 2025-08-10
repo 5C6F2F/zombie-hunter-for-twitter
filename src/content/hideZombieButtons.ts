@@ -1,5 +1,5 @@
 import { sleep } from "../lib/lib.ts";
-import { userFromTweet } from "../lib/user.ts";
+import { getUserFromTweet, getUserInfo } from "../lib/user.ts";
 import { ZombiesMap } from "../lib/zombiesMap.ts";
 import {
   blockButtonSelector,
@@ -11,6 +11,7 @@ import {
   menuButtonSelector,
   removeMaskStyle,
   tweetSelector,
+  zombieTweetSelector,
 } from "./consts.ts";
 import { hideZombies } from "./hideZombies.ts";
 import { click, querySelectorLoop } from "./lib.ts";
@@ -96,7 +97,7 @@ function setEventListener(
   button.addEventListener("click", async (event) => {
     event.preventDefault();
 
-    const zombie = userFromTweet(tweet);
+    const zombie = getUserFromTweet(tweet);
 
     if (!zombie) {
       return;
@@ -107,9 +108,18 @@ function setEventListener(
     zombies.add(zombie);
     await zombies.saveStorage();
 
+    const menuButton = await querySelectorLoop(tweet, menuButtonSelector);
+    click(menuButton);
+
+    // フォロー中のユーザーかつ、ブロックをキャンセルした場合、
+    // 誤クリックだと判定しリストから削除、ツイートを再表示。
     if ((await isFollowingUser()) && (await cancelToBlockFollowingUser())) {
       zombies.remove(zombie.id);
       await zombies.saveStorage();
+      restoreFollowingUserTweet(zombie.id);
+
+      // メニューが残るのでもう一度メニューボタンを押して消す。
+      click(menuButton);
       return;
     }
 
@@ -119,9 +129,6 @@ function setEventListener(
     const styleElement = hideConfirmBlockElements();
     styleElement.innerHTML = removeMaskStyle;
     document.head.appendChild(styleElement);
-
-    const menuButton = await querySelectorLoop(tweet, menuButtonSelector);
-    click(menuButton);
 
     block(menuButton, styleElement);
     hideZombies(zombies);
@@ -151,6 +158,21 @@ async function cancelToBlockFollowingUser(): Promise<boolean> {
 
     if (!document.querySelector(confirmBlockButtonSelector)) {
       return true;
+    }
+  }
+}
+
+function restoreFollowingUserTweet(restoreId: string) {
+  const tweets = document.querySelectorAll(tweetSelector);
+
+  for (const tweet of tweets) {
+    const [_, id] = getUserInfo(tweet);
+    if (id == restoreId) {
+      const zombieTweet = tweet.closest(zombieTweetSelector);
+
+      if (zombieTweet) {
+        (zombieTweet as HTMLElement).style.display = "block";
+      }
     }
   }
 }
