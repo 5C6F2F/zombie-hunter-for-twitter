@@ -1,7 +1,13 @@
 import { ZombiesMap } from "../lib/zombiesMap.ts";
-import { noZombiesId, zombiesElementId, zombiesNumId } from "./consts.ts";
+import {
+  noZombiesId,
+  totalPurgeCountsId,
+  zombiesElementId,
+  zombiesNumId,
+} from "./consts.ts";
 import { hide } from "./eventListeners/lib.ts";
 import { popupEventListener } from "./popupEventListeners.ts";
+import { getTotalPurgeCounts } from "./totalPurgeCounts/totalPurgeCounts.ts";
 
 popupEventListener(null);
 
@@ -18,5 +24,11 @@ popupEventListener(null);
     zombiesNum.innerText = zombies.length.toString();
     zombiesElement.appendChild(zombieHTML);
     popupEventListener(zombies);
+  }
+
+  const totalPurgeCountsElement = document.getElementById(totalPurgeCountsId);
+  const totalPurgeCounts = await getTotalPurgeCounts();
+  if (totalPurgeCountsElement) {
+    totalPurgeCountsElement.textContent = totalPurgeCounts.toLocaleString();
   }
 })();

@@ -8,31 +8,36 @@
 </head>
 
 <body>
-  <div id="all-purge-button" class="red-buttons">
-    <div id="all-purge-button-icon">
-      <!-- アイコンは https://lucide.dev/icons/play 「play」を使用させていただきました。 -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        class="lucide lucide-play">
-        <polygon points="6 3 20 12 6 21 6 3" />
-      </svg>
+  <div id="all-purge-and-purge-counts">
+    <div id="all-purge-button" class="red-buttons">
+      <div id="all-purge-button-icon">
+        <!-- アイコンは https://lucide.dev/icons/play 「play」を使用させていただきました。 -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-play">
+          <polygon points="6 3 20 12 6 21 6 3" />
+        </svg>
+      </div>
+      <div id="all-purge-button-content">
+        <p>通報開始</p>
+      </div>
     </div>
-    <div id="all-purge-button-content">
-      <p>通報開始</p>
+    <div id="all-purge-stop-button" class="red-buttons">
+      <div id="all-purge-stop-button-icon">
+        <!-- アイコンは https://lucide.dev/icons/pause 「pause」を使用させていただきました。 -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-pause">
+          <rect x="14" y="4" width="4" height="16" rx="1" />
+          <rect x="6" y="4" width="4" height="16" rx="1" />
+        </svg>
+      </div>
+      <div id="all-purge-stop-button-content">
+        <p>通報停止</p>
+      </div>
     </div>
-  </div>
-  <div id="all-purge-stop-button" class="red-buttons">
-    <div id="all-purge-stop-button-icon">
-      <!-- アイコンは https://lucide.dev/icons/pause 「pause」を使用させていただきました。 -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        class="lucide lucide-pause">
-        <rect x="14" y="4" width="4" height="16" rx="1" />
-        <rect x="6" y="4" width="4" height="16" rx="1" />
-      </svg>
-    </div>
-    <div id="all-purge-stop-button-content">
-      <p>通報停止</p>
+    <div id="total-purge-counts">
+      <p>累計通報数: <span id="total-purge-counts-span">0</span></p>
     </div>
   </div>
   <div id="purge">
