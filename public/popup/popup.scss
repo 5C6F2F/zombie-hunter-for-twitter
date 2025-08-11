@@ -4,41 +4,51 @@ html {
   margin: 0 13px;
   scrollbar-gutter: stable;
 
-  #all-purge-button,
-  #all-purge-stop-button {
-    width: 150px;
-    height: 60px;
-    margin-top: 13px;
-    margin-bottom: 10px;
-    border-radius: 13px;
+  #all-purge-and-purge-counts {
     display: flex;
-    box-shadow: 0px 0px 5px 5px #e7e7e7;
-    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
 
-    > * {
-      margin: auto 10px;
-    }
+    #all-purge-button,
+    #all-purge-stop-button {
+      width: 150px;
+      height: 60px;
+      margin-top: 13px;
+      margin-bottom: 10px;
+      border-radius: 13px;
+      display: flex;
+      box-shadow: 0px 0px 5px 5px #e7e7e7;
+      cursor: pointer;
 
-    #all-purge-button-icon,
-    #all-purge-stop-button-icon {
-      svg {
-        width: 30px;
-        height: 30px;
-        transform: translate(3px, 1px);
+      > * {
+        margin: auto 10px;
+      }
+
+      #all-purge-button-icon,
+      #all-purge-stop-button-icon {
+        svg {
+          width: 30px;
+          height: 30px;
+          transform: translate(3px, 1px);
+        }
+      }
+
+      #all-purge-button-content,
+      #all-purge-stop-button-content {
+        margin-left: 0;
+        height: 100%;
+        border-radius: 25px;
+        font-size: large;
       }
     }
 
-    #all-purge-button-content,
-    #all-purge-stop-button-content {
-      margin-left: 0;
-      height: 100%;
-      border-radius: 25px;
-      font-size: large;
+    #all-purge-stop-button {
+      display: none;
     }
-  }
 
-  #all-purge-stop-button {
-    display: none;
+    #total-purge-counts {
+      font-size: 16px;
+    }
   }
 
   #purge {
