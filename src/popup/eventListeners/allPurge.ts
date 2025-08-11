@@ -6,6 +6,7 @@ import {
   zombieClassName,
   zombieIdClassName,
 } from "../consts.ts";
+import { plusOneToTotalPurgeCounts } from "../totalPurgeCounts/totalPurgeCounts.ts";
 import { closeTab, hide, setZombiesNum, showFlex } from "./lib.ts";
 
 export function allPurgeListener() {
@@ -65,6 +66,7 @@ async function waitAllPurgeCompleteAndChangePopup(
     }
 
     setZombiesNum(zombies.length);
+    await plusOneToTotalPurgeCounts();
   }
 }
 
