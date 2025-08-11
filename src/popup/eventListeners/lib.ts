@@ -24,15 +24,15 @@ export function getZombieElement(element: Element): Element | null {
 }
 
 export function getZombieId(
-  zombieElement: Element | null | undefined
+  zombieElement: Element | null | undefined,
 ): string | null | undefined {
-  const zombieId =
-    zombieElement?.getElementsByClassName(zombieIdClassName)[0].textContent;
+  const zombieId = zombieElement?.getElementsByClassName(zombieIdClassName)[0]
+    .textContent;
   return zombieId;
 }
 
 export function getZombieTweetURL(
-  zombieElement: Element | null | undefined
+  zombieElement: Element | null | undefined,
 ): string | null | undefined {
   const href = zombieElement
     ?.getElementsByClassName(tweetURLClassName)[0]

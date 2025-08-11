@@ -1,5 +1,5 @@
-import { openButtonId, closeButtonId, zombiesElementId } from "../consts.ts";
-import { hide, showFlex, showBlock } from "./lib.ts";
+import { closeButtonId, openButtonId, zombiesElementId } from "../consts.ts";
+import { hide, showBlock, showFlex } from "./lib.ts";
 
 export function openCloseButtonEvent() {
   const openButton = document.getElementById(openButtonId);

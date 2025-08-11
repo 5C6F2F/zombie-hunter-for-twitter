@@ -56,16 +56,18 @@ export function getUserFromTweet(tweet: Element): User | null {
 }
 
 export function getUserInfo(
-  tweet: Element
+  tweet: Element,
 ): [
-    string | null | undefined,
-    string | null | undefined,
-    string | null | undefined
-  ] {
+  string | null | undefined,
+  string | null | undefined,
+  string | null | undefined,
+] {
   const name_id_element = tweet.querySelector(userNameIdSelector);
 
-  const name = name_id_element?.children[0].getElementsByTagName("a")[0].getElementsByTagName("span")[0].textContent;
-  const id = name_id_element?.children[1].getElementsByTagName("a")[0].getElementsByTagName("span")[0].textContent;
+  const name = name_id_element?.children[0].getElementsByTagName("a")[0]
+    .getElementsByTagName("span")[0].textContent;
+  const id = name_id_element?.children[1].getElementsByTagName("a")[0]
+    .getElementsByTagName("span")[0].textContent;
 
   const time_elements = tweet.getElementsByTagName("time");
   // 引用リツイートの際に引用元の要素を取得しないよう、最初の要素を取得する。

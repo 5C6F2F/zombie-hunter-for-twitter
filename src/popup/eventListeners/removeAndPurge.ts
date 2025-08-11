@@ -41,7 +41,7 @@ type GetURLType = (href: string, zombieId: string) => string;
 async function purgeOrRemove(
   element: Element,
   zombies: ZombiesMap,
-  getURL: GetURLType
+  getURL: GetURLType,
 ) {
   const zombieElement = getZombieElement(element);
   const zombieId = getZombieId(zombieElement);

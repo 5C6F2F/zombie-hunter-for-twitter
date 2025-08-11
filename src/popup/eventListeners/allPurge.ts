@@ -40,7 +40,7 @@ export function allPurgeListener() {
 }
 
 async function waitAllPurgeCompleteAndChangePopup(
-  allPurgeStopButton: HTMLElement
+  allPurgeStopButton: HTMLElement,
 ) {
   let flag = true;
   allPurgeStopButton.addEventListener("click", () => {
