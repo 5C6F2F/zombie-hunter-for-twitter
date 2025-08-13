@@ -4,13 +4,8 @@ html {
   margin: 0 13px;
   scrollbar-gutter: stable;
 }
-html #all-purge-and-purge-counts {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-html #all-purge-and-purge-counts #all-purge-button,
-html #all-purge-and-purge-counts #all-purge-stop-button {
+html #all-purge-button,
+html #all-purge-stop-button {
   width: 150px;
   height: 60px;
   margin-top: 13px;
@@ -20,43 +15,45 @@ html #all-purge-and-purge-counts #all-purge-stop-button {
   box-shadow: 0px 0px 5px 5px #e7e7e7;
   cursor: pointer;
 }
-html #all-purge-and-purge-counts #all-purge-button > *,
-html #all-purge-and-purge-counts #all-purge-stop-button > * {
+html #all-purge-button > *,
+html #all-purge-stop-button > * {
   margin: auto 10px;
 }
-html #all-purge-and-purge-counts #all-purge-button #all-purge-button-icon svg,
-html #all-purge-and-purge-counts #all-purge-button #all-purge-stop-button-icon svg,
-html #all-purge-and-purge-counts #all-purge-stop-button #all-purge-button-icon svg,
-html #all-purge-and-purge-counts #all-purge-stop-button #all-purge-stop-button-icon svg {
+html #all-purge-button #all-purge-button-icon svg,
+html #all-purge-button #all-purge-stop-button-icon svg,
+html #all-purge-stop-button #all-purge-button-icon svg,
+html #all-purge-stop-button #all-purge-stop-button-icon svg {
   width: 30px;
   height: 30px;
   transform: translate(3px, 1px);
 }
-html #all-purge-and-purge-counts #all-purge-button #all-purge-button-content,
-html #all-purge-and-purge-counts #all-purge-button #all-purge-stop-button-content,
-html #all-purge-and-purge-counts #all-purge-stop-button #all-purge-button-content,
-html #all-purge-and-purge-counts #all-purge-stop-button #all-purge-stop-button-content {
+html #all-purge-button #all-purge-button-content,
+html #all-purge-button #all-purge-stop-button-content,
+html #all-purge-stop-button #all-purge-button-content,
+html #all-purge-stop-button #all-purge-stop-button-content {
   margin-left: 0;
   height: 100%;
   border-radius: 25px;
   font-size: large;
 }
-html #all-purge-and-purge-counts #all-purge-stop-button {
+html #all-purge-stop-button {
   display: none;
 }
-html #all-purge-and-purge-counts #total-purge-counts {
-  font-size: 16px;
-}
 html #purge #purge-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+html #purge #purge-button #purge-button-title-icon {
   height: 50px;
   display: flex;
   justify-content: flex-start;
 }
-html #purge #purge-button #purge-button-title {
+html #purge #purge-button #purge-button-title-icon #purge-button-title {
   margin: 13px 0 0 0;
 }
-html #purge #purge-button #purge-button-icon #open-button,
-html #purge #purge-button #purge-button-icon #close-button {
+html #purge #purge-button #purge-button-title-icon #purge-button-icon #open-button,
+html #purge #purge-button #purge-button-title-icon #purge-button-icon #close-button {
   width: 24px;
   height: 24px;
   padding: 6px;
@@ -64,8 +61,11 @@ html #purge #purge-button #purge-button-icon #close-button {
   color: rgb(15, 20, 25);
   border-radius: 50%;
 }
-html #purge #purge-button #purge-button-icon #close-button {
+html #purge #purge-button #purge-button-title-icon #purge-button-icon #close-button {
   display: none;
+}
+html #purge #purge-button #total-purge-counts {
+  font-size: 16px;
 }
 html #purge #zombies {
   display: none;

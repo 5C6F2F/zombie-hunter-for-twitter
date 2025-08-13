@@ -8,56 +8,56 @@
 </head>
 
 <body>
-  <div id="all-purge-and-purge-counts">
-    <div id="all-purge-button" class="red-buttons">
-      <div id="all-purge-button-icon">
-        <!-- アイコンは https://lucide.dev/icons/play 「play」を使用させていただきました。 -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="lucide lucide-play">
-          <polygon points="6 3 20 12 6 21 6 3" />
-        </svg>
-      </div>
-      <div id="all-purge-button-content">
-        <p>通報開始</p>
-      </div>
+  <div id="all-purge-button" class="red-buttons">
+    <div id="all-purge-button-icon">
+      <!-- アイコンは https://lucide.dev/icons/play 「play」を使用させていただきました。 -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-play">
+        <polygon points="6 3 20 12 6 21 6 3" />
+      </svg>
     </div>
-    <div id="all-purge-stop-button" class="red-buttons">
-      <div id="all-purge-stop-button-icon">
-        <!-- アイコンは https://lucide.dev/icons/pause 「pause」を使用させていただきました。 -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="lucide lucide-pause">
-          <rect x="14" y="4" width="4" height="16" rx="1" />
-          <rect x="6" y="4" width="4" height="16" rx="1" />
-        </svg>
-      </div>
-      <div id="all-purge-stop-button-content">
-        <p>通報停止</p>
-      </div>
+    <div id="all-purge-button-content">
+      <p>通報開始</p>
     </div>
-    <div id="total-purge-counts">
-      <p>累計通報数: <span id="total-purge-counts-span">0</span></p>
+  </div>
+  <div id="all-purge-stop-button" class="red-buttons">
+    <div id="all-purge-stop-button-icon">
+      <!-- アイコンは https://lucide.dev/icons/pause 「pause」を使用させていただきました。 -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-pause">
+        <rect x="14" y="4" width="4" height="16" rx="1" />
+        <rect x="6" y="4" width="4" height="16" rx="1" />
+      </svg>
+    </div>
+    <div id="all-purge-stop-button-content">
+      <p>通報停止</p>
     </div>
   </div>
   <div id="purge">
     <div id="purge-button">
-      <h2 id="purge-button-title">対象一覧 - <span id="zombies-num">0</span>人</h2>
-      <div id="purge-button-icon">
-        <svg id="open-button" class="buttons" title="開く" viewBox="0 0 24 24">
-          <g>
-            <path
-              d="M12 11.59L3.96 3.54 2.54 4.96 12 14.41l9.46-9.45-1.42-1.42L12 11.59zm0 7l-8.04-8.05-1.42 1.42L12 21.41l9.46-9.45-1.42-1.42L12 18.59z">
-            </path>
-          </g>
-        </svg>
-        <svg id="close-button" class="buttons" title="閉じる" viewBox="0 0 24 24">
-          <g>
-            <path
-              d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z">
-            </path>
-          </g>
-        </svg>
+      <div id="purge-button-title-icon">
+        <h2 id="purge-button-title">対象一覧 - <span id="zombies-num">0</span>人</h2>
+        <div id="purge-button-icon">
+          <svg id="open-button" class="buttons" title="開く" viewBox="0 0 24 24">
+            <g>
+              <path
+                d="M12 11.59L3.96 3.54 2.54 4.96 12 14.41l9.46-9.45-1.42-1.42L12 11.59zm0 7l-8.04-8.05-1.42 1.42L12 21.41l9.46-9.45-1.42-1.42L12 18.59z">
+              </path>
+            </g>
+          </svg>
+          <svg id="close-button" class="buttons" title="閉じる" viewBox="0 0 24 24">
+            <g>
+              <path
+                d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z">
+              </path>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div id="total-purge-counts">
+        <p>(累計通報数: <span id="total-purge-counts-span">0</span>)</p>
       </div>
     </div>
     <div id="zombies">
