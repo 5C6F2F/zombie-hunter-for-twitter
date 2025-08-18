@@ -23,7 +23,7 @@ export async function unblock(id: string) {
 
   const confirmBlockButton = await querySelectorLoop(
     document,
-    confirmBlockButtonSelector
+    confirmBlockButtonSelector,
   );
   click(confirmBlockButton);
 }

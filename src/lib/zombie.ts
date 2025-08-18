@@ -16,7 +16,7 @@ export class Zombie extends User {
         <div class="tweet-text">${this.trimmedText}</div>
       </div>
       <div class="options">
-        <div class="tweet-url-wrapper buttons">
+        <div class="tweet-url-wrapper buttons" title="表示">
           <a href="${this.url}" class="tweet-url">
             <!-- アイコンは https://kotonohaworks.com/free-icons/gaibu-link/ 「線画の外部リンク」を使用させていただきました。 -->
             <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -42,7 +42,7 @@ export class Zombie extends User {
             </svg>
           </a>
         </div>
-        <div class="remove-user">
+        <div class="remove-user" title="リストから削除、ブロック・ミュート解除">
           <!-- アイコンは https://kotonohaworks.com/free-icons/gomibako/ 「線画のゴミ箱」を使用させていただきました。 -->
           <?xml version="1.0" encoding="UTF-8" standalone="no"?>
           <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
@@ -83,7 +83,7 @@ export class Zombie extends User {
             </g>
           </svg>
         </div>
-        <div class="purge-zombie red-buttons">
+        <div class="purge-zombie red-buttons" title="通報">
           <!-- アイコンは https://lucide.dev/icons/ban 「ban」を使用させていただきました。 -->
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ban">

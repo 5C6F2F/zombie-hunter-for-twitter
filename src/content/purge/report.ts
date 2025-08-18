@@ -13,7 +13,7 @@ export async function reportSpam() {
 
   const reportType = await querySelectorLoop(
     document,
-    selectSpamReportTypeSelector
+    selectSpamReportTypeSelector,
   );
   click(reportType);
 

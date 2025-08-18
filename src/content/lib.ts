@@ -13,7 +13,7 @@ export function click(element: Element) {
 
 export async function getUserTweet(
   id: string,
-  retry?: number
+  retry?: number,
 ): Promise<Element | null> {
   if (!retry) {
     retry = 0;
@@ -43,7 +43,7 @@ export async function getUserTweet(
 
 export async function querySelectorLoop(
   parentElement: ParentNode,
-  selector: string
+  selector: string,
 ): Promise<Element> {
   let element = parentElement.querySelector(selector);
   while (!element) {

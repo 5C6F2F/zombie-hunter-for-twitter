@@ -6,10 +6,13 @@ import {
   zombiesNumId,
 } from "./consts.ts";
 import { hide } from "./eventListeners/lib.ts";
+import { openCloseButtonEvent } from "./eventListeners/openCloseButton.ts";
+import { settingsEventListener } from "./eventListeners/settings.ts";
 import { popupEventListener } from "./popupEventListeners.ts";
 import { getTotalPurgeCounts } from "./totalPurgeCounts/totalPurgeCounts.ts";
 
-popupEventListener(null);
+openCloseButtonEvent();
+settingsEventListener();
 
 (async () => {
   const zombies = await new ZombiesMap().loadZombiesFromStorage();

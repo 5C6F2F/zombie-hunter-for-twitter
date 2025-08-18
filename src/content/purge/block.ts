@@ -5,10 +5,7 @@ import {
 } from "../consts.ts";
 import { click, querySelectorLoop } from "../lib.ts";
 
-export async function block(
-  menuButton: Element,
-  styleElement?: HTMLStyleElement
-) {
+export async function block(menuButton: Element) {
   const blockButton = await querySelectorLoop(document, blockButtonSelector);
 
   if (blockButton.textContent?.includes(blockKeyWord)) {
@@ -22,12 +19,7 @@ export async function block(
 
   const confirmBlockButton = await querySelectorLoop(
     document,
-    confirmBlockButtonSelector
+    confirmBlockButtonSelector,
   );
   click(confirmBlockButton);
-
-  if (styleElement) {
-    // ブロック確認ダイアログとマスクのスタイルは元に戻しておく。
-    styleElement.remove();
-  }
 }

@@ -1,26 +1,81 @@
-import { closeButtonId, openButtonId, zombiesElementId } from "../consts.ts";
+import { unreachable } from "../../lib/lib.ts";
+import {
+  purgeCloseButtonId,
+  purgeOpenButtonId,
+  settingsCloseButtonId,
+  settingsElementId,
+  settingsOpenButtonId,
+  statisticsCloseButtonId,
+  statisticsElementId,
+  statisticsOpenButtonId,
+  zombiesElementId,
+} from "../consts.ts";
 import { hide, showBlock, showFlex } from "./lib.ts";
 
 export function openCloseButtonEvent() {
-  const openButton = document.getElementById(openButtonId);
-  const closeButton = document.getElementById(closeButtonId);
+  const purgeOpenButton = document.getElementById(purgeOpenButtonId);
+  const purgeCloseButton = document.getElementById(purgeCloseButtonId);
   const zombiesElement = document.getElementById(zombiesElementId);
 
-  if (!openButton || !closeButton || !zombiesElement) {
-    return;
+  const statisticsOpenButton = document.getElementById(statisticsOpenButtonId);
+  const statisticsCloseButton = document.getElementById(
+    statisticsCloseButtonId,
+  );
+  const statisticsElement = document.getElementById(statisticsElementId);
+
+  const settingsOpenButton = document.getElementById(settingsOpenButtonId);
+  const settingsCloseButton = document.getElementById(
+    settingsCloseButtonId,
+  );
+  const settingsElement = document.getElementById(settingsElementId);
+
+  if (
+    !purgeOpenButton || !purgeCloseButton || !zombiesElement ||
+    !statisticsOpenButton || !statisticsCloseButton || !statisticsElement ||
+    !settingsOpenButton || !settingsCloseButton || !settingsElement
+  ) {
+    unreachable();
   }
 
-  openButton.addEventListener("click", (event) => {
+  purgeOpenButton.addEventListener("click", (event) => {
     event.preventDefault();
-    hide(openButton);
-    showFlex(closeButton);
+    hide(purgeOpenButton);
+    showFlex(purgeCloseButton);
     showBlock(zombiesElement);
   });
 
-  closeButton.addEventListener("click", (event) => {
+  purgeCloseButton.addEventListener("click", (event) => {
     event.preventDefault();
-    showFlex(openButton);
-    hide(closeButton);
+    showFlex(purgeOpenButton);
+    hide(purgeCloseButton);
     hide(zombiesElement);
+  });
+
+  statisticsOpenButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    hide(statisticsOpenButton);
+    showFlex(statisticsCloseButton);
+    showBlock(statisticsElement);
+  });
+
+  statisticsCloseButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    showFlex(statisticsOpenButton);
+    hide(statisticsCloseButton);
+    hide(statisticsElement);
+  });
+
+  settingsOpenButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    hide(settingsOpenButton);
+    showFlex(settingsCloseButton);
+    showBlock(settingsElement);
+  });
+
+  settingsCloseButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    showFlex(settingsOpenButton);
+    hide(settingsCloseButton);
+    hide(settingsElement);
   });
 }

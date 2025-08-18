@@ -23,7 +23,7 @@ function extractReAddedZombies(zombies: ZombiesMap, newZombies: ZombiesMap) {
 
 function extractRestore(
   zombies: ZombiesMap,
-  newZombies: ZombiesMap
+  newZombies: ZombiesMap,
 ): ZombiesMap | null {
   let result = false;
 

@@ -1,5 +1,5 @@
 import { ZombiesMap } from "../lib/zombiesMap.ts";
-import { zombieTweetSelector, tweetSelector } from "./consts.ts";
+import { tweetSelector, zombieTweetSelector } from "./consts.ts";
 import { getUserInfo } from "../lib/user.ts";
 
 export function hideZombies(zombies: ZombiesMap) {

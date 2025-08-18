@@ -1,5 +1,5 @@
 import { User } from "./user.ts";
-import { zombiesKeyForStorage } from "../content/consts.ts";
+import { zombiesKeyForStorage } from "../lib/consts.ts";
 import { separator } from "./consts.ts";
 import { Zombie } from "./zombie.ts";
 
@@ -35,8 +35,8 @@ export class ZombiesMap {
             zombieElements[0],
             zombieElements[1],
             zombieElements[2],
-            zombieElements[3]
-          )
+            zombieElements[3],
+          ),
         );
         zombieElements = [];
       }
@@ -62,7 +62,7 @@ export class ZombiesMap {
 
     this._zombies.set(
       zombie.id,
-      new Zombie(zombie.id, zombie.name, text, zombie.url)
+      new Zombie(zombie.id, zombie.name, text, zombie.url),
     );
   }
 
@@ -87,7 +87,8 @@ export class ZombiesMap {
   private toStorage(): string {
     let result = "";
     for (const [_, zombie] of this._zombies) {
-      result += `${zombie.id}${separator}${zombie.name}${separator}${zombie.text}${separator}${zombie.url}${separator}`;
+      result +=
+        `${zombie.id}${separator}${zombie.name}${separator}${zombie.text}${separator}${zombie.url}${separator}`;
     }
     return result;
   }
