@@ -40,20 +40,15 @@ html #all-purge-stop-button {
   display: none;
 }
 html #purge #purge-button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-html #purge #purge-button #purge-button-title-icon {
   height: 50px;
   display: flex;
   justify-content: flex-start;
 }
-html #purge #purge-button #purge-button-title-icon #purge-button-title {
+html #purge #purge-button #purge-button-title {
   margin: 13px 0 0 0;
 }
-html #purge #purge-button #purge-button-title-icon #purge-button-icon #open-button,
-html #purge #purge-button #purge-button-title-icon #purge-button-icon #close-button {
+html #purge #purge-button #purge-button-icon #purge-open-button,
+html #purge #purge-button #purge-button-icon #purge-close-button {
   width: 24px;
   height: 24px;
   padding: 6px;
@@ -61,11 +56,8 @@ html #purge #purge-button #purge-button-title-icon #purge-button-icon #close-but
   color: rgb(15, 20, 25);
   border-radius: 50%;
 }
-html #purge #purge-button #purge-button-title-icon #purge-button-icon #close-button {
+html #purge #purge-button #purge-button-icon #purge-close-button {
   display: none;
-}
-html #purge #purge-button #total-purge-counts {
-  font-size: 16px;
 }
 html #purge #zombies {
   display: none;
@@ -80,6 +72,7 @@ html #purge #zombies .zombie {
   border-bottom: solid 1px rgb(200, 200, 200);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   min-height: 42px;
 }
 html #purge #zombies .zombie .tweet-content {
@@ -101,6 +94,7 @@ html #purge #zombies .zombie .tweet-content .tweet-text {
 html #purge #zombies .zombie .options {
   margin-top: 5px;
   display: flex;
+  transform: translateY(-2px);
 }
 html #purge #zombies .zombie .options > * {
   width: 24px;
@@ -124,19 +118,87 @@ html #purge #zombies .zombie .options .remove-user:hover {
 html #purge #zombies .zombie .options .purge-zombie svg {
   opacity: 0.5;
 }
-
-.buttons {
+html #statistics #statistics-button {
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+}
+html #statistics #statistics-button #statistics-title {
+  margin: 13px 0 0 0;
+}
+html #statistics #statistics-button #statistics-button-icon #statistics-open-button,
+html #statistics #statistics-button #statistics-button-icon #statistics-close-button {
+  width: 24px;
+  height: 24px;
+  padding: 6px;
+  margin: 7px;
+  color: rgb(15, 20, 25);
+  border-radius: 50%;
+}
+html #statistics #statistics-button #statistics-button-icon #statistics-close-button {
+  display: none;
+}
+html #statistics #statistics-content {
+  display: none;
+  margin-bottom: 13px;
+}
+html #statistics #statistics-content p {
+  margin: 5px 0 0 10px;
+}
+html #statistics #statistics-content #total-purge-counts {
+  font-size: 16px;
+}
+html #settings #settings-button {
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+}
+html #settings #settings-button #settings-button-title {
+  margin: 13px 0 0 0;
+}
+html #settings #settings-button #settings-button-icon #settings-open-button,
+html #settings #settings-button #settings-button-icon #settings-close-button {
+  width: 24px;
+  height: 24px;
+  padding: 6px;
+  margin: 7px;
+  color: rgb(15, 20, 25);
+  border-radius: 50%;
+}
+html #settings #settings-button #settings-button-icon #settings-close-button {
+  display: none;
+}
+html #settings #settings-content {
+  display: none;
+}
+html #settings #settings-content .setting-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+html #settings #settings-content .setting-item label {
+  font-size: 14px;
+  margin: 5px 0 0 10px;
+}
+html #settings #settings-content .setting-item label:hover {
+  cursor: text;
+}
+html #settings #settings-content .setting-item select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+html .buttons {
   transition: background-color 0.3s;
 }
-.buttons:hover {
+html .buttons:hover {
   background-color: #e7e7e7;
   transition: background-color 0.3s;
 }
-
-.red-buttons {
+html .red-buttons {
   transition: background-color 0.3s;
 }
-.red-buttons:hover {
+html .red-buttons:hover {
   background-color: #fcdcde;
   transition: background-color 0.3s;
 }

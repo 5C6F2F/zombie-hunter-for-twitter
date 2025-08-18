@@ -21,6 +21,7 @@
       <p>通報開始</p>
     </div>
   </div>
+
   <div id="all-purge-stop-button" class="red-buttons">
     <div id="all-purge-stop-button-icon">
       <!-- アイコンは https://lucide.dev/icons/pause 「pause」を使用させていただきました。 -->
@@ -35,35 +36,82 @@
       <p>通報停止</p>
     </div>
   </div>
+
   <div id="purge">
     <div id="purge-button">
-      <div id="purge-button-title-icon">
-        <h2 id="purge-button-title">対象一覧 - <span id="zombies-num">0</span>人</h2>
-        <div id="purge-button-icon">
-          <svg id="open-button" class="buttons" title="開く" viewBox="0 0 24 24">
-            <g>
-              <path
-                d="M12 11.59L3.96 3.54 2.54 4.96 12 14.41l9.46-9.45-1.42-1.42L12 11.59zm0 7l-8.04-8.05-1.42 1.42L12 21.41l9.46-9.45-1.42-1.42L12 18.59z">
-              </path>
-            </g>
-          </svg>
-          <svg id="close-button" class="buttons" title="閉じる" viewBox="0 0 24 24">
-            <g>
-              <path
-                d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z">
-              </path>
-            </g>
-          </svg>
-        </div>
-      </div>
-      <div id="total-purge-counts">
-        <p>(累計通報数: <span id="total-purge-counts-span">0</span>)</p>
+      <h2 id="purge-button-title">対象一覧 - <span id="zombies-num">0</span>人</h2>
+      <div id="purge-button-icon">
+        <svg id="purge-open-button" class="buttons" title="開く" viewBox="0 0 24 24">
+          <g>
+            <path
+              d="M12 11.59L3.96 3.54 2.54 4.96 12 14.41l9.46-9.45-1.42-1.42L12 11.59zm0 7l-8.04-8.05-1.42 1.42L12 21.41l9.46-9.45-1.42-1.42L12 18.59z">
+            </path>
+          </g>
+        </svg>
+        <svg id="purge-close-button" class="buttons" title="閉じる" viewBox="0 0 24 24">
+          <g>
+            <path
+              d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z">
+            </path>
+          </g>
+        </svg>
       </div>
     </div>
     <div id="zombies">
       <p id="no-zombies">なし</p>
     </div>
   </div>
+
+  <div id="statistics">
+    <div id="statistics-button">
+      <h2 id="statistics-title">統計情報</h2>
+      <div id="statistics-button-icon">
+        <svg id="statistics-open-button" class="buttons" title="開く" viewBox="0 0 24 24">
+          <g>
+            <path
+              d="M12 11.59L3.96 3.54 2.54 4.96 12 14.41l9.46-9.45-1.42-1.42L12 11.59zm0 7l-8.04-8.05-1.42 1.42L12 21.41l9.46-9.45-1.42-1.42L12 18.59z">
+            </path>
+          </g>
+        </svg>
+        <svg id="statistics-close-button" class="buttons" title="閉じる" viewBox="0 0 24 24">
+          <g>
+            <path
+              d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z">
+            </path>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div id="statistics-content">
+      <div id="total-purge-counts">
+        <p>累計通報数: <span id="total-purge-counts-span">0</span>人</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="settings">
+    <div id="settings-button">
+      <h2 id="settings-button-title">設定</h2>
+      <div id="settings-button-icon">
+        <svg id="settings-open-button" class="buttons" title="開く" viewBox="0 0 24 24">
+          <g><path d="M12 11.59L3.96 3.54 2.54 4.96 12 14.41l9.46-9.45-1.42-1.42L12 11.59zm0 7l-8.04-8.05-1.42 1.42L12 21.41l9.46-9.45-1.42-1.42L12 18.59z"></path></g>
+        </svg>
+        <svg id="settings-close-button" class="buttons" title="閉じる" viewBox="0 0 24 24">
+          <g><path d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z"></path></g>
+        </svg>
+      </div>
+    </div>
+    <div id="settings-content">
+      <div class="setting-item">
+        <label for="color-mode">カラーモード:</label>
+        <select id="color-mode-select" name="color-mode">
+          <option value="light">ライトモード</option>
+          <option value="dark-blue-and-black">ダークブルー・ブラック</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
   <script src="main.js" defer></script>
 </body>
 
