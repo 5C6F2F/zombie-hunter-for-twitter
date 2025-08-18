@@ -4,9 +4,6 @@
 // https://pictogram2.com/?p=280 「旗を振る人」を使用させていただきました
 export const iconPath = chrome.runtime.getURL("./icons/hideButton.png");
 
-// インプレゾンビの情報をストレージに保存する際のキー
-export const zombiesKeyForStorage = "zombiesKey";
-
 // タイムライン
 export const timeLineSelector = "div[aria-label='ホームタイムライン']";
 
