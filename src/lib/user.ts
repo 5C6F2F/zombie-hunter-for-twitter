@@ -69,10 +69,17 @@ export function getUserInfo(
   const id = name_id_element?.children[1].getElementsByTagName("a")[0]
     .getElementsByTagName("span")[0].textContent;
 
-  const time_elements = tweet.getElementsByTagName("time");
-  // 引用リツイートの際に引用元の要素を取得しないよう、最初の要素を取得する。
-  const url_element = time_elements[0]?.parentElement;
-  const url = (url_element as HTMLAnchorElement | null)?.href;
+  let url;
+  for (const time_element of tweet.getElementsByTagName("time")) {
+    const url_element = time_element.parentElement;
+    const url_candidate = (url_element as HTMLAnchorElement | null)?.href;
+
+    // url_candidateの中にゾンビのid(先頭の@を除く)が含まれていれば、それをゾンビのツイートとする
+    if (id && url_candidate && url_candidate.includes(id.slice(1))) {
+      url = url_candidate;
+      break;
+    }
+  }
 
   return [name, id, url];
 }
