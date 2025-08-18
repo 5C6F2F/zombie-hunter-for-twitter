@@ -43,38 +43,28 @@ html {
 
   #purge {
     #purge-button {
+      height: 50px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: flex-start;
 
-      #purge-button-title-icon {
-        height: 50px;
-        display: flex;
-        justify-content: flex-start;
-
-        #purge-button-title {
-          margin: 13px 0 0 0;
-        }
-
-        #purge-button-icon {
-          #open-button,
-          #close-button {
-            width: 24px;
-            height: 24px;
-            padding: 6px;
-            margin: 7px;
-            color: rgb(15, 20, 25);
-            border-radius: 50%;
-          }
-
-          #close-button {
-            display: none;
-          }
-        }
+      #purge-button-title {
+        margin: 13px 0 0 0;
       }
 
-      #total-purge-counts {
-        font-size: 16px;
+      #purge-button-icon {
+        #purge-open-button,
+        #purge-close-button {
+          width: 24px;
+          height: 24px;
+          padding: 6px;
+          margin: 7px;
+          color: rgb(15, 20, 25);
+          border-radius: 50%;
+        }
+
+        #purge-close-button {
+          display: none;
+        }
       }
     }
 
@@ -92,6 +82,7 @@ html {
         border-bottom: solid 1px rgb(200, 200, 200);
         display: flex;
         justify-content: space-between;
+        align-items: center;
         min-height: 42px;
 
         .tweet-content {
@@ -116,6 +107,7 @@ html {
         .options {
           margin-top: 5px;
           display: flex;
+          transform: translateY(-2px);
 
           > * {
             width: 24px;
@@ -151,22 +143,116 @@ html {
       }
     }
   }
-}
 
-.buttons {
-  transition: background-color 0.3s;
+  #statistics {
+    #statistics-button {
+      height: 50px;
+      display: flex;
+      justify-content: flex-start;
 
-  &:hover {
-    background-color: #e7e7e7;
-    transition: background-color 0.3s;
+      #statistics-title {
+        margin: 13px 0 0 0;
+      }
+
+      #statistics-button-icon {
+        #statistics-open-button,
+        #statistics-close-button {
+          width: 24px;
+          height: 24px;
+          padding: 6px;
+          margin: 7px;
+          color: rgb(15, 20, 25);
+          border-radius: 50%;
+        }
+
+        #statistics-close-button {
+          display: none;
+        }
+      }
+    }
+
+    #statistics-content {
+      display: none;
+      margin-bottom: 13px;
+
+      p {
+        margin: 5px 0 0 10px;
+      }
+
+      #total-purge-counts {
+        font-size: 16px;
+      }
+    }
   }
-}
 
-.red-buttons {
-  transition: background-color 0.3s;
+  #settings {
+    #settings-button {
+      height: 50px;
+      display: flex;
+      justify-content: flex-start;
 
-  &:hover {
-    background-color: #fcdcde;
+      #settings-button-title {
+        margin: 13px 0 0 0;
+      }
+
+      #settings-button-icon {
+        #settings-open-button,
+        #settings-close-button {
+          width: 24px;
+          height: 24px;
+          padding: 6px;
+          margin: 7px;
+          color: rgb(15, 20, 25);
+          border-radius: 50%;
+        }
+
+        #settings-close-button {
+          display: none;
+        }
+      }
+    }
+
+    #settings-content {
+      display: none;
+
+      .setting-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+
+        label {
+          font-size: 14px;
+          margin: 5px 0 0 10px;
+
+          &:hover {
+            cursor: text;
+          }
+        }
+
+        select {
+          padding: 5px;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+        }
+      }
+    }
+  }
+
+  .buttons {
     transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #e7e7e7;
+      transition: background-color 0.3s;
+    }
+  }
+
+  .red-buttons {
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #fcdcde;
+      transition: background-color 0.3s;
+    }
   }
 }
