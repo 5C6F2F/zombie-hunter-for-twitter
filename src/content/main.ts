@@ -5,6 +5,7 @@ import {
   zombieViewParam,
 } from "../lib/consts.ts";
 import { sleep } from "../lib/lib.ts";
+import { Settings } from "../lib/settings.ts";
 import { ZombiesMap } from "../lib/zombiesMap.ts";
 import { timeLineSelector } from "./consts.ts";
 import { addHideZombieButtons } from "./hideZombieButtons.ts";
@@ -17,6 +18,8 @@ const url = new URL(globalThis.location.href);
 const params = url.searchParams;
 
 (async () => {
+  const settings = await new Settings().loadSettingsFromStorage();
+
   const zombies = await new ZombiesMap().loadZombiesFromStorage();
   await waitWhileTimeLineShown();
 
@@ -47,7 +50,7 @@ const params = url.searchParams;
     goToNextZombieTweet(zombies);
   }
 
-  setInterval(() => addHideZombieButtons(zombies), 500);
+  setInterval(() => addHideZombieButtons(zombies, settings), 500);
   setInterval(() => hideZombies(zombies), 50);
   setInterval(() => restoreUsers(zombies), 500);
 })();

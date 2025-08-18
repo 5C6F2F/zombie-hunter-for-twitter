@@ -1,4 +1,5 @@
 import { sleep } from "../lib/lib.ts";
+import { ColorMode, Settings } from "../lib/settings.ts";
 import { getUserFromTweet, getUserInfo } from "../lib/user.ts";
 import { ZombiesMap } from "../lib/zombiesMap.ts";
 import {
@@ -17,7 +18,7 @@ import { hideZombies } from "./hideZombies.ts";
 import { click, querySelectorLoop } from "./lib.ts";
 import { block } from "./purge/block.ts";
 
-export function addHideZombieButtons(zombies: ZombiesMap) {
+export function addHideZombieButtons(zombies: ZombiesMap, settings: Settings) {
   const tweets = document.querySelectorAll(tweetSelector);
 
   for (const tweet of tweets) {
@@ -25,8 +26,8 @@ export function addHideZombieButtons(zombies: ZombiesMap) {
       continue;
     }
 
-    const hideButtonDom =
-      tweet.querySelector(menuButtonSelector)?.parentElement;
+    const hideButtonDom = tweet.querySelector(menuButtonSelector)
+      ?.parentElement;
 
     if (!hideButtonDom) {
       continue;
@@ -35,18 +36,22 @@ export function addHideZombieButtons(zombies: ZombiesMap) {
     // hideButtonがabsoluteなので親のhideButtonDomはrelativeに。
     hideButtonDom.style.position = "relative";
 
-    const hideButton = createButton(zombies, tweet);
+    const hideButton = createButton(zombies, tweet, settings);
 
     hideButtonDom.prepend(hideButton);
   }
 }
 
-function createButton(zombies: ZombiesMap, tweet: Element): HTMLDivElement {
+function createButton(
+  zombies: ZombiesMap,
+  tweet: Element,
+  settings: Settings,
+): HTMLDivElement {
   const hideButton = document.createElement("img");
 
   setAttribute(hideButton);
   setStyle(hideButton);
-  setEventListener(hideButton, zombies, tweet);
+  setEventListener(hideButton, zombies, tweet, settings);
 
   const container = document.createElement("div");
   container.style.display = "flex";
@@ -83,10 +88,15 @@ function setStyle(button: HTMLImageElement) {
 function setEventListener(
   button: HTMLImageElement,
   zombies: ZombiesMap,
-  tweet: Element
+  tweet: Element,
+  settings: Settings,
 ) {
   button.addEventListener("mouseover", () => {
-    button.style.backgroundColor = "#fcdcde";
+    if (settings.getColorMode == ColorMode.Light) {
+      button.style.backgroundColor = "#fcdcde";
+    } else {
+      button.style.backgroundColor = "#f4212f59";
+    }
     button.style.transition = "background-color 0.3s";
   });
 
@@ -130,7 +140,13 @@ function setEventListener(
     styleElement.innerHTML = removeMaskStyle;
     document.head.appendChild(styleElement);
 
-    block(menuButton, styleElement);
+    block(menuButton);
+
+    if (styleElement) {
+      // ブロック確認ダイアログとマスクのスタイルは元に戻しておく。
+      styleElement.remove();
+    }
+
     hideZombies(zombies);
   });
 }
