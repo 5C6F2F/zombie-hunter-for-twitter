@@ -57,6 +57,7 @@ export const settingsCloseButtonId = "settings-close-button";
 // 設定
 export const settingsElementId = "settings-content";
 
+// カラーモードの設定
 export const colorModeSettingId = "color-mode-select";
 
 // ----- TypeScript -----
