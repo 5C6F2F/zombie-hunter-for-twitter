@@ -1,3 +1,4 @@
+import { Settings } from "../lib/settings.ts";
 import { ZombiesMap } from "../lib/zombiesMap.ts";
 import {
   noZombiesId,
@@ -7,7 +8,7 @@ import {
 } from "./consts.ts";
 import { hide } from "./eventListeners/lib.ts";
 import { openCloseButtonEvent } from "./eventListeners/openCloseButton.ts";
-import { settingsEventListener } from "./eventListeners/settings.ts";
+import { reflectSettings, settingsEventListener } from "./settings/settings.ts";
 import { popupEventListener } from "./popupEventListeners.ts";
 import { getTotalPurgeCounts } from "./totalPurgeCounts/totalPurgeCounts.ts";
 
@@ -15,6 +16,9 @@ openCloseButtonEvent();
 settingsEventListener();
 
 (async () => {
+  const settings = await new Settings().loadSettingsFromStorage();
+  reflectSettings(settings);
+
   const zombies = await new ZombiesMap().loadZombiesFromStorage();
 
   const zombieHTML = zombies.parseToHTML();
