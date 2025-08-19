@@ -188,6 +188,13 @@ html #settings #settings-content .setting-item select {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+html #feedback {
+  color: #0000ee;
+  font-size: 11px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
 html .buttons {
   transition: background-color 0.3s;
 }
