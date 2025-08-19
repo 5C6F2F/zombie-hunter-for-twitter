@@ -27,7 +27,7 @@ export async function getUserTweet(
   for (const tweet of tweets) {
     const [_, tweetId] = getUserInfo(tweet);
 
-    if (tweetId && tweetId == id) {
+    if (tweetId && tweetId === id) {
       zombieTweet = tweet;
       break;
     }

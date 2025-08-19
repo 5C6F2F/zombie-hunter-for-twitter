@@ -92,7 +92,7 @@ function setEventListener(
   settings: Settings,
 ) {
   button.addEventListener("mouseover", () => {
-    if (settings.getColorMode == ColorMode.Light) {
+    if (settings.getColorMode === ColorMode.Light) {
       button.style.backgroundColor = "#fcdcde";
     } else {
       button.style.backgroundColor = "#f4212f59";
@@ -183,7 +183,7 @@ function restoreFollowingUserTweet(restoreId: string) {
 
   for (const tweet of tweets) {
     const [_, id] = getUserInfo(tweet);
-    if (id == restoreId) {
+    if (id === restoreId) {
       const zombieTweet = tweet.closest(zombieTweetSelector);
 
       if (zombieTweet) {

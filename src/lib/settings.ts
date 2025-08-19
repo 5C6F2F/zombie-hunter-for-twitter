@@ -26,9 +26,9 @@ export class Settings {
   }
 
   private parseColorModeFromStorage(value: string): ColorMode {
-    if (value == "light") {
+    if (value === "light") {
       return ColorMode.Light;
-    } else if (value == "dark-blue-and-black") {
+    } else if (value === "dark-blue-and-black") {
       return ColorMode.DarkBlueAndBlack;
     } else {
       // 未設定の場合、デフォルトはライトモード
