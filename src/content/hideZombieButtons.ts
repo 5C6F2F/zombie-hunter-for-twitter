@@ -140,7 +140,7 @@ function setEventListener(
     styleElement.innerHTML = removeMaskStyle;
     document.head.appendChild(styleElement);
 
-    block(menuButton);
+    await block(menuButton);
 
     if (styleElement) {
       // ブロック確認ダイアログとマスクのスタイルは元に戻しておく。
