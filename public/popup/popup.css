@@ -174,7 +174,7 @@ html #settings #settings-content {
 html #settings #settings-content .setting-item {
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: flex-start;
   margin-bottom: 15px;
 }
 html #settings #settings-content .setting-item label {
