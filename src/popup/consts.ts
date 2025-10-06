@@ -60,12 +60,6 @@ export const settingsElementId = "settings-content";
 // カラーモードの設定
 export const colorModeSettingId = "color-mode-select";
 
-// フィードバック要素のID
-export const feedbackLinkId = "feedback";
-
-// フィードバックのリンク
-export const feedbackLink = "https://forms.gle/c14dQa3KTRrekwwo7";
-
 // ----- TypeScript -----
 
 // 累計通報数をストレージに保存する際のキー
