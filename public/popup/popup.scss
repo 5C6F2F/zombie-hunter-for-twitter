@@ -217,12 +217,14 @@ html {
 
       .setting-item {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: left;
         margin-bottom: 15px;
 
         label {
           font-size: 14px;
           margin: 5px 0 0 10px;
+          width: 8rem;
 
           &:hover {
             cursor: text;
@@ -234,16 +236,12 @@ html {
           border-radius: 5px;
           border: 1px solid #ccc;
         }
+
+        a {
+          font-size: 15px;
+        }
       }
     }
-  }
-
-  #feedback {
-    color: #0000ee;
-    font-size: 11px;
-    margin-top: 15px;
-    margin-bottom: 20px;
-    cursor: pointer;
   }
 
   .buttons {

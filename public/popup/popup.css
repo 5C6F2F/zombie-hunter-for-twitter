@@ -173,12 +173,14 @@ html #settings #settings-content {
 }
 html #settings #settings-content .setting-item {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: left;
   margin-bottom: 15px;
 }
 html #settings #settings-content .setting-item label {
   font-size: 14px;
   margin: 5px 0 0 10px;
+  width: 8rem;
 }
 html #settings #settings-content .setting-item label:hover {
   cursor: text;
@@ -188,12 +190,8 @@ html #settings #settings-content .setting-item select {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
-html #feedback {
-  color: #0000ee;
-  font-size: 11px;
-  margin-top: 15px;
-  margin-bottom: 20px;
-  cursor: pointer;
+html #settings #settings-content .setting-item a {
+  font-size: 15px;
 }
 html .buttons {
   transition: background-color 0.3s;
