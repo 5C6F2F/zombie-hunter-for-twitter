@@ -7,7 +7,7 @@ export const allPurgeButtonId = "all-purge-button";
 export const allPurgeStopButtonId = "all-purge-stop-button";
 
 // 累計通報数
-export const totalPurgeCountsId = "total-purge-counts-span";
+export const totalPurgeCountsId = "total-purge-counts";
 
 // ゾンビの数
 export const zombiesNumId = "zombies-num";
