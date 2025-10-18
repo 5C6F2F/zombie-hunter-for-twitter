@@ -1,10 +1,10 @@
 import { unreachable } from "../../lib/lib.ts";
 import {
-  purgeCloseButtonId,
-  purgeOpenButtonId,
   othersCloseButtonId,
   othersElementId,
   othersOpenButtonId,
+  purgeCloseButtonId,
+  purgeOpenButtonId,
   zombiesElementId,
 } from "../consts.ts";
 import { hide, showBlock, showFlex } from "./lib.ts";

@@ -8,8 +8,8 @@ import {
 } from "./consts.ts";
 import { hide } from "./eventListeners/lib.ts";
 import { openCloseButtonEvent } from "./eventListeners/openCloseButton.ts";
-import { reflectSettings, settingsEventListener } from "./settings/settings.ts";
 import { popupEventListener } from "./popupEventListeners.ts";
+import { reflectSettings, settingsEventListener } from "./settings/settings.ts";
 import { getTotalPurgeCounts } from "./totalPurgeCounts/totalPurgeCounts.ts";
 
 openCloseButtonEvent();
