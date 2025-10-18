@@ -39,13 +39,13 @@ export const removeUserClassName = "remove-user";
 // 対象を処理するボタン
 export const purgeZombieClassName = "purge-zombie";
 
-// 設定を開くボタン
+// その他を開くボタン
 export const othersOpenButtonId = "others-open-button";
 
-// 設定を閉じるボタン
+// その他を閉じるボタン
 export const othersCloseButtonId = "others-close-button";
 
-// 設定
+// その他の項目
 export const othersElementId = "others-content";
 
 // カラーモードの設定
