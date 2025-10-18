@@ -6,14 +6,10 @@ import {
 export async function getTotalPurgeCounts(): Promise<number> {
   let counts = 0;
 
-  await new Promise<void>((resolve) => {
-    chrome.storage.local.get(totalPurgeCountsKeyForStorage, (result) => {
-      if (result[totalPurgeCountsKeyForStorage]) {
-        counts = Number(result[totalPurgeCountsKeyForStorage]);
-      }
-      resolve();
-    });
-  });
+  const result = await chrome.storage.local.get(totalPurgeCountsKeyForStorage);
+  if (result[totalPurgeCountsKeyForStorage]) {
+    counts = Number(result[totalPurgeCountsKeyForStorage]);
+  }
 
   return counts;
 }

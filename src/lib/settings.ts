@@ -13,14 +13,12 @@ export class Settings {
   }
 
   async loadSettingsFromStorage(): Promise<this> {
-    await new Promise<void>((resolve) => {
-      chrome.storage.local.get(colorModeSettingKeyForStorage, (settings) => {
-        this.colorMode = this.parseColorModeFromStorage(
-          settings[colorModeSettingKeyForStorage],
-        );
-        resolve();
-      });
-    });
+    const settings = await chrome.storage.local.get(
+      colorModeSettingKeyForStorage,
+    );
+    this.colorMode = this.parseColorModeFromStorage(
+      settings[colorModeSettingKeyForStorage],
+    );
 
     return this;
   }
