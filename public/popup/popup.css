@@ -118,16 +118,16 @@ html #purge #zombies .zombie .options .remove-user:hover {
 html #purge #zombies .zombie .options .purge-zombie svg {
   opacity: 0.5;
 }
-html #statistics #statistics-button {
+html #others #others-button {
   height: 50px;
   display: flex;
   justify-content: flex-start;
 }
-html #statistics #statistics-button #statistics-title {
+html #others #others-button #others-button-title {
   margin: 13px 0 0 0;
 }
-html #statistics #statistics-button #statistics-button-icon #statistics-open-button,
-html #statistics #statistics-button #statistics-button-icon #statistics-close-button {
+html #others #others-button #others-button-icon #others-open-button,
+html #others #others-button #others-button-icon #others-close-button {
   width: 24px;
   height: 24px;
   padding: 6px;
@@ -135,63 +135,37 @@ html #statistics #statistics-button #statistics-button-icon #statistics-close-bu
   color: rgb(15, 20, 25);
   border-radius: 50%;
 }
-html #statistics #statistics-button #statistics-button-icon #statistics-close-button {
+html #others #others-button #others-button-icon #others-close-button {
   display: none;
 }
-html #statistics #statistics-content {
-  display: none;
-  margin-bottom: 13px;
-}
-html #statistics #statistics-content p {
-  margin: 5px 0 0 10px;
-}
-html #statistics #statistics-content #total-purge-counts {
-  font-size: 16px;
-}
-html #settings #settings-button {
-  height: 50px;
-  display: flex;
-  justify-content: flex-start;
-}
-html #settings #settings-button #settings-button-title {
-  margin: 13px 0 0 0;
-}
-html #settings #settings-button #settings-button-icon #settings-open-button,
-html #settings #settings-button #settings-button-icon #settings-close-button {
-  width: 24px;
-  height: 24px;
-  padding: 6px;
-  margin: 7px;
-  color: rgb(15, 20, 25);
-  border-radius: 50%;
-}
-html #settings #settings-button #settings-button-icon #settings-close-button {
+html #others #others-content {
   display: none;
 }
-html #settings #settings-content {
-  display: none;
-}
-html #settings #settings-content .setting-item {
+html #others #others-content .others-item {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 15px;
 }
-html #settings #settings-content .setting-item label {
+html #others #others-content .others-item label {
   font-size: 14px;
   margin: 5px 0 0 10px;
-  width: 8rem;
+  min-width: 8rem;
 }
-html #settings #settings-content .setting-item label:hover {
+html #others #others-content .others-item label:hover {
   cursor: text;
 }
-html #settings #settings-content .setting-item select {
+html #others #others-content .others-item select {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
-html #settings #settings-content .setting-item a {
+html #others #others-content .others-item a {
   font-size: 15px;
+}
+html #others #others-content .others-item p {
+  font-size: 15px;
+  margin: 0;
 }
 html .buttons {
   transition: background-color 0.3s;

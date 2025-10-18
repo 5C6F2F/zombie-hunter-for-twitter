@@ -62,18 +62,18 @@
     </div>
   </div>
 
-  <div id="statistics">
-    <div id="statistics-button">
-      <h2 id="statistics-title">統計</h2>
-      <div id="statistics-button-icon">
-        <svg id="statistics-open-button" class="buttons" title="開く" viewBox="0 0 24 24">
+  <div id="others">
+    <div id="others-button">
+      <h2 id="others-button-title">その他</h2>
+      <div id="others-button-icon">
+        <svg id="others-open-button" class="buttons" title="開く" viewBox="0 0 24 24">
           <g>
             <path
               d="M12 11.59L3.96 3.54 2.54 4.96 12 14.41l9.46-9.45-1.42-1.42L12 11.59zm0 7l-8.04-8.05-1.42 1.42L12 21.41l9.46-9.45-1.42-1.42L12 18.59z">
             </path>
           </g>
         </svg>
-        <svg id="statistics-close-button" class="buttons" title="閉じる" viewBox="0 0 24 24">
+        <svg id="others-close-button" class="buttons" title="閉じる" viewBox="0 0 24 24">
           <g>
             <path
               d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z">
@@ -82,35 +82,13 @@
         </svg>
       </div>
     </div>
-    <div id="statistics-content">
-      <div id="total-purge-counts">
-        <p>累計通報数: <span id="total-purge-counts-span">0</span>人</p>
+    <div id="others-content">
+      <div class="others-item">
+        <label>累計通報数:</label>
+        <p><span id="total-purge-counts">0</span>人</p>
       </div>
-    </div>
-  </div>
 
-  <div id="settings">
-    <div id="settings-button">
-      <h2 id="settings-button-title">設定</h2>
-      <div id="settings-button-icon">
-        <svg id="settings-open-button" class="buttons" title="開く" viewBox="0 0 24 24">
-          <g>
-            <path
-              d="M12 11.59L3.96 3.54 2.54 4.96 12 14.41l9.46-9.45-1.42-1.42L12 11.59zm0 7l-8.04-8.05-1.42 1.42L12 21.41l9.46-9.45-1.42-1.42L12 18.59z">
-            </path>
-          </g>
-        </svg>
-        <svg id="settings-close-button" class="buttons" title="閉じる" viewBox="0 0 24 24">
-          <g>
-            <path
-              d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z">
-            </path>
-          </g>
-        </svg>
-      </div>
-    </div>
-    <div id="settings-content">
-      <div class="setting-item">
+      <div class="others-item">
         <label for="color-mode">カラーモード:</label>
         <select id="color-mode-select" name="color-mode">
           <option value="light">ライトモード</option>
@@ -118,13 +96,13 @@
         </select>
       </div>
 
-      <div class="setting-item">
+      <div class="others-item">
         <label>フィードバック:</label>
         <a href="https://forms.gle/c14dQa3KTRrekwwo7" target="_blank" title="ご意見・ご質問・ご要望などがありましたら、こちらからお送りください。">Google
           Form</a>
       </div>
 
-      <div class="setting-item">
+      <div class="others-item">
         <label>レビュー:</label>
         <a href="https://chromewebstore.google.com/detail/glhbmpffcbbcgmigilogoiphhpkhjleh" target="_blank"
           title="良ければレビューもお願いします。">Chromeウェブストア</a>

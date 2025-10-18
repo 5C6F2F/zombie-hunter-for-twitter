@@ -7,7 +7,7 @@ export const allPurgeButtonId = "all-purge-button";
 export const allPurgeStopButtonId = "all-purge-stop-button";
 
 // 累計通報数
-export const totalPurgeCountsId = "total-purge-counts-span";
+export const totalPurgeCountsId = "total-purge-counts";
 
 // ゾンビの数
 export const zombiesNumId = "zombies-num";
@@ -39,23 +39,14 @@ export const removeUserClassName = "remove-user";
 // 対象を処理するボタン
 export const purgeZombieClassName = "purge-zombie";
 
-// 統計情報を開くボタン
-export const statisticsOpenButtonId = "statistics-open-button";
-
-// 統計情報を閉じるボタン
-export const statisticsCloseButtonId = "statistics-close-button";
-
-// 統計情報
-export const statisticsElementId = "statistics-content";
-
 // 設定を開くボタン
-export const settingsOpenButtonId = "settings-open-button";
+export const othersOpenButtonId = "others-open-button";
 
 // 設定を閉じるボタン
-export const settingsCloseButtonId = "settings-close-button";
+export const othersCloseButtonId = "others-close-button";
 
 // 設定
-export const settingsElementId = "settings-content";
+export const othersElementId = "others-content";
 
 // カラーモードの設定
 export const colorModeSettingId = "color-mode-select";
