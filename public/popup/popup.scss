@@ -144,19 +144,19 @@ html {
     }
   }
 
-  #statistics {
-    #statistics-button {
+  #others {
+    #others-button {
       height: 50px;
       display: flex;
       justify-content: flex-start;
 
-      #statistics-title {
+      #others-button-title {
         margin: 13px 0 0 0;
       }
 
-      #statistics-button-icon {
-        #statistics-open-button,
-        #statistics-close-button {
+      #others-button-icon {
+        #others-open-button,
+        #others-close-button {
           width: 24px;
           height: 24px;
           padding: 6px;
@@ -165,57 +165,16 @@ html {
           border-radius: 50%;
         }
 
-        #statistics-close-button {
+        #others-close-button {
           display: none;
         }
       }
     }
 
-    #statistics-content {
-      display: none;
-      margin-bottom: 13px;
-
-      p {
-        margin: 5px 0 0 10px;
-      }
-
-      #total-purge-counts {
-        font-size: 16px;
-      }
-    }
-  }
-
-  #settings {
-    #settings-button {
-      height: 50px;
-      display: flex;
-      justify-content: flex-start;
-
-      #settings-button-title {
-        margin: 13px 0 0 0;
-      }
-
-      #settings-button-icon {
-        #settings-open-button,
-        #settings-close-button {
-          width: 24px;
-          height: 24px;
-          padding: 6px;
-          margin: 7px;
-          color: rgb(15, 20, 25);
-          border-radius: 50%;
-        }
-
-        #settings-close-button {
-          display: none;
-        }
-      }
-    }
-
-    #settings-content {
+    #others-content {
       display: none;
 
-      .setting-item {
+      .others-item {
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -224,7 +183,7 @@ html {
         label {
           font-size: 14px;
           margin: 5px 0 0 10px;
-          width: 8rem;
+          min-width: 8rem;
 
           &:hover {
             cursor: text;
@@ -239,6 +198,11 @@ html {
 
         a {
           font-size: 15px;
+        }
+
+        p {
+          font-size: 15px;
+          margin: 0;
         }
       }
     }
