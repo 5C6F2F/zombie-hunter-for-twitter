@@ -42,7 +42,7 @@ export class Zombie extends User {
             </svg>
           </a>
         </div>
-        <div class="remove-user" title="リストから削除、ブロック・ミュート解除">
+        <div class="remove-user" title="リストから削除、ブロック解除">
           <!-- アイコンは https://kotonohaworks.com/free-icons/gomibako/ 「線画のゴミ箱」を使用させていただきました。 -->
           <?xml version="1.0" encoding="UTF-8" standalone="no"?>
           <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
