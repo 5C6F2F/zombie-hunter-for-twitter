@@ -48,8 +48,23 @@ export const othersCloseButtonId = "others-close-button";
 // その他の項目
 export const othersElementId = "others-content";
 
+// インポートボタン
+export const importButtonId = "import-button";
+
+// エクスポートボタン
+export const exportButtonId = "export-button";
+
+// エクスポート時のファイル名
+export const exportFileName = "zombie-hunter-backup.json";
+
 // カラーモードの設定
 export const colorModeSettingId = "color-mode-select";
+
+// インポート成功時の表示
+export const importCompletedId = "import-completed";
+
+// インポート失敗時の表示
+export const importFailedId = "import-failed";
 
 // ----- TypeScript -----
 
