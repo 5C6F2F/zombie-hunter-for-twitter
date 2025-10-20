@@ -167,7 +167,7 @@ html #others #others-content .others-item p {
   font-size: 15px;
   margin: 0;
 }
-html #others #import-complete, html #others #import-failed {
+html #others #import-completed, html #others #import-failed {
   font-size: 18px;
   margin: 0;
 }
