@@ -1,5 +1,6 @@
 import { ZombiesMap } from "../lib/zombiesMap.ts";
 import { allPurgeListener } from "./eventListeners/allPurge.ts";
+import { importExportListener } from "./eventListeners/importExport.ts";
 import {
   purgeZombieListener,
   removeUserListener,
@@ -18,4 +19,5 @@ export function popupEventListener(zombies: ZombiesMap) {
   showZombieTweetListener(zombies);
   removeUserListener(zombies);
   purgeZombieListener(zombies);
+  importExportListener(zombies);
 }

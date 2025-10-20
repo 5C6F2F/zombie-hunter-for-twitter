@@ -11,9 +11,11 @@ import { openCloseButtonEvent } from "./eventListeners/openCloseButton.ts";
 import { popupEventListener } from "./popupEventListeners.ts";
 import { reflectSettings, settingsEventListener } from "./others/settings.ts";
 import { getTotalPurgeCounts } from "./others/totalPurgeCounts.ts";
+import { hideImportResultMessages } from "./others/importResultMessage.ts";
 
 openCloseButtonEvent();
 settingsEventListener();
+hideImportResultMessages();
 
 (async () => {
   const settings = await new Settings().loadSettingsFromStorage();
