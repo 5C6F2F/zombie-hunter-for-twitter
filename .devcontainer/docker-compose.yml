@@ -1,0 +1,11 @@
+services:
+  zombie-hunter:
+    tty: true
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    volumes:
+      - type: bind
+        source: /home/bouningen/programs/ChromeExtensions/ZombieHunterforTwitter
+        target: /zombie-hunter
+    command: [ "bash" ]
