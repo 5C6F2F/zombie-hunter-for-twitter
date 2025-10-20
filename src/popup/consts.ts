@@ -70,3 +70,6 @@ export const importFailedId = "import-failed";
 
 // 累計通報数をストレージに保存する際のキー
 export const totalPurgeCountsKeyForStorage = "totalPurgeCountsKey";
+
+// インポート成功時の再読み込みまでの待機時間
+export const importSucceededReloadWaitTime = 5000;
