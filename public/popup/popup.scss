@@ -183,6 +183,7 @@ html {
         label {
           font-size: 14px;
           margin: 5px 0 0 10px;
+          // widthを使うと隣のinputがめり込むのでmin-widthを使用。
           min-width: 8rem;
 
           &:hover {
@@ -205,6 +206,11 @@ html {
           margin: 0;
         }
       }
+    }
+
+    #import-complete, #import-failed {
+      font-size: 18px;
+      margin: 0;
     }
   }
 

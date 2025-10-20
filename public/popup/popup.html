@@ -89,6 +89,16 @@
       </div>
 
       <div class="others-item">
+        <label for="import-button">インポート:</label>
+        <input type="file" id="import-button" accept=".json" title="ファイル形式の説明はストアの概要をご覧ください。">
+      </div>
+
+      <div class="others-item">
+        <label for="export-button">エクスポート:</label>
+        <button id="export-button">エクスポート</button>
+      </div>
+
+      <div class="others-item">
         <label for="color-mode">カラーモード:</label>
         <select id="color-mode-select" name="color-mode">
           <option value="light">ライトモード</option>
@@ -108,6 +118,9 @@
           title="良ければレビューもお願いします。">Chromeウェブストア</a>
       </div>
     </div>
+
+    <p id="import-completed">インポートが完了しました。5秒後に自動で再読み込みされます。</p>
+    <p id="import-failed">インポートに失敗しました。</p>
   </div>
 
   <script src="main.js" defer></script>
