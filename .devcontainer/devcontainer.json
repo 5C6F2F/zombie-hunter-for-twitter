@@ -18,7 +18,10 @@
         "PKief.material-icon-theme",
         "christian-kohler.path-intellisense",
         "shardulm94.trailing-spaces",
-        "vscodevim.vim"
+        "vscodevim.vim",
+        "denoland.vscode-deno",
+        "yoavbls.pretty-ts-errors",
+        "kisstkondoros.vscode-codemetrics"
       ]
     }
   }

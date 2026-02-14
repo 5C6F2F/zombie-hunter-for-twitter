@@ -6,6 +6,6 @@ services:
       context: .
     volumes:
       - type: bind
-        source: /home/bouningen/programs/ChromeExtensions/ZombieHunterforTwitter
+        source: ../
         target: /zombie-hunter
     command: [ "bash" ]
