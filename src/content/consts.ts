@@ -54,7 +54,7 @@ export const reportButtonSelector = "div[data-testid='report']";
 
 // 報告する種類 -> スパム
 export const selectSpamReportTypeSelector =
-  "div[role='radiogroup'] > div > label:nth-child(7)";
+  "div[role='radiogroup'] > div > label:nth-child(1)";
 
 // 報告画面「次へ」ボタン
 export const nextButtonSelector =
