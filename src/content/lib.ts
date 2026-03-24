@@ -1,3 +1,4 @@
+import { failure, Result, success } from "../lib/result.ts";
 import { sleep } from "../lib/lib.ts";
 import { getUserInfo } from "../lib/user.ts";
 import { tweetSelector } from "./consts.ts";
@@ -11,14 +12,13 @@ export function click(element: Element) {
   element.dispatchEvent(clickEvent);
 }
 
+export type DOMError = "ElementNotFound" | "Timeout";
 export async function getUserTweet(
   id: string,
-  retry?: number,
-): Promise<Element | null> {
-  if (!retry) {
-    retry = 0;
-  } else if (retry >= 10) {
-    return null;
+  retry = 0,
+): Promise<Result<Element, DOMError>> {
+  if (retry >= 10) {
+    return failure("Timeout");
   }
 
   const tweets = document.querySelectorAll(tweetSelector);
@@ -37,18 +37,22 @@ export async function getUserTweet(
     await sleep(200);
     return getUserTweet(id, retry + 1);
   }
-
-  return zombieTweet;
+  return success(zombieTweet);
 }
 
 export async function querySelectorLoop(
-  parentElement: ParentNode,
+  parentElement: ParentNode | Document,
   selector: string,
-): Promise<Element> {
-  let element = parentElement.querySelector(selector);
-  while (!element) {
+  maxRetries = 20,
+): Promise<Result<Element, DOMError>> {
+  let count = 0;
+  while (count < maxRetries) {
+    const element = parentElement.querySelector(selector);
+    if (element) {
+      return success(element);
+    }
     await sleep(50);
-    element = parentElement.querySelector(selector);
+    count++;
   }
-  return element;
+  return failure("Timeout");
 }

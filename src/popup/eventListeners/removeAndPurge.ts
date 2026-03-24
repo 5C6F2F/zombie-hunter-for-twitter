@@ -1,6 +1,7 @@
 import { purgeZombieParam, removeZombieParam } from "../../lib/consts.ts";
 import { sleep } from "../../lib/lib.ts";
 import { ZombiesMap } from "../../lib/zombiesMap.ts";
+import { fetchZombiesFromStorage } from "../../storage/zombieStorage.ts";
 import { purgeZombieClassName, removeUserClassName } from "../consts.ts";
 import {
   closeTab,
@@ -57,12 +58,14 @@ async function purgeOrRemove(
   chrome.tabs.create({ url: url });
 
   // content/main.tsで処理後saveStorage()されたのを確認して処理終了
-  let newZombies = await new ZombiesMap().loadZombiesFromStorage();
+  const fetchedZombies = await fetchZombiesFromStorage();
+  let newZombies = new ZombiesMap(fetchedZombies);
 
   // 処理後はnewZombiesのlengthが1減るのでそれまで待機
   while (newZombies.length === zombies.length) {
     await sleep(1000);
-    newZombies = await new ZombiesMap().loadZombiesFromStorage();
+    const fetchedZombies = await fetchZombiesFromStorage();
+    newZombies = new ZombiesMap(fetchedZombies);
   }
 
   closeTab();

@@ -1,5 +1,6 @@
 import { sleep } from "../../lib/lib.ts";
 import { ZombiesMap } from "../../lib/zombiesMap.ts";
+import { fetchZombiesFromStorage } from "../../storage/zombieStorage.ts";
 import {
   allPurgeButtonId,
   allPurgeStopButtonId,
@@ -47,11 +48,13 @@ async function waitAllPurgeCompleteAndChangePopup(
     flag = false;
   });
 
-  const zombies = await new ZombiesMap().loadZombiesFromStorage();
+  const fetchedZombies = await fetchZombiesFromStorage();
+  const zombies = new ZombiesMap(fetchedZombies);
 
   while (flag && zombies.length > 0) {
     await sleep(1000);
-    const newZombies = await new ZombiesMap().loadZombiesFromStorage();
+    const fetchedZombies = await fetchZombiesFromStorage();
+    const newZombies = new ZombiesMap(fetchedZombies);
 
     if (newZombies.length === zombies.length) {
       continue;

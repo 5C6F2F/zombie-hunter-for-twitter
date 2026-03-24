@@ -7,10 +7,15 @@ import {
 import { sleep } from "../lib/lib.ts";
 import { Settings } from "../lib/settings.ts";
 import { ZombiesMap } from "../lib/zombiesMap.ts";
+import { fetchSettingsFromStorage } from "../storage/settingStorage.ts";
+import {
+  fetchZombiesFromStorage,
+  saveZombiesToStorage,
+} from "../storage/zombieStorage.ts";
+import { addZombieButtons } from "./button/zombieButtons.ts";
 import { timeLineSelector } from "./consts.ts";
-import { addHideZombieButtons } from "./hideZombieButtons.ts";
 import { hideZombies } from "./hideZombies.ts";
-import { purge } from "./purge/purge.ts";
+import { PurgeStateMachine } from "./purge/stateMachine.ts";
 import { restoreUsers } from "./restore/restoreUser.ts";
 import { unblock } from "./restore/unblock.ts";
 
@@ -18,9 +23,12 @@ const url = new URL(globalThis.location.href);
 const params = url.searchParams;
 
 (async () => {
-  const settings = await new Settings().loadSettingsFromStorage();
+  const fetchedSettings = await fetchSettingsFromStorage();
+  const settings = new Settings(fetchedSettings);
 
-  const zombies = await new ZombiesMap().loadZombiesFromStorage();
+  const fetchedZombies = await fetchZombiesFromStorage();
+  const zombies = new ZombiesMap(fetchedZombies);
+
   await waitWhileTimeLineShown();
 
   const showZombieId = params.get(zombieViewParam);
@@ -32,7 +40,7 @@ const params = url.searchParams;
   if (removeZombieId) {
     await unblock(removeZombieId);
     zombies.remove(removeZombieId);
-    await zombies.saveStorage();
+    await saveZombiesToStorage(zombies.values());
   }
 
   const purgeZombieId = params.get(purgeZombieParam);
@@ -40,17 +48,17 @@ const params = url.searchParams;
 
   // 必ずallPurgeより先に処理する
   if (purgeZombieId) {
-    await purge(purgeZombieId);
+    await new PurgeStateMachine(purgeZombieId).run();
 
     zombies.remove(purgeZombieId);
-    await zombies.saveStorage();
+    await saveZombiesToStorage(zombies.values());
   }
 
   if (allPurge) {
     goToNextZombieTweet(zombies);
   }
 
-  setInterval(() => addHideZombieButtons(zombies, settings), 500);
+  setInterval(() => addZombieButtons(zombies, settings), 500);
   setInterval(() => hideZombies(zombies), 50);
   setInterval(() => restoreUsers(zombies), 500);
 })();

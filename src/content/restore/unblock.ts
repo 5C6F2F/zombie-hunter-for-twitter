@@ -10,20 +10,32 @@ export async function unblock(id: string) {
 
   // タイムラインが表示された後に取得しているので
   // ツイートが削除されたりアカウントが凍結・削除・ID変更等されたりしている場合のみreturnされるはず
-  if (!zombieTweet) {
+  if (!zombieTweet.isSuccess) {
     return;
   }
 
-  const menuButton = await querySelectorLoop(zombieTweet, menuButtonSelector);
-  click(menuButton);
+  const menuButton = await querySelectorLoop(
+    zombieTweet.value,
+    menuButtonSelector,
+  );
+  if (!menuButton.isSuccess) {
+    return;
+  }
+  click(menuButton.value);
 
   // ブロックのボタンとブロック解除のボタンのセレクタは完全に一緒
   const unBlockButton = await querySelectorLoop(document, blockButtonSelector);
-  click(unBlockButton);
+  if (!unBlockButton.isSuccess) {
+    return;
+  }
+  click(unBlockButton.value);
 
   const confirmBlockButton = await querySelectorLoop(
     document,
     confirmBlockButtonSelector,
   );
-  click(confirmBlockButton);
+  if (!confirmBlockButton.isSuccess) {
+    return;
+  }
+  click(confirmBlockButton.value);
 }

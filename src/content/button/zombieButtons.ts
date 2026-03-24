@@ -1,7 +1,8 @@
-import { sleep } from "../lib/lib.ts";
-import { ColorMode, Settings } from "../lib/settings.ts";
-import { getUserFromTweet, getUserInfo } from "../lib/user.ts";
-import { ZombiesMap } from "../lib/zombiesMap.ts";
+import { sleep } from "../../lib/lib.ts";
+import { ColorMode, Settings } from "../../lib/settings.ts";
+import { getUserFromTweet, getUserInfo } from "../../lib/user.ts";
+import { ZombiesMap } from "../../lib/zombiesMap.ts";
+import { saveZombiesToStorage } from "../../storage/zombieStorage.ts";
 import {
   blockButtonSelector,
   confirmBlockButtonSelector,
@@ -13,12 +14,12 @@ import {
   removeMaskStyle,
   tweetSelector,
   zombieTweetSelector,
-} from "./consts.ts";
-import { hideZombies } from "./hideZombies.ts";
-import { click, querySelectorLoop } from "./lib.ts";
-import { block } from "./purge/block.ts";
+} from "../consts.ts";
+import { hideZombies } from "../hideZombies.ts";
+import { click, querySelectorLoop } from "../lib.ts";
+import { block } from "./block.ts";
 
-export function addHideZombieButtons(zombies: ZombiesMap, settings: Settings) {
+export function addZombieButtons(zombies: ZombiesMap, settings: Settings) {
   const tweets = document.querySelectorAll(tweetSelector);
 
   for (const tweet of tweets) {
@@ -116,20 +117,23 @@ function setEventListener(
     // フォロー中の人をブロックするとzombiesに追加する前にリロードされてしまうので、
     // 事前に追加したうえでキャンセルした際に削除する。
     zombies.add(zombie);
-    await zombies.saveStorage();
+    await saveZombiesToStorage(zombies.values());
 
     const menuButton = await querySelectorLoop(tweet, menuButtonSelector);
-    click(menuButton);
+    if (!menuButton.isSuccess) {
+      return;
+    }
+    click(menuButton.value);
 
     // フォロー中のユーザーかつ、ブロックをキャンセルした場合、
     // 誤クリックだと判定しリストから削除、ツイートを再表示。
     if ((await isFollowingUser()) && (await cancelToBlockFollowingUser())) {
       zombies.remove(zombie.id);
-      await zombies.saveStorage();
+      await saveZombiesToStorage(zombies.values());
       restoreFollowingUserTweet(zombie.id);
 
       // メニューが残るのでもう一度メニューボタンを押して消す。
-      click(menuButton);
+      click(menuButton.value);
       return;
     }
 
@@ -140,7 +144,7 @@ function setEventListener(
     styleElement.innerHTML = removeMaskStyle;
     document.head.appendChild(styleElement);
 
-    await block(menuButton);
+    await block(menuButton.value);
 
     if (styleElement) {
       // ブロック確認ダイアログとマスクのスタイルは元に戻しておく。
@@ -160,12 +164,18 @@ function hideConfirmBlockElements(): HTMLStyleElement {
 
 async function isFollowingUser() {
   const dropDown = await querySelectorLoop(document, dropDownSelector);
-  return dropDown.textContent?.includes(followingKeyWord);
+  if (!dropDown.isSuccess) {
+    return;
+  }
+  return dropDown.value.textContent?.includes(followingKeyWord);
 }
 
 async function cancelToBlockFollowingUser(): Promise<boolean> {
   const blockButton = await querySelectorLoop(document, blockButtonSelector);
-  click(blockButton);
+  if (!blockButton.isSuccess) {
+    return false;
+  }
+  click(blockButton.value);
 
   // ブロックボタンを押したら返る前にリロードされてしまう。
   // ブロックボタンが消えたらキャンセルしたとしてtrueを返す。
