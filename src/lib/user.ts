@@ -1,5 +1,4 @@
 import { tweetTextSelector, userNameIdSelector } from "../content/consts.ts";
-import { noName } from "./consts.ts";
 
 export class User {
   private _id: string;
@@ -9,15 +8,7 @@ export class User {
 
   constructor(id: string, name: string, text: string, url: string) {
     this._id = id;
-
-    if (name.length === 0) {
-      this._name = noName;
-    } else if (name === noName) {
-      this._name = "";
-    } else {
-      this._name = name;
-    }
-
+    this._name = name;
     this._text = text;
     this._url = url;
   }

@@ -1,4 +1,4 @@
-import { zombiesKeyForStorage } from "./consts.ts";
+import { noName, zombiesKeyForStorage } from "./consts.ts";
 import { Zombie } from "../lib/zombie.ts";
 import { separator } from "./consts.ts";
 
@@ -18,6 +18,20 @@ export async function saveZombiesToStorage(
 ): Promise<void> {
   let result = "";
   for (const zombie of zombies) {
+    // 名前が記号のみの場合、name.lengthは0になる
+    let name = zombie.name;
+    if (name.length === 0) {
+      name = noName;
+    } else if (name === noName) {
+      name = "";
+    }
+
+    // ツイート本文の中に区切り文字と同じ文字列が含まれている場合、それを空文字列に変換
+    let text = zombie.text;
+    while (text.includes(separator)) {
+      text = text.replace(separator, "");
+    }
+
     result +=
       `${zombie.id}${separator}${zombie.name}${separator}${zombie.text}${separator}${zombie.url}${separator}`;
   }

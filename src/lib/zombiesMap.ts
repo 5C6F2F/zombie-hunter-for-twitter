@@ -1,5 +1,4 @@
 import { User } from "./user.ts";
-import { separator } from "../storage/consts.ts"
 import { Zombie } from "./zombie.ts";
 
 export class ZombiesMap {
@@ -25,16 +24,9 @@ export class ZombiesMap {
   }
 
   add(zombie: User) {
-    let text = zombie.text;
-
-    // ツイート本文の中に区切り文字と同じ文字列が含まれている場合、それを空文字列に変換
-    while (text.includes(separator)) {
-      text = text.replace(separator, "");
-    }
-
     this._zombies.set(
       zombie.id,
-      new Zombie(zombie.id, zombie.name, text, zombie.url),
+      new Zombie(zombie.id, zombie.name, zombie.text, zombie.url),
     );
   }
 

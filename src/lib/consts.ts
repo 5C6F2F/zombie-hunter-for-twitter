@@ -1,8 +1,3 @@
-// 名前が記号のみだったりしたときに使う
-// 名前の文字数制限は50文字なのでreplaceの処理は必要なし
-export const noName =
-  "noNamenoNamenoNamenoNamenoNamenoNamenoNamenoNamenoNamenoName";
-
 // ポップアップから対象のツイートにアクセスした際のパラメーター
 // このパラメーターがある場合、非表示処理を停止させる
 export const zombieViewParam = "zombie-view";
