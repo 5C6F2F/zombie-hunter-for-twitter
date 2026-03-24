@@ -1,8 +1,8 @@
-import { sleep } from "../lib/lib.ts";
-import { ColorMode, Settings } from "../lib/settings.ts";
-import { getUserFromTweet, getUserInfo } from "../lib/user.ts";
-import { ZombiesMap } from "../lib/zombiesMap.ts";
-import { saveZombiesToStorage } from "../storage/zombieStorage.ts";
+import { sleep } from "../../lib/lib.ts";
+import { ColorMode, Settings } from "../../lib/settings.ts";
+import { getUserFromTweet, getUserInfo } from "../../lib/user.ts";
+import { ZombiesMap } from "../../lib/zombiesMap.ts";
+import { saveZombiesToStorage } from "../../storage/zombieStorage.ts";
 import {
   blockButtonSelector,
   confirmBlockButtonSelector,
@@ -14,11 +14,12 @@ import {
   removeMaskStyle,
   tweetSelector,
   zombieTweetSelector,
-} from "./consts.ts";
-import { hideZombies } from "./hideZombies.ts";
-import { click, querySelectorLoop } from "./lib.ts";
+} from "../consts.ts";
+import { hideZombies } from "../hideZombies.ts";
+import { click, querySelectorLoop } from "../lib.ts";
+import { block } from "./block.ts";
 
-export function addHideZombieButtons(zombies: ZombiesMap, settings: Settings) {
+export function addZombieButtons(zombies: ZombiesMap, settings: Settings) {
   const tweets = document.querySelectorAll(tweetSelector);
 
   for (const tweet of tweets) {
@@ -143,7 +144,7 @@ function setEventListener(
     styleElement.innerHTML = removeMaskStyle;
     document.head.appendChild(styleElement);
 
-    // await block(menuButton.value);
+    await block(menuButton.value);
 
     if (styleElement) {
       // ブロック確認ダイアログとマスクのスタイルは元に戻しておく。

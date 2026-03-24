@@ -12,8 +12,8 @@ import {
   fetchZombiesFromStorage,
   saveZombiesToStorage,
 } from "../storage/zombieStorage.ts";
+import { addZombieButtons } from "./button/zombieButtons.ts";
 import { timeLineSelector } from "./consts.ts";
-import { addHideZombieButtons } from "./hideZombieButtons.ts";
 import { hideZombies } from "./hideZombies.ts";
 import { PurgeStateMachine } from "./purge/stateMachine.ts";
 import { restoreUsers } from "./restore/restoreUser.ts";
@@ -58,7 +58,7 @@ const params = url.searchParams;
     goToNextZombieTweet(zombies);
   }
 
-  setInterval(() => addHideZombieButtons(zombies, settings), 500);
+  setInterval(() => addZombieButtons(zombies, settings), 500);
   setInterval(() => hideZombies(zombies), 50);
   setInterval(() => restoreUsers(zombies), 500);
 })();
