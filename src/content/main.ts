@@ -8,11 +8,14 @@ import { sleep } from "../lib/lib.ts";
 import { Settings } from "../lib/settings.ts";
 import { ZombiesMap } from "../lib/zombiesMap.ts";
 import { fetchSettingsFromStorage } from "../storage/settingStorage.ts";
-import { fetchZombiesFromStorage, saveZombiesToStorage } from "../storage/zombieStorage.ts";
+import {
+  fetchZombiesFromStorage,
+  saveZombiesToStorage,
+} from "../storage/zombieStorage.ts";
 import { timeLineSelector } from "./consts.ts";
 import { addHideZombieButtons } from "./hideZombieButtons.ts";
 import { hideZombies } from "./hideZombies.ts";
-import { purge } from "./purge/purge.ts";
+import { PurgeStateMachine } from "./purge/stateMachine.ts";
 import { restoreUsers } from "./restore/restoreUser.ts";
 import { unblock } from "./restore/unblock.ts";
 
@@ -45,7 +48,7 @@ const params = url.searchParams;
 
   // 必ずallPurgeより先に処理する
   if (purgeZombieId) {
-    await purge(purgeZombieId);
+    await new PurgeStateMachine(purgeZombieId).run();
 
     zombies.remove(purgeZombieId);
     await saveZombiesToStorage(zombies.values());
