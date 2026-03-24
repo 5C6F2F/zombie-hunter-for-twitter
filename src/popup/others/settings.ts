@@ -1,6 +1,6 @@
-import { colorModeSettingKeyForStorage } from "../../lib/consts.ts";
 import { unreachable } from "../../lib/lib.ts";
 import { ColorMode, Settings } from "../../lib/settings.ts";
+import { saveSettingsToStorage } from "../../storage/settingStorage.ts";
 import { colorModeSettingId } from "../consts.ts";
 
 export function reflectSettings(settings: Settings) {
@@ -29,8 +29,6 @@ export function settingsEventListener() {
 
   colorModeSetting.addEventListener("change", async (event) => {
     event.preventDefault();
-    await chrome.storage.local.set({
-      [colorModeSettingKeyForStorage]: colorModeSetting.value,
-    });
+    await saveSettingsToStorage(colorModeSetting.value)
   });
 }

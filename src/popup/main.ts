@@ -10,19 +10,23 @@ import { hide } from "./eventListeners/lib.ts";
 import { openCloseButtonEvent } from "./eventListeners/openCloseButton.ts";
 import { popupEventListener } from "./popupEventListeners.ts";
 import { reflectSettings, settingsEventListener } from "./others/settings.ts";
-import { getTotalPurgeCounts } from "./others/totalPurgeCounts.ts";
 import { hideImportResultMessages } from "./others/importResultMessage.ts";
 import { importExportListener } from "./eventListeners/importExport.ts";
+import { fetchSettingsFromStorage } from "../storage/settingStorage.ts";
+import { fetchZombiesFromStorage } from "../storage/zombieStorage.ts";
+import { fetchTotalPurgeCounts } from "../storage/purgeCountStorage.ts";
 
 openCloseButtonEvent();
 settingsEventListener();
 hideImportResultMessages();
 
 (async () => {
-  const settings = await new Settings().loadSettingsFromStorage();
+  const fetchedSettings = await fetchSettingsFromStorage();
+  const settings = await new Settings(fetchedSettings);
   reflectSettings(settings);
 
-  const zombies = await new ZombiesMap().loadZombiesFromStorage();
+  const fetchedZombies = await fetchZombiesFromStorage();
+  const zombies = await new ZombiesMap(fetchedZombies);
 
   importExportListener(zombies);
 
@@ -39,7 +43,7 @@ hideImportResultMessages();
   }
 
   const totalPurgeCountsElement = document.getElementById(totalPurgeCountsId);
-  const totalPurgeCounts = await getTotalPurgeCounts();
+  const totalPurgeCounts = await fetchTotalPurgeCounts();
   if (totalPurgeCountsElement) {
     totalPurgeCountsElement.textContent = totalPurgeCounts.toLocaleString();
   }

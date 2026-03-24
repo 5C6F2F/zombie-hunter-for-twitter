@@ -1,11 +1,13 @@
 import { getUserInfo } from "../../lib/user.ts";
 import { ZombiesMap } from "../../lib/zombiesMap.ts";
+import { fetchZombiesFromStorage } from "../../storage/zombieStorage.ts";
 import { tweetSelector, zombieTweetSelector } from "../consts.ts";
 
 const restoreIds = new Set<string>();
 
 export async function restoreUsers(zombies: ZombiesMap) {
-  const newZombies = await new ZombiesMap().loadZombiesFromStorage();
+  const fetchedZombies = await fetchZombiesFromStorage();
+  const newZombies = await new ZombiesMap(fetchedZombies);
   extractReAddedZombies(zombies, newZombies);
   extractRestore(zombies, newZombies);
   enVisible();

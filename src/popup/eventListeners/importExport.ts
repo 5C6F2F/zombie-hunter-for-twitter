@@ -1,5 +1,6 @@
 import { sleep } from "../../lib/lib.ts";
 import { ZombiesMap } from "../../lib/zombiesMap.ts";
+import { saveZombiesToStorage } from "../../storage/zombieStorage.ts";
 import { exportButtonId, exportFileName, importButtonId, importSucceededReloadWaitTime } from "../consts.ts";
 import {
   hideImportResultMessages,
@@ -49,7 +50,7 @@ function importAction(event: Event, zombies: ZombiesMap) {
     hideImportResultMessages();
     showImportCompletedMessage();
 
-    await zombies.saveStorage();
+    await saveZombiesToStorage(zombies.values());
     await sleep(importSucceededReloadWaitTime);
     location.reload();
   };

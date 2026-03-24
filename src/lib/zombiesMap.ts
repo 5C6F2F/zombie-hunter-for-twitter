@@ -1,42 +1,15 @@
 import { User } from "./user.ts";
-import { zombiesKeyForStorage } from "../lib/consts.ts";
-import { separator } from "./consts.ts";
+import { separator } from "../storage/consts.ts"
 import { Zombie } from "./zombie.ts";
 
 export class ZombiesMap {
   private _zombies: Map<string, Zombie>;
 
-  constructor() {
+  constructor(initialZombies: Zombie[]) {
     this._zombies = new Map();
-  }
-
-  async loadZombiesFromStorage(): Promise<this> {
-    const ids = await chrome.storage.local.get(zombiesKeyForStorage);
-    if (ids[zombiesKeyForStorage]) {
-      this.parseFromStorage(ids[zombiesKeyForStorage]);
+    for (const zombie of initialZombies) {
+      this._zombies.set(zombie.id, zombie);
     }
-    return this;
-  }
-
-  private parseFromStorage(value: string): this {
-    let zombieElements: string[] = [];
-
-    for (const elem of value.split(separator)) {
-      zombieElements.push(elem);
-
-      if (zombieElements.length === 4) {
-        this.add(
-          new Zombie(
-            zombieElements[0],
-            zombieElements[1],
-            zombieElements[2],
-            zombieElements[3],
-          ),
-        );
-        zombieElements = [];
-      }
-    }
-    return this;
   }
 
   get length(): number {
@@ -45,6 +18,10 @@ export class ZombiesMap {
 
   ids(): IterableIterator<string> {
     return this._zombies.keys();
+  }
+
+  values(): IterableIterator<Zombie> {
+    return this._zombies.values();
   }
 
   add(zombie: User) {
@@ -71,21 +48,6 @@ export class ZombiesMap {
 
   get(id: string): Zombie | undefined {
     return this._zombies.get(id);
-  }
-
-  async saveStorage() {
-    await chrome.storage.local.set({
-      [zombiesKeyForStorage]: this.toStorage(),
-    });
-  }
-
-  private toStorage(): string {
-    let result = "";
-    for (const [_, zombie] of this._zombies) {
-      result +=
-        `${zombie.id}${separator}${zombie.name}${separator}${zombie.text}${separator}${zombie.url}${separator}`;
-    }
-    return result;
   }
 
   parseToHTML(): HTMLElement | null {

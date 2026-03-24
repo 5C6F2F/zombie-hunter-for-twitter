@@ -7,6 +7,8 @@ import {
 import { sleep } from "../lib/lib.ts";
 import { Settings } from "../lib/settings.ts";
 import { ZombiesMap } from "../lib/zombiesMap.ts";
+import { fetchSettingsFromStorage } from "../storage/settingStorage.ts";
+import { fetchZombiesFromStorage, saveZombiesToStorage } from "../storage/zombieStorage.ts";
 import { timeLineSelector } from "./consts.ts";
 import { addHideZombieButtons } from "./hideZombieButtons.ts";
 import { hideZombies } from "./hideZombies.ts";
@@ -18,9 +20,12 @@ const url = new URL(globalThis.location.href);
 const params = url.searchParams;
 
 (async () => {
-  const settings = await new Settings().loadSettingsFromStorage();
+  const fetchedSettings = await fetchSettingsFromStorage();
+  const settings = await new Settings(fetchedSettings);
 
-  const zombies = await new ZombiesMap().loadZombiesFromStorage();
+  const fetchedZombies = await fetchZombiesFromStorage();
+  const zombies = await new ZombiesMap(fetchedZombies);
+
   await waitWhileTimeLineShown();
 
   const showZombieId = params.get(zombieViewParam);
@@ -32,7 +37,7 @@ const params = url.searchParams;
   if (removeZombieId) {
     await unblock(removeZombieId);
     zombies.remove(removeZombieId);
-    await zombies.saveStorage();
+    await saveZombiesToStorage(zombies.values());
   }
 
   const purgeZombieId = params.get(purgeZombieParam);
@@ -43,7 +48,7 @@ const params = url.searchParams;
     await purge(purgeZombieId);
 
     zombies.remove(purgeZombieId);
-    await zombies.saveStorage();
+    await saveZombiesToStorage(zombies.values());
   }
 
   if (allPurge) {

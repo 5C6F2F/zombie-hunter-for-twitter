@@ -2,6 +2,7 @@ import { sleep } from "../lib/lib.ts";
 import { ColorMode, Settings } from "../lib/settings.ts";
 import { getUserFromTweet, getUserInfo } from "../lib/user.ts";
 import { ZombiesMap } from "../lib/zombiesMap.ts";
+import { saveZombiesToStorage } from "../storage/zombieStorage.ts";
 import {
   blockButtonSelector,
   confirmBlockButtonSelector,
@@ -116,7 +117,7 @@ function setEventListener(
     // フォロー中の人をブロックするとzombiesに追加する前にリロードされてしまうので、
     // 事前に追加したうえでキャンセルした際に削除する。
     zombies.add(zombie);
-    await zombies.saveStorage();
+    await saveZombiesToStorage(zombies.values());
 
     const menuButton = await querySelectorLoop(tweet, menuButtonSelector);
     click(menuButton);
@@ -125,7 +126,7 @@ function setEventListener(
     // 誤クリックだと判定しリストから削除、ツイートを再表示。
     if ((await isFollowingUser()) && (await cancelToBlockFollowingUser())) {
       zombies.remove(zombie.id);
-      await zombies.saveStorage();
+    await saveZombiesToStorage(zombies.values());
       restoreFollowingUserTweet(zombie.id);
 
       // メニューが残るのでもう一度メニューボタンを押して消す。
