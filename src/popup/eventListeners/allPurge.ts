@@ -49,12 +49,12 @@ async function waitAllPurgeCompleteAndChangePopup(
   });
 
   const fetchedZombies = await fetchZombiesFromStorage();
-  const zombies = await new ZombiesMap(fetchedZombies);
+  const zombies = new ZombiesMap(fetchedZombies);
 
   while (flag && zombies.length > 0) {
     await sleep(1000);
     const fetchedZombies = await fetchZombiesFromStorage();
-    const newZombies = await new ZombiesMap(fetchedZombies);
+    const newZombies = new ZombiesMap(fetchedZombies);
 
     if (newZombies.length === zombies.length) {
       continue;

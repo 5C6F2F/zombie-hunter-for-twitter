@@ -33,7 +33,7 @@ export async function saveZombiesToStorage(
     }
 
     result +=
-      `${zombie.id}${separator}${zombie.name}${separator}${zombie.text}${separator}${zombie.url}${separator}`;
+      `${zombie.id}${separator}${name}${separator}${text}${separator}${zombie.url}${separator}`;
   }
 
   await chrome.storage.local.set({

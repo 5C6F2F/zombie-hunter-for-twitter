@@ -11,7 +11,7 @@ import { PurgeContext, PurgeState } from "./state.ts";
 import { clickBlockButton } from "./states/clickBlockButton.ts";
 import { findTweet } from "./states/findTweet.ts";
 import { openMenuForReport } from "./states/openMenuForReport.ts";
-import { WaitReportComplete } from "./states/waitReportComplete.ts";
+import { waitReportComplete } from "./states/waitReportComplete.ts";
 
 export class PurgeStateMachine {
   private state: PurgeState = "Init";
@@ -147,7 +147,7 @@ export class PurgeStateMachine {
       }
 
       case "WaitReportComplete": {
-        const result = await WaitReportComplete();
+        const result = await waitReportComplete();
 
         // 完了ボタンがいつまでも出ない場合はスパム種別選択からやり直し
         if (!result.isSuccess) {

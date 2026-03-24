@@ -7,7 +7,7 @@ import {
 import { click } from "../../lib.ts";
 import { goNextPage } from "../lib.ts";
 
-export async function WaitReportComplete(): Promise<Result<null, null>> {
+export async function waitReportComplete(): Promise<Result<null, null>> {
   let completeButton = document.querySelector(completeButtonSelector);
   let waitCount = 0;
 

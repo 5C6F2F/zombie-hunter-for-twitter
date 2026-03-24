@@ -29,6 +29,6 @@ export function settingsEventListener() {
 
   colorModeSetting.addEventListener("change", async (event) => {
     event.preventDefault();
-    await saveSettingsToStorage(colorModeSetting.value)
+    await saveSettingsToStorage(colorModeSetting.value);
   });
 }

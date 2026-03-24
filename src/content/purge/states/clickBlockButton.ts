@@ -20,7 +20,6 @@ export async function clickBlockButton(): Promise<Result<boolean, null>> {
     return success(true);
   } else {
     // 「ブロック」というキーワードが含まれていない（＝既にブロック済み等の状態）場合は終了
-    // click(menuButtonElement); // メニューを閉じて完了扱いにする
     return success(false);
   }
 }

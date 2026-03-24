@@ -24,10 +24,10 @@ const params = url.searchParams;
 
 (async () => {
   const fetchedSettings = await fetchSettingsFromStorage();
-  const settings = await new Settings(fetchedSettings);
+  const settings = new Settings(fetchedSettings);
 
   const fetchedZombies = await fetchZombiesFromStorage();
-  const zombies = await new ZombiesMap(fetchedZombies);
+  const zombies = new ZombiesMap(fetchedZombies);
 
   await waitWhileTimeLineShown();
 

@@ -7,7 +7,7 @@ const restoreIds = new Set<string>();
 
 export async function restoreUsers(zombies: ZombiesMap) {
   const fetchedZombies = await fetchZombiesFromStorage();
-  const newZombies = await new ZombiesMap(fetchedZombies);
+  const newZombies = new ZombiesMap(fetchedZombies);
   extractReAddedZombies(zombies, newZombies);
   extractRestore(zombies, newZombies);
   enVisible();

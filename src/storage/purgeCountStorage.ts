@@ -1,4 +1,4 @@
-import { colorModeSettingKeyForStorage, totalPurgeCountsKeyForStorage } from "./consts.ts";
+import { totalPurgeCountsKeyForStorage } from "./consts.ts";
 
 export async function fetchTotalPurgeCounts(): Promise<number> {
   let counts = 0;
@@ -13,6 +13,6 @@ export async function fetchTotalPurgeCounts(): Promise<number> {
 
 export async function saveTotalPurgeCounts(newCounts: number) {
   await chrome.storage.local.set({
-    [colorModeSettingKeyForStorage]: newCounts,
+    [totalPurgeCountsKeyForStorage]: newCounts,
   });
 }

@@ -59,13 +59,13 @@ async function purgeOrRemove(
 
   // content/main.tsで処理後saveStorage()されたのを確認して処理終了
   const fetchedZombies = await fetchZombiesFromStorage();
-  let newZombies = await new ZombiesMap(fetchedZombies);
+  let newZombies = new ZombiesMap(fetchedZombies);
 
   // 処理後はnewZombiesのlengthが1減るのでそれまで待機
   while (newZombies.length === zombies.length) {
     await sleep(1000);
     const fetchedZombies = await fetchZombiesFromStorage();
-    newZombies = await new ZombiesMap(fetchedZombies);
+    newZombies = new ZombiesMap(fetchedZombies);
   }
 
   closeTab();
