@@ -54,7 +54,7 @@ export class PurgeStateMachine {
 
         if (this.context.rollbackCount > this.context.maxRollbacks) {
           console.error(
-            `[Purge] Max rollbacks exceeded at state: ${this.state}. Aborting.`,
+            `Max rollbacks exceeded at state: ${this.state}. Aborting.`,
           );
           this.state = "Failed";
           continue;
@@ -116,10 +116,12 @@ export class PurgeStateMachine {
           reportButtonSelector,
         );
 
-        // 報告ボタンが見つからなければメニューを開き直す
+        // 以前に通報したことのあるツイートの場合、若干遅延が入ってから
+        // 「報告しました 表示する」という表示になり、メニューボタンを押すことができなくなっていた
+        // そのため、報告ボタンが見つからなければツイートを再度探す動作に変更
         if (!result.isSuccess) {
           await sleep(100);
-          return "OpenMenuForReport";
+          return "FindTweet";
         }
 
         click(result.value);

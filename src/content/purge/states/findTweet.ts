@@ -10,7 +10,7 @@ export async function findTweet(
   // ツイートが削除されたりアカウントが凍結・削除・ID変更等されたりしている場合のみreturnされるはず
   if (!result.isSuccess) {
     console.error(
-      `[Purge] Tweet not found for ID: ${zombieId}`,
+      `Tweet not found for ID: ${zombieId}`,
     );
     return failure(null);
   }

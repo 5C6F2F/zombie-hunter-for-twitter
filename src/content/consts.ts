@@ -63,3 +63,6 @@ export const nextButtonSelector =
 // 報告画面「完了」ボタン
 export const completeButtonSelector =
   "button[data-testid='ocfSettingsListNextButton']";
+
+// レート制限に引っかかった際に表示する要素のID
+export const rateLimitNotificationId = "rate-limit-notification";
